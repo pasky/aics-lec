@@ -1,0 +1,209 @@
+\documentclass{beamer}
+\usetheme{Warsaw}
+\useinnertheme{circles}
+\useoutertheme[subsection=false]{smoothbars}
+\usepackage[utf8x]{inputenc}
+\usepackage[czech]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{listings}
+\logo{\includegraphics[height=0.5cm]{brmlab.pdf}}
+
+\begin{document}
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Outline}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\title{brmiversity: Umělá inteligence\\a teoretická informatika}
+\subtitle{Úvodní přednáška}
+\author{Petr Baudiš $\langle${\tt pasky@ucw.cz}$\rangle$}
+\institute{
+	brmlab 2011\\
+	\vskip 1ex
+	\pgfdeclareimage[height=4ex]{ccbysa}{by-sa.pdf}
+	\pgfuseimage{ccbysa}
+}
+\date{}
+\frame{\titlepage}
+
+\section{Slovo úvodem}
+
+\subsection{}
+\begin{frame}{Formát}
+\begin{itemize}
+\item Cyklus 14 přednášek; dvě pauzy v listopadu
+\item Každá přednáška vystřídá několik témat, někdy souvisejících méně a někdy více
+\item Motivace: Příprava na Mgr. státnice z teoretické informatiky na MFF UK
+\item Pouze letmý {\em teoretický} úvod do různých témat --- malý časový rozsah
+\end{itemize}
+\begin{center}
+\url{http://brmlab.cz/event/aics}
+\end{center}
+\end{frame}
+
+\section{Umělá inteligence}
+
+\subsection{}
+\begin{frame}{Umělá inteligence}
+\begin{itemize}
+% TODO obrazek
+\item Naučit počítače býti chytrými!
+\item Rozpoznávat, analyzovat, dedukovat, \dots chápat?
+\item Zkoumat svět, pomáhat lidem, nahradit lidi, vládnout lidem. :-)
+\item Amorfní vědní oblast spojující specializovanější obory.
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Témata UI}
+\begin{itemize}
+\item Exaktní techniky --- prohledávání v grafech, reprezentace znalostí, strojové dokazování, splňování omezujících podmínek a automatické plánování
+\item Pravděpodobnostní techniky --- Bayesovské sítě, Kalmanův filtr, markovské modely
+\item Strojové učení --- Bayesovské modely, učení s učitelem a bez učitele % TODO
+\item Herní algoritmy
+\end{itemize}
+\end{frame}
+
+\section{Neuronové sítě}
+
+\subsection{}
+\begin{frame}{Neuronové sítě}
+\begin{itemize}
+% TODO obrazek
+\item Speciální rozsáhlý obor umělé inteligence
+\item Umělé neuronové sítě --- {\em inspirováno} mozkem (nebo spíše neurovými zauzleními)
+\item Asi ``nejtvrdší'' matematika, my si udržíme nadhled
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Neuronová témata}
+\begin{itemize}
+\item Předzpracování dat --- PCA, ``složitost'' dat % TODO
+\item Klasické neuronové sítě --- perceptron, vícevrstvé sítě a jejich vlastnosti, modulární sítě
+\item Asociativní paměti --- Hopfieldova síť, další techniky, netradiční aplikace
+\item Samoorganizace --- klastrování, Kohonenovy mapy
+\item Hrst příkladů aplikací
+\end{itemize}
+\end{frame}
+
+\section{Adaptivní agenti}
+
+\subsection{}
+\begin{frame}{Adaptivní agenti}
+\begin{itemize}
+% TODO obrazek
+\item Umělé bytosti --- umělá inteligence řídící chování autonomních agentů
+\item Realistické nebo účelné chování, řízení postav, modelování emocí
+\item Zábava --- počítačové hry!
+\item Seriozní postavy --- tréninkové situace, terapeutické pomůcky
+\item Biologie --- komputační etologie (zkoumání chování zvířat)
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Témata pro adaptivní agenty}
+\begin{itemize}
+\item Architektury řízení agentů, metody a algoritmy
+\item Navigace a hledání cesty v reálném prostředí
+\item Komunikace a znalosti v multiagentních systémech
+\item Úvod do komputační etologie
+\end{itemize}
+\end{frame}
+
+\section{Evoluční algoritmy}
+
+\subsection{}
+\begin{frame}{Evoluční algoritmy}
+\begin{itemize}
+% TODO obrazek
+\item Jak řešit problémy, které se nám nechce (nebo neumíme) programovat
+\item Genetické algoritmy --- řešení algoritmů inspirované přírodním výběrem
+\item Hledáme přibližná řešení těžkých problémů
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Genetická témata}
+\begin{itemize}
+\item Základní genetický algoritmus, genetické operátory
+\item Genetické a evoluční programování
+\item Aplikace na reálné problémy
+\item Teoretické modely genetických algoritmů
+\end{itemize}
+\end{frame}
+
+\section{Složitost}
+
+\subsection{}
+\begin{frame}{Složitost}
+\begin{itemize}
+% TODO obrazek
+\item Studium náročnosti algoritmů v závislosti na velikosti datasetu
+\item Jak dlouho trvá algoritmus --- nezávisle na rychlosti počítače
+\item Turingovy stroje, třídy složitosti, převody mezi stejně složitými problémy
+\item Rozděl a panuj, dynamické programování, hladový algoritmus
+\item Pravděpodobnostní a pseudopolynomiální algoritmy, aproximační algoritmy
+\item Matematické nuance --- vztah mezi časovou a prostorovou složitostí
+\end{itemize}
+\end{frame}
+
+\section{Datové struktury}
+
+\subsection{}
+\begin{frame}{Datové struktury}
+\begin{itemize}
+% TODO obrazek
+\item Pokročilé datové struktury a jejich matematická analýza.
+\item Haldy, hashování, hashování$^2$, binární stromy, B-stromy
+\item Struktury ve vnější paměti
+\end{itemize}
+\end{frame}
+
+\section{Vyčíslitelnost}
+
+\subsection{}
+\begin{frame}{Vyčíslitelnost}
+\begin{itemize}
+\item Co vůbec {\em umíme} spočítat? Které problémy rozhodnout neumíme?
+\item O některých programech nevíme, jestli někdy skončí.
+\item Jak matematicky popisovat a studovat programy a množiny jimy popisované?
+\item Gödelovy věty --- o členství prvku v dostatečně složité množině nedokážeme vždy rozhodnout.
+\end{itemize}
+\end{frame}
+
+\section{Základní datové struktury a algoritmy}
+
+\subsection{}
+\begin{frame}{Základní datové struktury}
+\begin{itemize}
+\item Pole --- prvky za sebou v paměti (hashe?)
+\item Spojový seznam --- krabičky rozházené po paměti, každá obsahuje ukazatel na sousední
+% TODO: obrazek
+\item Graf --- sada vrcholů pospojovaných hranami $(V,E)\quad E \subseteq V\times V$
+\item Strom --- graf bez ``cyklů''
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Třídění}
+\begin{itemize}
+\item Jak uspořádat telefonní seznam?
+\item Bubble sort
+\item Quick sort
+\item Merge sort
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Děkuji vám}
+\begin{center}
+{\bf pasky@ucw.cz}
+\end{center}
+\end{frame}
+
+\end{document}
