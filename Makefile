@@ -1,9 +1,7 @@
-all: lec1.pdf
+all: lec1.pdf lec2.pdf
 
 clean:
-	rm -f lec1.{aux,dvi,log,nav,out,pdf,snm,toc}
+	rm -f lec[12].{aux,dvi,log,nav,out,pdf,snm,toc}
 
-lec1.pdf: lec1.tex
-	pdflatex lec1.tex
-	pdflatex lec1.tex
-	pdflatex lec1.tex
+%.pdf: %.tex
+	pdflatex $<
