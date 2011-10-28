@@ -1,0 +1,280 @@
+\documentclass{beamer}
+\usetheme{Warsaw}
+\useinnertheme{circles}
+\useoutertheme[subsection=false]{smoothbars}
+\usepackage[utf8x]{inputenc}
+\usepackage[czech]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{listings}
+\usepackage{tikz}
+\lstset{basicstyle=\tiny\ttfamily}
+\logo{\includegraphics[height=0.5cm]{brmlab.pdf}}
+
+\begin{document}
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Outline}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\title{brmiversity: Umělá inteligence \\ a teoretická informatika}
+\subtitle{Přednáška č. 4}
+\author{Petr Baudiš $\langle${\tt pasky@ucw.cz}$\rangle$}
+\institute{
+	brmlab 2011\\
+	\vskip 1ex
+	\pgfdeclareimage[height=4ex]{ccbysa}{by-sa.pdf}
+	\pgfuseimage{ccbysa}
+}
+\date{}
+\frame{\titlepage}
+
+\section{Neuronové sítě}
+
+\subsection{}
+\begin{frame}{Umělá neuronová síť}
+\begin{itemize}
+\item Jednoduché schéma
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Perceptron}
+\begin{itemize}
+\item Diagram, základní vzoreček, obrázek roviny
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Co dokáže perceptron?}
+\begin{itemize}
+\item Lineární separabilita
+\item Omezení --- XOR
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Geometrická interpretace}
+\begin{itemize}
+\item Váhový vektor v rovině
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Učení perceptronu}
+\begin{itemize}
+\item ``Rotační'' algoritmus
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Otázky?}
+\begin{center}
+Příště: Vícevrstvé neuronové sítě a jejich učení (backpropagation).
+\end{center}
+\end{frame}
+
+\section{Umělá inteligence}
+
+\subsection{}
+\begin{frame}{Filosofie}
+\begin{itemize}
+\item Silná vs. slabá AI
+\item AI-complete úlohy
+\item Bude víc 23.11.
+\item Dnes jeden příklad slabé AI (ale AI-complete?)
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Matematické hry}
+\begin{itemize}
+\item Teorie her
+\item Hry dvou hráčů s úplnou informací a nulovým součtem
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Minimaxový strom}
+\begin{itemize}
+\item ``Adversarial planning''
+\item Tah je tak dobrý jako nejnepříjemnější tah protihráče
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Vyhodnocovací funkce}
+\begin{itemize}
+\item Omezení na hloubku stromu
+\item Problémy --- dobrá funkce, efekt horizontu
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{$\alpha,\beta$ prořezávání}
+\begin{itemize}
+\item Základní urychlovací heuristika
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Další vylepšení}
+\begin{itemize}
+\item Transpoziční tabulky
+\item Prořezávání, singular extensions, atd.
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Monte Carlo Tree Search}
+\begin{itemize}
+\item Technika Monte Carlo
+\item Minimaxový strom s očekáváními
+\item Multi-armed bandit
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Otázky?}
+\begin{center}
+Příště: Prohledávání v grafech.
+\end{center}
+\end{frame}
+
+\section{Základní algoritmy}
+
+\subsection{}
+\begin{frame}{Levenšteinova editační vzdálenost}
+Dynamický algoritmus
+\end{frame}
+
+\subsection{}
+\begin{frame}{Další způsoby porovnávání}
+\begin{itemize}
+\item Myersův algoritmus (nejdelší společná podposloupnost neboli editační skript)
+\item bdiff (nejdelší společný podřetězec --- rekurzivně)
+\item xdelta (rsync; Rabinovo hashování)
+\end{itemize}
+\end{frame}
+
+\section{Složitost}
+
+\subsection{}
+\begin{frame}{Metody tvorby algoritmů}
+\begin{itemize}
+\item Kuchařka pro efektivní algoritmy na obecné třídy problémů
+\item Rozděl a panuj --- problém rozdělíme na podproblémy a ty počítáme rekurzivně
+\item Hladový algoritmus --- problém budujeme inkrementálně, v každé chvíli víme, kudy dál
+\item Dynamický algoritmus --- problém budujeme inkrementálně, sdílíme výsledky jednodušších podproblémů
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Rozděl a panuj --- příklad}
+\begin{itemize}
+\item Binární vyhledávání
+\item Quicksort
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Master Theorem}
+\begin{itemize}
+\item Asymptotická složitost?
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Hladový algoritmus --- příklad}
+\begin{itemize}
+\item Minimální kostra (připomenutí)
+\item Rozvrhovací problém
+\item Dijkstra
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Matroidy}
+\begin{itemize}
+\item Hladový algoritmus lze použít, pokud problém vykazuje {\em optimální podstrukturu}
+\item Matematická abstrakce
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Dynamický algoritmus}
+\begin{itemize}
+\item Editační vzdálenost
+\item Fibonacciho posloupnost
+\item Dijkstra
+\vskip 3ex
+\item Optimální podstruktura a překrývající se podproblémy
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Třídění}
+\begin{itemize}
+\item Jak dlouho trvá třídění? $O(n\cdot\log n)$
+\item Vyhledávací strom
+\item Proto nejde třídit rychleji
+\item Nebo ano? Radix sort, ale je to podvod!
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Otázky?}
+\begin{center}
+Příště: Pravděpodobnostní algoritmy.
+\end{center}
+\end{frame}
+
+\section{Vyčíslitelnost}
+
+\subsection{}
+\begin{frame}{Halting Problem}
+\begin{itemize}
+\item Rekapitulace: Nezajímá nás, jak rychle to poběží, ale jestli to někdy doběhne.
+\item Máme program $z=x(y)$; $x, y, z$ jsou čísla (kód, parametr / vstup, návratová hodnota / výstup)
+\item Program doběhne (v konečném čase) a vrátí hodnotu ({\em řeší} problém), nebo se zacyklí
+\pause
+\vskip 3ex
+\item Nekonečná smyčka v závislosti na datech uprostřed složitého kódu
+\item Halting Problem: Zacyklí se program $x$ na vstupu $y$?
+\item Dokážeme napsat program, který řeší halting problem?
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Halting Problem: Důkaz}
+\begin{itemize}
+\item PODRAZ
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Otázky?}
+\begin{center}
+Příště: Rekurzivní a rekurzivně spočetné množiny.
+\end{center}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Děkuji vám}
+\begin{center}
+{\bf pasky@ucw.cz}
+
+\vskip 6ex
+
+Příště: {\bf Nebude.}
+
+\vskip 6ex
+
+Popříště: Prohledávání grafů a hledání cesty (základní algoritmy, umělá inteligence, adaptivní agenti), neuronové sítě, vyčíslitelnost.
+\end{center}
+\end{frame}
+
+\end{document}
