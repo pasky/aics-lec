@@ -85,14 +85,14 @@ Příště: Vícevrstvé neuronové sítě a jejich učení (backpropagation).
 \item Silná vs. slabá AI
 \item AI-complete úlohy
 \item Bude víc 23.11.
-\item Dnes jeden příklad slabé AI (ale AI-complete?)
+\item Dnes jeden příklad slabé AI (je AI-complete?)
 \end{itemize}
 \end{frame}
 
 \subsection{}
 \begin{frame}{Matematické hry}
 \begin{itemize}
-\item Teorie her
+\item Teorie her --- hráči se střídají v akcích, každý dostane nějakou výplatu po dokončení sekvence akcí
 \item Hry dvou hráčů s úplnou informací a nulovým součtem
 \end{itemize}
 \end{frame}
@@ -102,22 +102,23 @@ Příště: Vícevrstvé neuronové sítě a jejich učení (backpropagation).
 \begin{itemize}
 \item ``Adversarial planning''
 \item Tah je tak dobrý jako nejnepříjemnější tah protihráče
+\item Omezení na hloubku stromu --- vyhodnocovací funkce
 \end{itemize}
-\end{frame}
-
-\subsection{}
-\begin{frame}{Vyhodnocovací funkce}
-\begin{itemize}
-\item Omezení na hloubku stromu
-\item Problémy --- dobrá funkce, efekt horizontu
-\end{itemize}
+\begin{center}
+\includegraphics[width=7cm]{minimax-illustration.jpg}
+\end{center}
 \end{frame}
 
 \subsection{}
 \begin{frame}{$\alpha,\beta$ prořezávání}
 \begin{itemize}
 \item Základní urychlovací heuristika
+\item Pamatujeme si nejhorší a nejlepší hodnoty z minimaxových sousedů, zařízneme prohledávání uzlu, je-li jasné, že bude horší (max, $\alpha$) nebo lepší (min, $\beta$)
+\item Pro efektivitu je důležité pořadí vyhodnocování tahů
 \end{itemize}
+\begin{center}
+\includegraphics[width=6cm]{AB_pruning.pdf}
+\end{center}
 \end{frame}
 
 \subsection{}
@@ -125,6 +126,7 @@ Příště: Vícevrstvé neuronové sítě a jejich učení (backpropagation).
 \begin{itemize}
 \item Transpoziční tabulky
 \item Prořezávání, singular extensions, atd.
+\item Problémy --- dobrá funkce, větvící faktor, efekt horizontu
 \end{itemize}
 \end{frame}
 
@@ -135,6 +137,9 @@ Příště: Vícevrstvé neuronové sítě a jejich učení (backpropagation).
 \item Minimaxový strom s očekáváními
 \item Multi-armed bandit
 \end{itemize}
+\begin{center}
+\includegraphics[width=8cm]{mcts.png}
+\end{center}
 \end{frame}
 
 \subsection{}
