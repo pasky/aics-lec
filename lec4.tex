@@ -153,13 +153,20 @@ Příště: Prohledávání v grafech.
 
 \subsection{}
 \begin{frame}{Levenšteinova editační vzdálenost}
-Dynamický algoritmus
+\begin{itemize}
+\item Dva stringy; editace jsou přidání, změna, odebrání
+\item Dynamický algoritmus:
+\end{itemize}
+
+\begin{center}
+\includegraphics[width=6cm]{levehnstein.png}
+\end{center}
 \end{frame}
 
 \subsection{}
 \begin{frame}{Další způsoby porovnávání}
 \begin{itemize}
-\item Myersův algoritmus (nejdelší společná podposloupnost \\ neboli editační skript)
+\item Myersův algoritmus (nejdelší společná podposloupnost \\ neboli editační skript; jen $+$ a $-$)
 \item bdiff (nejdelší společný podřetězec --- rekurzivně)
 \item xdelta (rsync; Rabinovo hashování)
 \end{itemize}
