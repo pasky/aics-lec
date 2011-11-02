@@ -37,37 +37,90 @@
 \subsection{}
 \begin{frame}{Umělá neuronová síť}
 \begin{itemize}
-\item Jednoduché schéma
+\item Umělé neurony (``výpočetní krabičky'') \\ dostávají vstupy (čísla) a na jejich \\ základě generují výstup (číslo)
+\item Obvykle: Vrstvy striktně oddělené, \\ vstupní vrstva se vstupy zvnějšku, \\ výstupní vrstva s výstupem pro uživatele, \\ skryté vrstvy vyhodnocují různé charakteristiky vstupů
+\item Dnes: Jediný umělý neuron
 \end{itemize}
+\begin{tikzpicture}[remember picture,overlay]
+  \node [xshift=-4.5cm,yshift=-6cm,above right] at (current page.north east)
+    {\includegraphics[width=4cm]{ANN.pdf}};
+\end{tikzpicture}
 \end{frame}
 
 \subsection{}
 \begin{frame}{Perceptron}
+\begin{columns}
+\begin{column}{4cm}
+\includegraphics[width=4cm]{Perceptron.pdf}
+\end{column}
+\begin{column}{7cm}
 \begin{itemize}
-\item Diagram, základní vzoreček, obrázek roviny
+\item $n$ vstupů a práh $\Leftarrow$ výstup
+\item Lineární kombinace --- vstupy mají různé váhy,\\ vynásobíme, sečteme a otestujeme
+\item Výstup je 1/0 nebo něco složitějšího
+\pause
+\item Vstup $\vec x$, váhový vektor $\vec w$, práh $b$
+\item $\sum_{i=0}^n w_i \cdot x_i > b$
+\item Zjednodušení --- virtuální vstup pro práh
 \end{itemize}
-\end{frame}
-
-\subsection{}
-\begin{frame}{Co dokáže perceptron?}
-\begin{itemize}
-\item Lineární separabilita
-\item Omezení --- XOR
-\end{itemize}
+\end{column}
+\end{columns}
 \end{frame}
 
 \subsection{}
 \begin{frame}{Geometrická interpretace}
+\begin{center}
+\includegraphics[width=5cm]{perceptron_linear.png}
+\includegraphics[width=5cm]{perceptron_update.png}
+\end{center}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Co dokáže perceptron?}
+\begin{columns}
+\begin{column}{7cm}
 \begin{itemize}
-\item Váhový vektor v rovině
+\item Lze vzorky čistě rozdělit podrovinou?
+\item {\bf Lineární separabilita} množin
+\item Omezení --- např. XOR potřebuje ``dvě čáry''
 \end{itemize}
+\end{column}
+\begin{column}{4cm}
+\includegraphics[width=4cm]{xor_solve.png}
+\end{column}
+\end{columns}
 \end{frame}
 
 \subsection{}
 \begin{frame}{Učení perceptronu}
 \begin{itemize}
 \item ``Rotační'' algoritmus
+\item Náhodná inicializace přímky
+\item Iterujeme učení podle vstupních množin:
+\begin{itemize}
+\item Postupně iterujeme body a klasifikujeme
+\item Správná klasifikace --- neděláme nic
+\item Špatná klasifikace --- pootočíme vektor, aby ``pojmul'' i nový bod
 \end{itemize}
+\end{itemize}
+\begin{tikzpicture}[remember picture,overlay]
+  \node [xshift=-5cm,yshift=-5cm,above right] at (current page.north east)
+    {\includegraphics[width=5cm]{perceptPict-2.png}};
+\end{tikzpicture}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Učení perceptronu}
+\begin{itemize}
+\item Geometrické pozorování: $\vec w \cdot \vec x > 0$, \\ pak úhel mezi nimi je menší než $90 \deg$
+\item Geometrické pozorování: Sečteme-li dva \\ vektory, vyjde nám vektor ``mezi''
+\item Výstup je 0 a měl být 1: $w_i' = w_i + x_i(t)$
+\item Výstup je 1 a měl být 0: $w_i' = w_i - x_i(t)$
+\end{itemize}
+\begin{tikzpicture}[remember picture,overlay]
+  \node [xshift=-5cm,yshift=-5cm,above right] at (current page.north east)
+    {\includegraphics[width=5cm]{perceptPict-2.png}};
+\end{tikzpicture}
 \end{frame}
 
 \subsection{}
