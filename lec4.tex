@@ -280,7 +280,19 @@ Příště: Pravděpodobnostní algoritmy.
 \subsection{}
 \begin{frame}{Halting Problem: Důkaz}
 \begin{itemize}
-\item PODRAZ
+\item Důkaz sporem --- dejme tomu, že máme funkci $HALT(x,y)$, $x$ je kód programu ($c(FUNKCE)$) a $y$ je vstup
+\item Ukážeme, že existence takové funkce způsobuje \\ logické trhliny v časoprostoru
+\pause
+\item Trik: Nadefinujme si funkci $PODRAZ(x) \downarrow \quad \Longleftrightarrow \quad HALT(x,x)=NE$
+\begin{itemize}
+\item Tedy $PODRAZ(x)$ zavolá funkci $HALT(x,x)$
+\item Pokud by se program $x$ na vstupu $x$ (kód sama sebe) zastavil, $PODRAZ(x)$ se zacyklí
+\item Pokud by se program $x$ na vstupu $x$ (kód sama sebe) zacyklil, $PODRAZ(x)$ doběhne
+\end{itemize}
+\pause
+\item Zavolejme $PODRAZ(c(PODRAZ))$!
+\item $HALT(c(PODRAZ),c(PODRAZ)) = ANO \quad \Longleftrightarrow \quad PODRAZ(c(PODRAZ)) \downarrow \quad \Longleftrightarrow \quad HALT(c(PODRAZ),c(PODRAZ)) = NE$
+\item To je spor, $ANO \ne NE$.
 \end{itemize}
 \end{frame}
 
