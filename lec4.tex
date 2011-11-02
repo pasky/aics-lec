@@ -175,7 +175,14 @@ Dynamický algoritmus
 \subsection{}
 \begin{frame}{Rozděl a panuj --- příklad}
 \begin{itemize}
-\item Binární vyhledávání
+\item Binární vyhledávání: \\
+	\only<1>{1 3 9 10 12 13 17 19 24 26 27 30 31}
+	\only<2>{1 3 9 10 12 13 {\bf 17} 19 24 26 27 30 31}
+	\only<3>{1 3 9 10 12 13 {\tiny 17 19 24 26 27 30 31}}
+	\only<4>{1 3 {\bf 9} 10 12 13 {\tiny 17 19 24 26 27 30 31}}
+	\only<5>{{\tiny 1 3 9} 10 12 13 {\tiny 17 19 24 26 27 30 31}}
+	\only<6>{{\tiny 1 3 9} 10 {\bf 12} 13 {\tiny 17 19 24 26 27 30 31}}
+	\only<7>{{\tiny 1 3 9} 10 {\tiny 12 13 \tiny 17 19 24 26 27 30 31}}
 \item Quicksort
 \end{itemize}
 \end{frame}
