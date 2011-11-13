@@ -249,13 +249,7 @@ Příště: Prohledávání v grafech.
 	\only<6>{{\tiny 1 3 9} 10 {\bf 12} 13 {\tiny 17 19 24 26 27 30 31}}
 	\only<7>{{\tiny 1 3 9} 10 {\tiny 12 13 \tiny 17 19 24 26 27 30 31}}
 \item Quicksort
-\end{itemize}
-\end{frame}
-
-\subsection{}
-\begin{frame}{Master Theorem}
-\begin{itemize}
-\item Asymptotická složitost?
+\item Asymptotická složitost --- Master Theorem \\ (matematika viz Wikipedie)
 \end{itemize}
 \end{frame}
 
@@ -265,14 +259,15 @@ Příště: Prohledávání v grafech.
 \item Minimální kostra (připomenutí)
 \item Rozvrhovací problém
 \item Dijkstra
-\end{itemize}
-\end{frame}
-
-\subsection{}
-\begin{frame}{Matroidy}
-\begin{itemize}
+\pause
+\vskip 3ex
 \item Hladový algoritmus lze použít, pokud problém vykazuje {\em optimální podstrukturu}
-\item Matematická abstrakce
+\item Matematická abstrakce --- {\bf matroid} $M = (E,I)$, \\ $E$ je základní množina, $I$ je systém nezávislých podmnožin:
+\begin{itemize}
+\item $\emptyset \in I$ (prázdná množina je nezávislá)
+\item $A \in I, A' \subset A \quad\Rightarrow\quad A' \in I \quad \forall A, A'$ (dědičnost)
+\item $A \in I \land B \in I \land |A| > |B| \quad\Rightarrow\quad \exists\, x \in A, \quad B \cup {x} \in I$
+\end{itemize}
 \end{itemize}
 \end{frame}
 
@@ -290,11 +285,13 @@ Příště: Prohledávání v grafech.
 \subsection{}
 \begin{frame}{Třídění}
 \begin{itemize}
-\item Jak dlouho trvá třídění? $O(n\cdot\log n)$
-\item Vyhledávací strom
-\item Proto nejde třídit rychleji
+\item Jak dlouho trvá třídění? Spodní odhad je $O(n\cdot\log n)$
+\item Vyhledávací strom modeluje rozhodovací strom algoritmu
 \item Nebo ano? Radix sort, ale je to podvod!
 \end{itemize}
+\begin{center}
+\includegraphics[width=8cm]{fullbintree.png}
+\end{center}
 \end{frame}
 
 \subsection{}
