@@ -32,6 +32,101 @@
 \date{}
 \frame{\titlepage}
 
+\section{Základní algoritmy}
+
+\subsection{}
+\begin{frame}{Prohledávání v grafech}
+\begin{itemize}
+\item Chceme projít celý graf
+\item Graf může být popsaný implicitně \\ (průběh výpočtu, hry)
+\item Něco {\em hledáme} --- určitý uzel (řešení), cestu, \dots
+\item Hledání uzlu: BFS (prohledávání do šířky), \\ DFS (prohledávání do hloubky)
+\item Nejkratší cesta: Dijkstra
+\end{itemize}
+\begin{tikzpicture}[remember picture,overlay]
+  \node [xshift=-4.5cm,yshift=-4.5cm,above right] at (current page.north east)
+    {\includegraphics[width=4cm]{graph.pdf}};
+\end{tikzpicture}
+\end{frame}
+
+\subsection{}
+\begin{frame}{BFS, DFS}
+\begin{center}
+\includegraphics[width=5.5cm]{Breadth-first-tree.pdf}
+\vskip 0.5ex
+\includegraphics[width=5.5cm]{Depth-first-tree.pdf}
+\end{center}
+\end{frame}
+
+\subsection{}
+\begin{frame}{BFS, DFS}
+\begin{itemize}
+\item BFS i DFS jsou úplné; fronta LIFO nebo FIFO
+\item Implicitní DFS: Backtracking, graf si nemusím držet v paměti
+\item Depth-limited search
+\item Iterative deepening
+\item Best-first search
+\item Oboustranné vyhledávání
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Dijkstra}
+\begin{itemize}
+\item Postupně budujeme strom nejkratší cesty v grafu
+\item Vždy přidáme nejkratší hranu vedoucí ze stromu
+\end{itemize}
+\begin{center}
+\includegraphics[width=7cm]{dijkstra.png}
+\end{center}
+\end{frame}
+
+\section{Umělá inteligence a adaptivní agenti}
+
+\subsection{}
+\begin{frame}{Prohledávání v grafech}
+\begin{itemize}
+\item Kontext umělé inteligence?
+\item Graf může být obrovský
+\item Může nám stačit přibližné řešení
+\item O problému máme informace navíc (heuristiky)
+\vskip 3ex
+\item Agent naviguje v realném prostoru reprezentovaném grafem
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Prohledávání v grafech}
+\begin{center}
+A*, HPA*, PRA*, inkrementální metody
+\vskip 4ex
+\url{http://bajeluk.matfyz.cz/mff/algs-4-pathf.pdf}
+\end{center}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Rekurzivní BFS}
+\begin{itemize}
+\item P
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Zjednodušené MA*}
+\begin{itemize}
+\item P
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Otázky?}
+\begin{center}
+Příště UI: Zpracování neurčité informace.
+
+Příště Agenti: Komunikace a znalosti v multiagentních systémech.
+\end{center}
+\end{frame}
+
 \section{Neuronové sítě}
 
 \subsection{}
@@ -143,114 +238,6 @@ Derivace sigmoidy $f'(\xi) = \left(1 \over 1+e^{-\lambda\xi}\right)' = \lambda \
 \begin{frame}{Otázky?}
 \begin{center}
 Příště: Statistické zpracování dat, PCA.
-\end{center}
-\end{frame}
-
-\section{Základní algoritmy}
-
-\subsection{}
-\begin{frame}{Prohledávání v grafech}
-\begin{itemize}
-\item Chceme projít celý graf
-\item Graf může být popsaný implicitně \\ (průběh výpočtu, hry)
-\item Něco {\em hledáme} --- určitý uzel (řešení), cestu, \dots
-\item Hledání uzlu: BFS (prohledávání do šířky), \\ DFS (prohledávání do hloubky)
-\item Nejkratší cesta: Dijkstra
-\end{itemize}
-\begin{tikzpicture}[remember picture,overlay]
-  \node [xshift=-4.5cm,yshift=-4.5cm,above right] at (current page.north east)
-    {\includegraphics[width=4cm]{graph.pdf}};
-\end{tikzpicture}
-\end{frame}
-
-\subsection{}
-\begin{frame}{BFS, DFS}
-\begin{center}
-\includegraphics[width=5.5cm]{Breadth-first-tree.pdf}
-\vskip 0.5ex
-\includegraphics[width=5.5cm]{Depth-first-tree.pdf}
-\end{center}
-\end{frame}
-
-\subsection{}
-\begin{frame}{BFS, DFS}
-\begin{itemize}
-\item BFS i DFS jsou úplné; fronta LIFO nebo FIFO
-\item Implicitní DFS: Backtracking, graf si nemusím držet v paměti
-\item Depth-limited search
-\item Iterative deepening
-\item Best-first search
-\item Oboustranné vyhledávání
-\end{itemize}
-\end{frame}
-
-\subsection{}
-\begin{frame}{Dijkstra}
-\begin{itemize}
-\item Postupně budujeme strom nejkratší cesty v grafu
-\item Vždy přidáme nejkratší hranu vedoucí ze stromu
-\end{itemize}
-\begin{center}
-\includegraphics[width=7cm]{dijkstra.png}
-\end{center}
-\end{frame}
-
-\section{Umělá inteligence}
-
-\subsection{}
-\begin{frame}{Prohledávání v grafech}
-\begin{itemize}
-\item Kontext umělé inteligence?
-\item Graf může být obrovský
-\item Může nám stačit přibližné řešení
-\item O problému máme informace navíc (heuristiky)
-\end{itemize}
-\end{frame}
-
-\subsection{}
-\begin{frame}{A*}
-\begin{itemize}
-\item P
-\item Varianta: IDA*
-\end{itemize}
-\end{frame}
-
-\subsection{}
-\begin{frame}{Rekurzivní BFS}
-\begin{itemize}
-\item P
-\end{itemize}
-\end{frame}
-
-\subsection{}
-\begin{frame}{Zjednodušené MA*}
-\begin{itemize}
-\item P
-\end{itemize}
-\end{frame}
-
-\subsection{}
-\begin{frame}{Otázky?}
-\begin{center}
-Příště: Zpracování neurčité informace.
-\end{center}
-\end{frame}
-
-\section{Adaptivní agenti}
-
-\subsection{}
-\begin{frame}{Prohledávání v grafech}
-\begin{center}
-A*, HPA*, PRA*, inkrementální metody
-\vskip 4ex
-\url{http://bajeluk.matfyz.cz/mff/algs-4-pathf.pdf}
-\end{center}
-\end{frame}
-
-\subsection{}
-\begin{frame}{Otázky?}
-\begin{center}
-Příště: Komunikace a znalosti v multiagentních systémech.
 \end{center}
 \end{frame}
 
