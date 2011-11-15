@@ -1,0 +1,251 @@
+\documentclass{beamer}
+\usetheme{Warsaw}
+\useinnertheme{circles}
+\useoutertheme[subsection=false]{smoothbars}
+\usepackage[utf8x]{inputenc}
+\usepackage[czech]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{listings}
+\usepackage{tikz}
+\lstset{basicstyle=\tiny\ttfamily}
+\logo{\includegraphics[height=0.5cm]{brmlab.pdf}}
+
+\begin{document}
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Outline}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\title{brmiversity: Umělá inteligence \\ a teoretická informatika}
+\subtitle{Přednáška č. 5}
+\author{Petr Baudiš $\langle${\tt pasky@ucw.cz}$\rangle$}
+\institute{
+	brmlab 2011\\
+	\vskip 1ex
+	\pgfdeclareimage[height=4ex]{ccbysa}{by-sa.pdf}
+	\pgfuseimage{ccbysa}
+}
+\date{}
+\frame{\titlepage}
+
+\section{Neuronové sítě}
+
+\subsection{}
+\begin{frame}{Umělá neuronová síť}
+\begin{itemize}
+\item Umělé neurony (``výpočetní krabičky'') \\ dostávají vstupy (čísla) a na jejich \\ základě generují výstup (číslo)
+\item Obvykle: Vrstvy striktně oddělené, \\ vstupní vrstva se vstupy zvnějšku, \\ výstupní vrstva s výstupem pro uživatele, \\ skryté vrstvy vyhodnocují různé charakteristiky vstupů
+\item Dnes: Více vrstev neuronů, jak je učit?
+\end{itemize}
+\begin{tikzpicture}[remember picture,overlay]
+  \node [xshift=-4.5cm,yshift=-6cm,above right] at (current page.north east)
+    {\includegraphics[width=4cm]{ANN.pdf}};
+\end{tikzpicture}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Připomenutí: Umělý neuron}
+\begin{columns}
+\begin{column}{4cm}
+\includegraphics[width=4cm]{Perceptron.pdf}
+\vskip 2ex
+\includegraphics[width=4cm]{sigmoid.pdf}
+\end{column}
+\begin{column}{7cm}
+\begin{itemize}
+\item $n$ vstupů a práh $\Leftarrow$ výstup
+\item Lineární kombinace --- vstupy mají různé váhy,\\ vynásobíme, sečteme a otestujeme
+\item Výstup je ``skoro'' 1/0: sigmoida
+\pause
+\vskip 3ex
+\item Vstup $\vec x$, váhový vektor $\vec w$, práh 0
+\item $\xi = \sum_{i=0}^n w_i \cdot x_i > 0$
+\item Výstupní funkce: $y = f(\xi) = {1 \over 1+e^{-\lambda\xi}}$
+\end{itemize}
+\end{column}
+\end{columns}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Vícevrstvá NN}
+\begin{itemize}
+\item $m$ vrstev, v každé $n_m$ neuronů, propojení vždy pouze $n_i \to n_{i+1}$
+\item Inicializace vstupů v první vrstvě
+\item Iterativní posílání výstupů z jedné vrstvy do vstupů další vrstvy
+\item Výstup poslední vrstvy je výstup celé sítě
+\pause
+\vskip 3ex
+\item Víme, kterým vstupům mají odpovídat které výstupy
+\item Vstupy a výstupy spolu však souvisejí pouze nepřímo
+\item Jak odvodit konkretní váhy spojů v síti?
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Učení vícevrstvé NN}
+\begin{itemize}
+\item Algoritmus zpětného šíření \\
+	(existují alternativy, příliš se nepoužívají)
+\item Myšlenka: Závislosti mezi vstupy a výstupy dokážeme přiměřeně matematicky popsat
+\item Chceme upravit váhy podle {\em chyby}, kterou propagovaly; \\ větší váha nese větší chybu
+\vskip 3ex
+\item Iterujeme učení podle vstupních množin:
+\begin{itemize}
+\item Zjistíme chybu výstupu
+\item Spočítáme {\em gradient} chyby podle vah jednotlivých spojů
+\item Chybu se pokusíme zredukovat posunutím vah proti gradientu
+\item Chybu ``zpětně šíříme'' do předchozí vrstvy a opakujeme
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Derivace a gradient}
+\begin{itemize}
+% TODO obrazky
+\item Derivace
+\item Gradient
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Učení poslední vrstvy}
+\begin{itemize}
+\item Chybová funkce: $E = {1 \over 2} \sum_p \sum_j (y_{p,j} - d_{p,j})^2$ \\
+	Chceme její hodnotu {\em minimalizovat}
+\item Chyba se mění podle váh neuronů (na těch závisí $y_{p,j}$) \\
+	Posuneme se {\em proti} této změně:
+	$\Delta_E w_{i,j} = -{\partial E \over \partial w_{i,j}}$
+\end{itemize}
+\pause
+\vskip 2ex
+$$ \xi = \sum_k w_k \cdot x_k \qquad y = f(\xi) $$
+$$ \frac{\partial E}{\partial w_{i,j}} =
+	\frac{\partial E}{\partial y_j} \cdot \frac{\partial y_j}{\partial \xi_j} \cdot \frac{\partial \xi_j}{\partial w_{i,j}} =
+	\frac{\partial E}{\partial y_j} \cdot f'(\xi_j) \cdot y_i $$
+\pause
+\vskip 2ex
+Derivace sigmoidy $f'(\xi) = \left(1 \over 1+e^{-\lambda\xi}\right)' = \lambda f(\xi)(1-f(\xi))$
+\end{frame}
+
+\subsection{}
+\begin{frame}{Učení vnitřních vrstev}
+\begin{itemize}
+\item Vzoreček a odvození
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Otázky?}
+\begin{center}
+Příště: Statistické zpracování dat, PCA.
+\end{center}
+\end{frame}
+
+\section{Základní algoritmy}
+
+\subsection{}
+\begin{frame}{Prohledávání v grafech}
+\begin{itemize}
+\item BFS, DFS, Dijkstra
+\end{itemize}
+\end{frame}
+
+\section{Umělá inteligence}
+
+\subsection{}
+\begin{frame}{A*}
+\begin{itemize}
+\item P
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Otázky?}
+\begin{center}
+Příště: Zpracování neurčité informace.
+\end{center}
+\end{frame}
+
+\section{Adaptivní agenti}
+
+\subsection{}
+\begin{frame}{Prohledávání v grafech}
+\begin{itemize}
+\item bfml
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Otázky?}
+\begin{center}
+Příště: Komunikace a znalosti v multiagentních systémech.
+\end{center}
+\end{frame}
+
+\section{Vyčíslitelnost}
+
+\subsection{}
+\begin{frame}{Rekapitulace}
+\begin{itemize}
+\item Rekapitulace: Nezajímá nás, jak rychle to poběží, \\ ale jestli to někdy doběhne.
+\item Zkoumáme výpočetní {\em možnosti} algoritmů.
+\vskip 3ex
+\item Pro modelování výpočetních mezí potřebujeme matematický popis programů.
+\item Primitivně rekurzivní, obecně rekurzivní a částečně rekurzivní funkce.
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Rekurzivní funkce}
+\begin{itemize}
+\item TODO
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Množiny popsané funkcemi}
+\begin{itemize}
+\item TODO
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Kleenova věta}
+\begin{itemize}
+\item TODO
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Další zajímavé vlastnosti}
+\begin{itemize}
+\item TODO
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Otázky?}
+\begin{center}
+Příště: Věty o rekurzi a jejich aplikace.
+\end{center}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Děkuji vám}
+\begin{center}
+{\bf pasky@ucw.cz}
+
+\vskip 6ex
+
+Příště: Pravděpodobnost. Základy, použití v AI, pravděpodobnostní algoritmy, ``pravděpodobnostní datové struktury'' (hashe).
+
+Ale kdy?
+\end{center}
+\end{frame}
+
+\end{document}
