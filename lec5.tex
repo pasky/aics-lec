@@ -151,8 +151,48 @@ Příště: Statistické zpracování dat, PCA.
 \subsection{}
 \begin{frame}{Prohledávání v grafech}
 \begin{itemize}
-\item BFS, DFS, Dijkstra
+\item Chceme projít celý graf
+\item Graf může být popsaný implicitně \\ (průběh výpočtu, hry)
+\item Něco {\em hledáme} --- určitý uzel (řešení), cestu, \dots
+\item Hledání uzlu: BFS (prohledávání do šířky), DFS (prohledávání do hloubky)
+\item Nejkratší cesta: Dijkstra
 \end{itemize}
+\begin{tikzpicture}[remember picture,overlay]
+  \node [xshift=-4.5cm,yshift=-4.5cm,above right] at (current page.north east)
+    {\includegraphics[width=4cm]{graph.pdf}};
+\end{tikzpicture}
+\end{frame}
+
+\subsection{}
+\begin{frame}{BFS, DFS}
+\begin{center}
+\includegraphics[width=5.5cm]{Breadth-first-tree.pdf}
+\vskip 0.5ex
+\includegraphics[width=5.5cm]{Depth-first-tree.pdf}
+\end{center}
+\end{frame}
+
+\subsection{}
+\begin{frame}{BFS, DFS}
+\begin{itemize}
+\item BFS i DFS jsou úplné; fronta LIFO nebo FIFO
+\item Implicitní DFS: Backtracking, graf si nemusím držet v paměti
+\item Depth-limited search
+\item Iterative deepening
+\item Best-first search
+\item Oboustranné vyhledávání
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Dijkstra}
+\begin{itemize}
+\item Postupně budujeme strom nejkratší cesty v grafu
+\item Vždy přidáme nejkratší hranu vedoucí ze stromu
+\end{itemize}
+\begin{center}
+\includegraphics[width=7cm]{dijkstra.png}
+\end{center}
 \end{frame}
 
 \section{Umělá inteligence}
