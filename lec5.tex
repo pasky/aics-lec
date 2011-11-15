@@ -58,12 +58,12 @@
 \begin{column}{7cm}
 \begin{itemize}
 \item $n$ vstupů a práh $\Leftarrow$ výstup
-\item Lineární kombinace --- vstupy mají různé váhy,\\ vynásobíme, sečteme a otestujeme
+\item Lineární kombinace --- vstupy mají různé váhy, vynásobíme, sečteme a otestujeme
 \item Výstup je ``skoro'' 1/0: sigmoida
 \pause
 \vskip 3ex
 \item Vstup $\vec x$, váhový vektor $\vec w$, práh 0
-\item $\xi = \sum_{i=0}^n w_i \cdot x_i > 0$
+\item $\xi = \sum_{i=0}^n w_i \cdot x_i$
 \item Výstupní funkce: $y = f(\xi) = {1 \over 1+e^{-\lambda\xi}}$
 \end{itemize}
 \end{column}
@@ -126,10 +126,10 @@
 $$ \xi = \sum_k w_k \cdot x_k \qquad y = f(\xi) $$
 $$ \frac{\partial E}{\partial w_{i,j}} =
 	\frac{\partial E}{\partial y_j} \cdot \frac{\partial y_j}{\partial \xi_j} \cdot \frac{\partial \xi_j}{\partial w_{i,j}} =
-	\frac{\partial E}{\partial y_j} \cdot f'(\xi_j) \cdot y_i $$
+	(y_j - d_j) \cdot f'(\xi_j) \cdot y_i $$
 \pause
 \vskip 2ex
-Derivace sigmoidy $f'(\xi) = \left(1 \over 1+e^{-\lambda\xi}\right)' = \lambda f(\xi)(1-f(\xi))$
+Derivace sigmoidy $f'(\xi) = \left(1 \over 1+e^{-\lambda\xi}\right)' = \lambda \cdot f(\xi) \cdot (1-f(\xi))$
 \end{frame}
 
 \subsection{}
@@ -154,7 +154,7 @@ Příště: Statistické zpracování dat, PCA.
 \item Chceme projít celý graf
 \item Graf může být popsaný implicitně \\ (průběh výpočtu, hry)
 \item Něco {\em hledáme} --- určitý uzel (řešení), cestu, \dots
-\item Hledání uzlu: BFS (prohledávání do šířky), DFS (prohledávání do hloubky)
+\item Hledání uzlu: BFS (prohledávání do šířky), \\ DFS (prohledávání do hloubky)
 \item Nejkratší cesta: Dijkstra
 \end{itemize}
 \begin{tikzpicture}[remember picture,overlay]
@@ -260,8 +260,8 @@ Příště: Komunikace a znalosti v multiagentních systémech.
 \item Rekapitulace: Nezajímá nás, jak rychle to poběží, \\ ale jestli to někdy doběhne.
 \item Zkoumáme výpočetní {\em možnosti} algoritmů.
 \vskip 3ex
-\item Pro modelování výpočetních mezí potřebujeme matematický popis programů.
-\item Primitivně rekurzivní, obecně rekurzivní a částečně rekurzivní funkce.
+\item Pro modelování výpočetních mezí \\ potřebujeme matematický popis programů.
+\item Primitivně rekurzivní, obecně rekurzivní \\ a částečně rekurzivní funkce.
 \end{itemize}
 \end{frame}
 
@@ -307,7 +307,9 @@ Příště: Věty o rekurzi a jejich aplikace.
 
 \vskip 6ex
 
-Příště: Pravděpodobnost. Základy, použití v AI, pravděpodobnostní algoritmy, ``pravděpodobnostní datové struktury'' (hashe).
+Příště: Unlecture.
+
+Popříště: Pravděpodobnost. Základy, použití v AI, pravděpodobnostní algoritmy, \\ ``pravděpodobnostní datové struktury'' (hashe).
 
 Ale kdy?
 \end{center}
