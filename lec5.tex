@@ -73,7 +73,7 @@
 \subsection{}
 \begin{frame}{Dijkstra}
 \begin{itemize}
-\item Postupně budujeme strom nejkratší cesty v grafu
+\item Budujeme strom nejkratší cesty z vrcholu do zbytku grafu
 \item Vždy přidáme nejkratší hranu vedoucí ze stromu
 \end{itemize}
 \begin{center}
@@ -102,20 +102,6 @@ A*, HPA*, PRA*, inkrementální metody
 \vskip 4ex
 \url{http://bajeluk.matfyz.cz/mff/algs-4-pathf.pdf}
 \end{center}
-\end{frame}
-
-\subsection{}
-\begin{frame}{Rekurzivní BFS}
-\begin{itemize}
-\item P
-\end{itemize}
-\end{frame}
-
-\subsection{}
-\begin{frame}{Zjednodušené MA*}
-\begin{itemize}
-\item P
-\end{itemize}
 \end{frame}
 
 \subsection{}
@@ -200,11 +186,19 @@ Příště Agenti: Komunikace a znalosti v multiagentních systémech.
 
 \subsection{}
 \begin{frame}{Derivace a gradient}
-\begin{itemize}
-% TODO obrazky
-\item Derivace
-\item Gradient
-\end{itemize}
+\begin{columns}
+\begin{column}{5.5cm}
+Derivace:
+
+Non-free artwork.
+%\includegraphics[width=5.5cm]{derivace.png}
+\end{column}
+\begin{column}{5.5cm}
+Gradient:
+
+\includegraphics[width=5.5cm]{Gradient99.png}
+\end{column}
+\end{columns}
 \end{frame}
 
 \subsection{}
@@ -221,7 +215,7 @@ Příště Agenti: Komunikace a znalosti v multiagentních systémech.
 $$ \xi = \sum_k w_k \cdot x_k \qquad y = f(\xi) $$
 $$ \frac{\partial E}{\partial w_{i,j}} =
 	\frac{\partial E}{\partial y_j} \cdot \frac{\partial y_j}{\partial \xi_j} \cdot \frac{\partial \xi_j}{\partial w_{i,j}} =
-	(y_j - d_j) \cdot f'(\xi_j) \cdot y_i $$
+	(y_j - d_j) \cdot f'(\xi_j) \cdot y_i = \delta_i \cdot y_i $$
 \pause
 \vskip 2ex
 Derivace sigmoidy $f'(\xi) = \left(1 \over 1+e^{-\lambda\xi}\right)' = \lambda \cdot f(\xi) \cdot (1-f(\xi))$
@@ -229,9 +223,9 @@ Derivace sigmoidy $f'(\xi) = \left(1 \over 1+e^{-\lambda\xi}\right)' = \lambda \
 
 \subsection{}
 \begin{frame}{Učení vnitřních vrstev}
-\begin{itemize}
-\item Vzoreček a odvození
-\end{itemize}
+\begin{center}
+Podobná myšlenka jako poslední vrstva, \\ jen využíváme informaci o chybě z minulé vrstvy.
+\end{center}
 \end{frame}
 
 \subsection{}
@@ -257,28 +251,75 @@ Příště: Statistické zpracování dat, PCA.
 \subsection{}
 \begin{frame}{Rekurzivní funkce}
 \begin{itemize}
-\item TODO
+\item Funkce: $o(x) = 0 \, \forall x$, $s(x) = x+1 \, \forall x$, $I^j_n(x_1,\ldots,x_n) = x_j$
+\vskip 3ex
+\pause
+\item Operátor substituce: $S_n^m(f,g_1,\ldots,g_m)=h$, $h(x_1,\ldots,x_n) \simeq f(g_1(x_1,\ldots,x_n),\ldots,g_m(x_1,\ldots,x_n))$
+\item Operátor prim. rekurze: $R_n(f,g)=h$, $h(0,x_2\ldots,x_n) \simeq f(x_2,\ldots,x_n)$,
+	$h(i+1,x_1,\ldots,x_n) \simeq g(i, h(i,x_2,\ldots,x_n), x_2,\ldots,x_n)$
+\vskip 3ex
+\item Operátor minimalizace: $M_n(f) = h$, $h(x_1,\ldots,x_n) = z \Leftrightarrow f(x_1,\ldots,x_n,z)=0$ a $z$ je nejmenší
+\vskip 3ex
+\pause
+\item {\bf Primitivně rekurzivní funkce:} Bez operátoru minimalizace.
+\item {\bf Obecně rekurzivní funkce:} Na každém vstupu doběhnou.
+\item {\bf Částečně rekurzivní funkce:} Mohou a nemusí doběhnout.
 \end{itemize}
 \end{frame}
 
 \subsection{}
-\begin{frame}{Množiny popsané funkcemi}
+\begin{frame}{Druhy rekurzivních funkcí}
 \begin{itemize}
-\item TODO
+\item {\bf Primitivně rekurzivní funkce:} Bez operátoru minimalizace.
+\item {\bf Obecně rekurzivní funkce:} S minimalizací, ale každém vstupu doběhnou.
+\item {\bf Částečně rekurzivní funkce:} Mohou a nemusí doběhnout.
+\vskip 3ex
+\pause
+\item $ PRF \subset ORF \subset CRF $
+\item Neostré inkluze celkem zřejmé
+\item ČRF, která není ORF --- třeba minimalizace funkce $s$
+\item ORF, která není PRF --- třeba univerzální funkce pro PRF
+\vskip 3ex
+\pause
+\item Každé ČRF můžu přiřadit číslo --- na základě jejího odvození
 \end{itemize}
 \end{frame}
 
 \subsection{}
 \begin{frame}{Kleenova věta}
 \begin{itemize}
-\item TODO
+\item {\bf Univerzální TS:} ``Emulátor'' --- vrátí výstup libovolného TS na základě jeho popisu a vstupu
+\item {\bf Univerzální RF $\Psi(e,\vec x)$:} ``Emulátor'' --- vrátí výstup libovolné RF na základě jejího čísla $e$ a parametrů $\vec x$
+\vskip 3ex
+\pause
+\item {\bf s-m-n věta:} Curryfikace RF. $\Psi(e,\vec z, \vec x) = \Psi(s(e, \vec z), \vec x)$
+\vskip 3ex
+\pause
+\item {\bf Turingův predikát $T(e,\vec x,y)$:} Propojení s logikou, je pravdivý, pokud program $e$ s parametry $\vec x$ vrátí $y$.
+\item V logice lze přes $T$ popsat ČRP, ORP, PRP (\dots predikáty).
 \end{itemize}
 \end{frame}
 
 \subsection{}
-\begin{frame}{Další zajímavé vlastnosti}
+\begin{frame}{Univerzální funkce}
 \begin{itemize}
-\item TODO
+\item Máme univerzální ČŘF emulující jakouliv ČRF.
+\item Umíme udělat univerzální PRF pro všechny PRF?
+\pause
+\item Neumíme. Mějme $f(e,x)$ univerzální PRF. Zavedeme PRF $g(x) = f(x,x) + 1$ s číslem $e$: $f(e,x) = g(x)$. Ale tedy $f(e,e) = g(e) = f(e,e) + 1$, což je spor.
+\vskip 3ex
+\pause
+\item Univerzální RF pro ORF je ČRF.
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Množiny popsané funkcemi}
+\begin{itemize}
+\item Množiny obvykle definujeme {\em predikáty} --- např. $\{x \,|\, x \in N,\, 5<x<10\}$
+\item Predikát koresponduje k funkci
+\item Tedy {\bf primitivně rekurzivní}, {\bf rekurzivní} a {\bf částečně rekurzivní} množiny, RF rozhoduje o prvku, patří-li do množiny
+\item $M$ je rekurzivní, právě když je ona i doplněk rekurzivně spočetné
 \end{itemize}
 \end{frame}
 
