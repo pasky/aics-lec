@@ -1,0 +1,116 @@
+\documentclass{beamer}
+\usetheme{Warsaw}
+\useinnertheme{circles}
+\useoutertheme[subsection=false]{smoothbars}
+\usepackage[utf8x]{inputenc}
+\usepackage[czech]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{listings}
+\usepackage{tikz}
+\lstset{basicstyle=\tiny\ttfamily}
+\logo{\includegraphics[height=0.5cm]{brmlab.pdf}}
+
+\begin{document}
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Outline}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\title{brmiversity: Umělá inteligence \\ a teoretická informatika}
+\subtitle{Přednáška č. 6}
+\author{Petr Baudiš $\langle${\tt pasky@ucw.cz}$\rangle$}
+\institute{
+	brmlab 2011\\
+	\vskip 1ex
+	\pgfdeclareimage[height=4ex]{ccbysa}{by-sa.pdf}
+	\pgfuseimage{ccbysa}
+}
+\date{}
+\frame{\titlepage}
+
+\section{Pravděpodobnost}
+
+\subsection{}
+\begin{frame}{Pravděpodobnost}
+\begin{itemize}
+\item Co je to
+\item Dvě interpretace
+\item Pozor na fuzzy logiku
+\item Operace s pravděpodobnostmi
+\item Podmíněná pravděpodobnost
+\item Bayesovo pravidlo
+\item Měření pravděpodobnosti, střední hodnota, směrodatná odchylka a rozptyl
+\item Pravděpodobnostní rozdělení
+\item Normální rozdělení, intervaly spolehlivosti
+\end{itemize}
+\end{frame}
+
+\section{Umělá inteligence}
+
+\subsection{}
+\begin{frame}{Zpracování neurčité informace}
+\begin{itemize}
+\item Přehled --- Usuzování, rozhodování, modelování, učení
+\item Bayesovské sítě
+\item Rozhodovací grafy
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Otázky?}
+\begin{center}
+Příště UI: Modelování --- Markovské modely, Kalmanův filtr.
+\end{center}
+\end{frame}
+
+\section{Složitost}
+
+\subsection{}
+\begin{frame}{Pravděpodobnostní algoritmy}
+\begin{itemize}
+\item Monte Carlo a Las Vegas algoritmy
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Otázky?}
+\begin{center}
+Příště: Míry složitosti, Savitchova věta, konstruovatelné funkce.
+\end{center}
+\end{frame}
+
+\section{Datové struktury}
+
+\subsection{}
+\begin{frame}{Hashování}
+\begin{itemize}
+\item Interní hashování, různé organizace hashovacích tabulek.
+\item Externí hashování.
+\item Očekávaný počet kolizí, složitosti.
+\item Intro --- perfektní a univerzální hashování.
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Otázky?}
+\begin{center}
+Příště: Univerzální a perfektní hashování. \\ A někdy doděláme ty haldy.
+\end{center}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Děkuji vám}
+\begin{center}
+{\bf pasky@ucw.cz}
+
+\vskip 6ex
+
+Příště: Umělá inteligence. \\ Neuronové sítě (statistické zpracování dat). \\ Adaptivní agenti (komunikace a znalosti). Datové struktury.
+\end{center}
+\end{frame}
+
+\end{document}
