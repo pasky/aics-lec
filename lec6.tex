@@ -36,47 +36,109 @@
 
 \subsection{}
 \begin{frame}{Pravděpodobnost}
+\begin{center}
+Pravděpodobnost: Stane nebo nestane se nějaká náhodná událost?
+\vskip 2ex
+\begin{block}{Dvě interpretace}
 \begin{itemize}
-\item Co je to
-\item Dvě interpretace
-\item Pozor na fuzzy logiku
+\item {\bf Subjektivisti:} Stav mysli, stupeň víry.
+\item {\bf Frekventisti:} Konvergence série experimentů.
+\end{itemize}
+\end{block}
+\vskip 2ex
+({\bf Fuzzy logika} pracuje se stupni pravdivosti, to je něco jiného!)
+\end{center}
+\vskip 3ex
+\begin{itemize}
+\item Provádíme sérii {\em pokusů}, ty nám dávají {\em výsledky}, \\ množiny výsledků jsou {\em náhodné jevy}.
 \end{itemize}
 \end{frame}
 
 \subsection{}
 \begin{frame}{Matematická pravděpodobnost}
 \begin{itemize}
-\item Operace s pravděpodobnostmi
+\item Náhodný jev $A$ má pravděpodobnost $P(A) \in [0,1]$
+\item Součet pravděpodobností všech základních jevů (jendotlivých výsledků) je 1; negace jevu je $1-p$
+\item Jednoduchý případ --- rovnoměrně náhodný jev $A$ má po $n$ pokusech, z toho $m$ úspěšných, $P(A) \simeq m/n$
+\vskip 3ex
+\item Stane se $A$ nebo $B$? $P(A \cup B) = P(A) + P(B) - P(A \cap B)$
+\item {\bf Nezávislé jevy} $A, B$ --- pravděpodobnost jednoho nezávisí na výskytu druhého
+\item Stane se $A$ a $B$ zároveň? $P(A \cap B) = P(A) \cdot P(B)$, jsou-li nezávislé
 \end{itemize}
 \end{frame}
 
 \subsection{}
-\begin{frame}{Podmíněná pravděpodobnost}
+\begin{frame}{Matematická pravděpodobnost}
 \begin{itemize}
-\item Podmíněná pravděpodobnost
-\item Bayesovo pravidlo
+\item {\bf Podmíněná pravděpodobnost} --- jevy $A,B$ nejsou nezávislé
+\item Stane se $A$ za předpokladu $B$? $P(A|B)$
+\item $P(A \cap B) = P(A|B) \cdot P(B)$
+\end{itemize}
+\vskip 2ex
+\begin{block}{Bayesova věta}
+$$ P(A|B) = \frac{P(B|A)P(A)}{P(B)} $$
+\end{block}
+\vskip 3ex
+\begin{itemize}
+\item Diskrétní ``booleovský'' jev $A$ --- $P(A)$ že (ne)nastane
+\item Spojitý jev $X$ --- interval čísel, očekávaná hodnota $\mathbb{E}[X]$
 \end{itemize}
 \end{frame}
 
 \subsection{}
 \begin{frame}{Statistika}
 \begin{itemize}
-\item Měření pravděpodobnosti, střední hodnota, směrodatná odchylka a rozptyl
+\item Teorie pravděpodobnosti se zabývá abstraktními pravděpodobnostmi jevů
+\item Statistika se zabývá pravděpodobnostmi, které jsme naměřili
+\item {\bf Zákon velkých čísel:} Průměr (střední hodnota) naměřených hodnot konverguje k očekávané hodnotě
+\vskip 3ex
+\item Jak daleko jsou naměřené hodnoty od průměru?
+\item {\bf Rozptyl} je střední kvadratická odchylka
+\item {\bf Směrodatná odchylka} je odmocnina rozptylu
 \end{itemize}
 \end{frame}
 
 \subsection{}
 \begin{frame}{Pravděpodobnostní rozdělení}
+\begin{columns}
+\begin{column}{5.5cm}
+\includegraphics[width=5.5cm]{Binomial_distribution_pmf.pdf}
+\end{column}
+\begin{column}{5.5cm}
+\includegraphics[width=5.5cm]{Binomial_distribution_cdf.pdf}
+\end{column}
+\end{columns}
 \begin{itemize}
-\item Pravděpodobnostní rozdělení
+\item Pravděpodobnostní rozdělení popisuje pravděpodobnosti různých hodnot při určitém typu pokusu
+\item Dává nám střední hodnotu a rozptyl \\ pro dané parametry pokusu
+\item Bernoulliho rozdělení ($p$): Hod mincí
+\item Binomiální rozdělení ($p,n$): Série Bernoulliho trialů
+\item Poissonovo rozdělení ($\lambda,k$): Počet výskytů události za čas
 \end{itemize}
 \end{frame}
 
 \subsection{}
 \begin{frame}{Normální rozdělení}
+\begin{columns}
+	\begin{column}{5.5cm}
+		\includegraphics[width=5.5cm]{Normal_Distribution_PDF.pdf}
+	\end{column}
+	\begin{column}{5.5cm}
+		\includegraphics[width=5.5cm]{Normal_Distribution_CDF.pdf}
+	\end{column}
+\end{columns}
+
+\begin{center}
+Máme-li mnoho měření, konvergují k normálnímu rozdělení:
+	$$ \frac{1}{\sqrt{2\pi \sigma^2}} e^{-\frac{(x-\mu)^2}{2 \sigma^2}} $$
+\end{center}
+
 \begin{itemize}
-\item Normální rozdělení, intervaly spolehlivosti
+\item {\bf Interval spolehlivosti:} S pravděpodob. $p$ bude $\mathbb{E}[X] = \mu \pm \epsilon$
+\item ``ODS by volilo $20\% \pm 3\%$ lidí'' --- s nějakou pravděpodobností (třeba $5\%$) by to bylo ještě více nebo méně
+\item $95\%$ interval je $1.96\sigma$
 \end{itemize}
+
 \end{frame}
 
 \section{Umělá inteligence}
@@ -108,8 +170,8 @@
 \begin{frame}{Pravděpodobnostní rozhodovací stromy}
 \begin{itemize}
 \item Chceme posoudit dopady svých rozhodnutí \\
-	Posloupnost rozhodnutí a neurčitých jevů vede k různému užitku
-\item Rozhodovací stromy: Větvení na rozhodnutích a jevech, list je užitek
+	Posloupnost rozhodnutí a neurčitých jevů \\ vede k různému užitku
+\item Rozhodovací stromy: Větvení na rozhodnutích a jevech, \\ list je užitek
 \item (Pozor, ``rozhodovací stromy'' se říká i něčemu jinému!)
 \vskip 3ex
 \item Kterou cestou má jet robot?
@@ -119,8 +181,8 @@
 \subsection{}
 \begin{frame}{Influenční diagramy}
 \begin{itemize}
-\item Podstromy rozhodovacích stromů se často opakují, nezáleží na předchozích rozhodnutích a jevech
-\item Influenční diagramy (rozhodovací grafy): Obecný graf, užitkové uzly udávají změnu užitku, když skrze ně projdeme
+\item Podstromy rozhodovacích stromů se často opakují, \\ nezáleží na předchozích rozhodnutích a jevech
+\item Influenční diagramy (rozhodovací grafy): \\ Obecný graf, užitkové uzly udávají změnu užitku, \\ když skrze ně projdeme
 \end{itemize}
 \end{frame}
 
@@ -168,7 +230,7 @@ Příště UI: Modelování --- Markovské modely, Kalmanův filtr.
 \begin{frame}{Las Vegas}
 \begin{itemize}
 \item Las Vegas algoritmus: {\em Očekávaná} doba běhu \\ je jiná než nejhorší
-\item Třída složitosti ZPP: Problém řešitelný \\ na probabilistickém TS v očekávaném polynomiálním čase
+\item Třída složitosti ZPP: Problém řešitelný na \\ probabilistickém TS v očekávaném polynomiálním čase
 \vskip 3ex
 \item Quicksort s náhodnou volbou pivota
 \vskip 3ex
@@ -210,9 +272,11 @@ Příště: Míry složitosti, Savitchova věta, konstruovatelné funkce.
 \subsection{}
 \begin{frame}{Perfektní a univerzální hashování}
 \begin{center}
-Perfektní hashování: Chceme vyrobit read-only hash tabulku bez kolizí.
+Perfektní hashování: Chceme vyrobit \\ read-only hash tabulku bez kolizí.
 
-Univerzální hashování: Chceme vyrobit hashovací funkci odolnou k nerovnoměrnému rozdělení vstupu.
+\vskip 6ex
+
+Univerzální hashování: Chceme vyrobit hashovací funkci \\ odolnou k nerovnoměrnému rozdělení vstupu.
 \end{center}
 \end{frame}
 
