@@ -136,21 +136,43 @@ Příště UI: Modelování --- Markovské modely, Kalmanův filtr.
 \subsection{}
 \begin{frame}{Pravděpodobnostní algoritmy}
 \begin{itemize}
-\item Monte Carlo a Las Vegas algoritmy
+\item Po algoritmu obvykle chceme, aby nám vrátil \\ přesný výsledek za přesný čas
+\item Co když akceptujeme určitou {\em malou chybu}?
+\item Co když akceptujeme, že {\em jen asi} doběhneme včas?
+\vskip 3ex
+\item Model: Probabilistický Turingův stroj
 \end{itemize}
 \end{frame}
 
 \subsection{}
 \begin{frame}{Monte Carlo}
+\begin{columns}
+\begin{column}{7cm}
 \begin{itemize}
-\item Monte Carlo a Las Vegas algoritmy
+\item Monte Carlo algoritmus: \\ Čím déle běžíme, tím \\ přesnější výsledek dostaneme.
+\item Třída složitosti BPP: Problém \\ řešitelný na probabilistickém TS \\ v polynomiálním čase \\ s pravděpodobností chyby $\le 1/3$
+\vskip 3ex
+\item Obsah průniku kružnic
+\item Určitý integrál (plocha pod křivkou)
+\item Prvočíselné testy
+\item Monte Carlo Tree Search
 \end{itemize}
+\end{column}
+\begin{column}{4cm}
+\includegraphics[width=4cm]{MC-pi.pdf}
+\end{column}
+\end{columns}
 \end{frame}
 
 \subsection{}
 \begin{frame}{Las Vegas}
 \begin{itemize}
-\item Monte Carlo a Las Vegas algoritmy
+\item Las Vegas algoritmus: {\em Očekávaná} doba běhu \\ je jiná než nejhorší
+\item Třída složitosti ZPP: Problém řešitelný \\ na probabilistickém TS v očekávaném polynomiálním čase
+\vskip 3ex
+\item Quicksort s náhodnou volbou pivota
+\vskip 3ex
+\item Je Las Vegas a Monte Carlo ekvivalentní?
 \end{itemize}
 \end{frame}
 
@@ -191,7 +213,7 @@ Příště: Míry složitosti, Savitchova věta, konstruovatelné funkce.
 Perfektní hashování: Chceme vyrobit read-only hash tabulku bez kolizí.
 
 Univerzální hashování: Chceme vyrobit hashovací funkci odolnou k nerovnoměrnému rozdělení vstupu.
-\end{itemize}
+\end{center}
 \end{frame}
 
 \subsection{}
