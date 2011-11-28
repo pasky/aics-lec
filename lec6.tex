@@ -250,22 +250,21 @@ Příště: Míry složitosti, Savitchova věta, konstruovatelné funkce.
 \subsection{}
 \begin{frame}{Hashování}
 \begin{itemize}
-\item Hash tabulka (v paměti --- ``interní'').
-\item Možná i nudle ven, řetězce.
+\item Hash tabulka (v paměti --- ``interní'')
+\item Musíme řešit kolize $\Rightarrow$ různé metody ukládání do tabulky
+\item Zajímá nás očekávaná délka řetězců $l$, počet testů při úspěšném ($t^+$) a neúspěšném ($t^-$) lookupu
 \end{itemize}
 \end{frame}
 
 \subsection{}
-\begin{frame}{Model hashování}
+\begin{frame}{Druhy hashování}
 \begin{itemize}
-\item Očekávaný počet kolizí, složitosti.
-\end{itemize}
-\end{frame}
-
-\subsection{}
-\begin{frame}{Externí hashování}
-\begin{itemize}
-\item Externí hashování.
+\item Separované řetězce: klasický hash se spojáky
+\item Uspořádané řetězce: trochu lepší $t^-$ (a co skiplisty?)
+\item S přemisťováním: spoják přímo v tabulce, při kolizi přemístění
+\item Se dvěma ukazateli: ukazatel na začátek řetězce
+\item Srůstající hashování: řetězec po nejbližší volné políčko, triviální implementace, vkládáme na různá místa, příp. i do pomocné oblasti
+\item Dvojité hashování: jako srůstající, ale skáču chaoticky
 \end{itemize}
 \end{frame}
 
@@ -283,7 +282,7 @@ Univerzální hashování: Chceme vyrobit hashovací funkci \\ odolnou k nerovno
 \subsection{}
 \begin{frame}{Otázky?}
 \begin{center}
-Příště: Univerzální a perfektní hashování. \\ A někdy doděláme ty haldy.
+Příště: Univerzální a perfektní hashování. \\ A někdy doděláme ty haldy a externí hashování.
 \end{center}
 \end{frame}
 
