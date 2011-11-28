@@ -84,29 +84,43 @@
 \subsection{}
 \begin{frame}{Zpracování neurčité informace}
 \begin{itemize}
-\item Přehled: Usuzování, rozhodování, modelování, učení
-\item Dnes: Usuzování a rozhodování
+\item Data o světě jsou neurčitá
+\item Úkony ve světě jsou neurčitá
+\item \dots takže reálný svět je neurčitý
+\item Neurčitost: Usuzování, rozhodování, modelování, učení
 \end{itemize}
 \end{frame}
 
 \subsection{}
 \begin{frame}{Bayesovské sítě}
 \begin{itemize}
-\item Bayesovské sítě
+\item Chceme modelovat svět provázaných náhodných jevů
+\item Bayesovská síť: Graf (DAG), uzly jsou jevy, hrany jsou podmíněné vazby
+\vskip 3ex
+\item Co se stane, když vidím tohle?
+\item Co bych měl zjistit, abych si co nejvíce upřesnil obraz o světě?
+\item Na čem nejvíce závisí, že se tohle stane?
+\item Kvůli čemu se asi stalo tohle?
 \end{itemize}
 \end{frame}
 
 \subsection{}
-\begin{frame}{Rozhodovací stromy}
+\begin{frame}{Pravděpodobnostní rozhodovací stromy}
 \begin{itemize}
-\item Rozhodovací stromy
+\item Chceme posoudit dopady svých rozhodnutí \\
+	Posloupnost rozhodnutí a neurčitých jevů vede k různému užitku
+\item Rozhodovací stromy: Větvení na rozhodnutích a jevech, list je užitek
+\item (Pozor, ``rozhodovací stromy'' se říká i něčemu jinému!)
+\vskip 3ex
+\item Kterou cestou má jet robot?
 \end{itemize}
 \end{frame}
 
 \subsection{}
-\begin{frame}{Inferenční diagramy}
+\begin{frame}{Influenční diagramy}
 \begin{itemize}
-\item Inferenční diagramy (rozhodovací grafy)
+\item Podstromy rozhodovacích stromů se často opakují, nezáleží na předchozích rozhodnutích a jevech
+\item Influenční diagramy (rozhodovací grafy): Obecný graf, užitkové uzly udávají změnu užitku, když skrze ně projdeme
 \end{itemize}
 \end{frame}
 
