@@ -182,6 +182,7 @@ Příště: Strojové učení (rozhodovací stromy, Bayesovský klasifikátor\do
 \item PCA
 \item Vstup --- výsledek
 \item Algoritmus
+\item Alternativa: Ojův algoritmus
 \end{itemize}
 \end{frame}
 
@@ -197,15 +198,14 @@ Příště: Vylepšení backpropagation, struktura neuronových sítí.
 \subsection{}
 \begin{frame}{Víceagentní systémy}
 \begin{itemize}
+\item Peer2peer systém
+\item Agenti mohou vznikat, zanikat, potkávat se, pohybovat se
+\item Agenti mohou něco chtít od ostatních nebo nabídnout ostatním
+\item Ontologie: Soubor znalostí o světě (sada axiomů)
+\vskip 3ex
+\pause
 \item Emergentní chování (``implicitní'' komunikace) \\ vs. pravidla a protokoly
 \item Znalosti v multiagentních systémech
-\end{itemize}
-\end{frame}
-
-\subsection{}
-\begin{frame}{Komunikace v multiagentních systémech}
-\begin{itemize}
-\item Komunikační protokoly
 \end{itemize}
 \end{frame}
 
@@ -226,6 +226,33 @@ Příště: Vylepšení backpropagation, struktura neuronových sítí.
 \item Synchronizace času
 \item Ověřování událostí
 \end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Komunikace v multiagentních systémech}
+\begin{columns}
+\begin{column}{5em}
+\begin{itemize}
+\item Obvykle externí správce světa (``white page'') nebo nástěnkáři (``yellow page'')
+\item FIPA: Foundation for Intelligent Physical Agents
+\item Vrstvy: Fyzická, transportní, komunikační, jazyk pro komunikaci agentů (FIPA-ACL, KQML), zprávy (FIPA-SL, Prolog, \dots)
+\item Změny světa pomocí komunikace, výměna znalostí
+\end{itemize}
+\end{column}
+\begin{column}{6em}
+\begin{lstlisting}
+(cfp
+ :sender (agent-identifier :name j)
+ :receiver (set (agent-identifier :name i))
+ :content
+  "((action (agent-identifier :name i)
+    (sell plum 50))
+   (any ?x (and (= (price plum) ?x) (< ?x 10))))"
+ :ontology fruit-market
+ :language fipa-sl)
+\end{lstlisting}
+\end{column}
+\end{columns}
 \end{frame}
 
 \subsection{}
