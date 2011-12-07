@@ -56,7 +56,7 @@
 \item (Je to ekvivalentní?)
 \vskip 3ex
 \item Velmi zjednodušený model, ale výpočetně triviální a dobrá aproximace
-\item Množina stavů, pravděpodobnosti přechodu mezi stavy
+\item Množina stavů, pravděp. přechodu mezi stavy
 \end{itemize}
 \end{column}
 \begin{column}{5cm}
@@ -104,11 +104,11 @@
 \begin{column}{5cm}
 \includegraphics[width=5cm]{HMMsequence.pdf}
 \end{column}
-\begin{column}{6cm}
+\begin{column}{8cm}
 \begin{itemize}
-\item Vysvětlování --- jaké stavy jsme prošli?
-\item Filtrování --- v jakém stavu právě jsme?
-\item Vyhlazování --- v jakém stavu jsme byli tuhle?
+\item Vysvětlování: jaké stavy jsme prošli?
+\item Filtrování: v jakém stavu právě jsme?
+\item Vyhlazování: v jakém stavu jsme byli tuhle?
 \item Pravděpodobnost pozorování
 \end{itemize}
 \end{column}
@@ -118,7 +118,7 @@
 \item Matice dopředných a zpětných pravděpodobností
 \item Forward algoritmus: Iterujeme dopředné pravděpodobnosti
 \item Smoothing: Sledujeme dopředné i zpětné pravděpodobnosti
-\item Viterbiho algoritmus: Počítáme nejpravděpodobnější průchod
+\item Viterbiho algoritmus: Počítáme nejpravděpodobnější \\ průchod (dynamické programování)
 \end{itemize}
 \end{frame}
 
@@ -143,12 +143,12 @@
 \subsection{}
 \begin{frame}{Kálmánovy filtry}
 \begin{itemize}
-\item {\bf Lineární dynamický systém} --- HMM se ``spojitými stavy'' a stavy i pozorováními normálně rozdělenými
+\item {\bf Lineární dynamický systém} --- HMM se ``spojitými stavy'' \\ a stavy i pozorováními normálně rozdělenými
 \item Aneb: Pozorování jsou čísla dle stavů, ale zašuměná dle normálního rozdělení
-\item Různá čísla indikují (s omezenou pravděpodobností) různé stavy
+\item Různá čísla indikují (s omezenou pravděpodobností) \\ různé stavy
 \vskip 3ex
 \item Udržujeme si odhad aktuálního stavu a chybovou matici (přesnost odhadu)
-\item Nový stav odhadneme podle aktuálního stavu a chybové matice, tu posléze zupdatujeme
+\item Nový stav odhadneme podle aktuálního stavu \\ a chybové matice, tu posléze zupdatujeme
 \end{itemize}
 \end{frame}
 
@@ -166,7 +166,7 @@ Příště: Strojové učení (rozhodovací stromy, \\ Bayesovský klasifikátor
 \begin{itemize}
 \item Kovariance: Jevy $X$ a $Y$ na sobě nějak závisejí ($\mathbb{E}X\mathbb{E}Y - \mathbb{E}(XY)$)
 \item Korelace: Míra závislosti (rozptylová korekce)
-\item Jsou-li data v NN korelovaná, jsou redundantní a nesou špatně rozlišitelné informace
+\item Jsou-li data v NN korelovaná, jsou redundantní \\ a nesou špatně rozlišitelné informace
 \item Jak složitá data chci vlastně umět rozpoznávat?
 \end{itemize}
 \begin{columns}
@@ -177,18 +177,6 @@ Příště: Strojové učení (rozhodovací stromy, \\ Bayesovský klasifikátor
 \includegraphics[width=5.5cm]{Anscombe's_quartet_3.pdf}
 \end{column}
 \end{columns}
-\end{frame}
-
-\subsection{}
-\begin{frame}{Vapnik-Chervonenkisova dimenze}
-\begin{itemize}
-\item VC dimenze udává ``kapacitu'' klasifikátoru
-\item Nejmenší počet bodů, které lze rozložit do konfigurace, kterou nedokáže klasifikátor rozbít
-\item Např. lineární klasifikátor (perceptron) má dimenzi 3
-\end{itemize}
-\begin{center}
-\includegraphics[height=3cm]{VC4.png}
-\end{center}
 \end{frame}
 
 \subsection{}
@@ -218,6 +206,18 @@ Příště: Strojové učení (rozhodovací stromy, \\ Bayesovský klasifikátor
 \end{frame}
 
 \subsection{}
+\begin{frame}{Vapnik-Chervonenkisova dimenze}
+\begin{itemize}
+\item VC dimenze udává ``kapacitu'' klasifikátoru
+\item Nejmenší počet bodů, které lze rozložit do konfigurace, \\ kterou nedokáže klasifikátor rozčísnout
+\item Např. lineární klasifikátor (perceptron) má dimenzi 3
+\end{itemize}
+\begin{center}
+\includegraphics[height=3cm]{VC4.png}
+\end{center}
+\end{frame}
+
+\subsection{}
 \begin{frame}{Otázky?}
 \begin{center}
 Příště: Vylepšení backpropagation, struktura neuronových sítí.
@@ -231,7 +231,7 @@ Příště: Vylepšení backpropagation, struktura neuronových sítí.
 \begin{itemize}
 \item Peer2peer systém
 \item Agenti mohou vznikat, zanikat, potkávat se, pohybovat se
-\item Agenti mohou něco chtít od ostatních nebo nabídnout ostatním
+\item Agenti mohou něco chtít od ostatních \\ nebo nabídnout ostatním
 \item Ontologie: Soubor znalostí o světě (sada axiomů)
 \vskip 3ex
 \pause
@@ -265,7 +265,7 @@ Příště: Vylepšení backpropagation, struktura neuronových sítí.
 \begin{itemize}
 \item Obvykle externí správce světa (``white page'') nebo nástěnkáři (``yellow page'')
 \item FIPA: Foundation for Intelligent Physical Agents
-\item Vrstvy: Fyzická, transportní, komunikační, jazyk pro komunikaci agentů (FIPA-ACL, KQML), zprávy (FIPA-SL, Prolog, \dots)
+\item Vrstvy: Fyzická, transportní, komunikační, jazyk pro komunikaci agentů (FIPA-ACL, KQML), \\ zprávy (FIPA-SL, Prolog, \dots)
 \end{itemize}
 \begin{columns}
 \begin{column}{4cm}
