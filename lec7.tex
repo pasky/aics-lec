@@ -306,24 +306,34 @@ Příště: Metody pro řízení agentů.
 \end{frame}
 
 \subsection{}
-\begin{frame}{Perfektní hashování}
+\begin{frame}{Univerzální hashování}
 \begin{itemize}
-\item Všechny klíče známe předem, vyrábíme {\em perfektní} hashovací funkci
+\item Pro každou hashovací funkci nám {\em nepřítel} může vybrat kolidující hashe
+\item Tak vybereme náhodnou!
+\item $P[h(x) = h(y)] \le 1/M$
+\item Jak konstruovat funkci $h(x)$? Třeba zvolme pevné $p$, $h(x) = (\alpha \cdot x) \mod p \mod M$
 \end{itemize}
 \end{frame}
 
 \subsection{}
-\begin{frame}{Univerzální hashování}
+\begin{frame}{Perfektní hashování}
 \begin{itemize}
-\item Minimalizujeme kolize i při nerovnoměrném rozdělení vstupu
+\item Všechny klíče známe předem, vyrábíme \\ {\em perfektní} hashovací funkci
+\item Jak takovou funkci vyrobit?
+\vskip 3ex
+\pause
+\item Hloupě --- prostě zkoušíme náhodné!
+\item Tabulka $O(N^2)$: Vezmeme instanci univerzální $h$, \\ s $p=1/2$ bude perfektní
+\item Tabulka $O(N)$: Vezmeme instanci univerzální $h$, \\ kolizní přihrádky přehashujeme pomocí $O(N^2)$ metody \\
+	$P[\sum_i n_i^2 > 4N] < 1/2$
 \end{itemize}
 \end{frame}
 
 \subsection{}
 \begin{frame}{Externí hashování}
-\begin{itemize}
-\item Stránky atd.
-\end{itemize}
+\begin{center}
+Sakra, zase zbyde na příště!
+\end{center}
 \end{frame}
 
 \subsection{}
