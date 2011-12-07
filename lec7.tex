@@ -151,7 +151,7 @@ TODO ilustrace
 \subsection{}
 \begin{frame}{Otázky?}
 \begin{center}
-Příště: Strojové učení (rozhodovací stromy, Bayesovský klasifikátor\dots)
+Příště: Strojové učení (rozhodovací stromy, \\ Bayesovský klasifikátor\dots)
 \end{center}
 \end{frame}
 
@@ -256,17 +256,17 @@ Příště: Vylepšení backpropagation, struktura neuronových sítí.
 \end{frame}
 
 \subsection{}
-\begin{frame}{Komunikace v multiagentních systémech}
-\begin{columns}
-\begin{column}{5em}
+\begin{frame}[fragile]{Komunikace v multiagentních systémech}
 \begin{itemize}
 \item Obvykle externí správce světa (``white page'') nebo nástěnkáři (``yellow page'')
 \item FIPA: Foundation for Intelligent Physical Agents
 \item Vrstvy: Fyzická, transportní, komunikační, jazyk pro komunikaci agentů (FIPA-ACL, KQML), zprávy (FIPA-SL, Prolog, \dots)
-\item Změny světa pomocí komunikace, výměna znalostí
 \end{itemize}
+\begin{columns}
+\begin{column}{4cm}
+Změny světa pomocí komunikace, výměna znalostí
 \end{column}
-\begin{column}{6em}
+\begin{column}[fragile]{7cm}
 \begin{lstlisting}
 (cfp
  :sender (agent-identifier :name j)
