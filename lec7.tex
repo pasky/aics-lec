@@ -47,18 +47,22 @@
 
 \subsection{}
 \begin{frame}{Markovovský řetězec}
+\begin{columns}
+\begin{column}{6cm}
 \begin{itemize}
 \item Posloupnost stavů splňujících {\em Markovovu vlastnost}
 \item Každý stav závisí (stochasticky) pouze na předchozím; {\bf nemáme paměť}
 \item $k$-tého řádu: Závislost na $k$ předchozích
 \item (Je to ekvivalentní?)
 \vskip 3ex
-\pause
 \item Velmi zjednodušený model, ale výpočetně triviální a dobrá aproximace
 \item Množina stavů, pravděpodobnosti přechodu mezi stavy
 \end{itemize}
-
-TODO ilustrace
+\end{column}
+\begin{column}{5cm}
+\includegraphics[width=5cm]{MarkovChain1.png}
+\end{column}
+\end{columns}
 \end{frame}
 
 \subsection{}
@@ -73,11 +77,6 @@ TODO ilustrace
 \vskip 3ex
 \pause
 
-TODO: Puvodni vety z logu.
-
-\vskip 3ex
-\pause
-
 \begin{itemize}
 \item Symboly (stavy) pro slova a neslova (okraj věty: Slovo $\epsilon$)
 \item Dva MM 4. řádu --- 3 slova před, 3 slova po
@@ -87,38 +86,40 @@ TODO: Puvodni vety z logu.
 
 \subsection{}
 \begin{frame}{Skrytý Markovovský řetězec (HMM)}
-TODO ilustrace
+\begin{center}
+\includegraphics[height=2cm]{Hmm_temporal_bayesian_net.pdf}
+\end{center}
 
 \begin{itemize}
 \item {\em Skryté} stavy nedokážeme pozorovat, viditelné projevy jsou asociovány pouze stochasticky
-\item Pravděpodobnost přechodu mezi stavy {\em a} pravděpodobnost jevu $X$ ve stavu $A$
+\item Pravděpodobnost přechodu mezi stavy {\em a} pravděpodobnost \\ jevu $X$ ve stavu $A$
 \item (Pomocí Bayesovského pravidla můžeme podle jevu určit pravděpodobnost různých stavů)
-\item Učení: TODO
+\item Učení: Baum-Welch (Forward-backward algoritmus)
 \end{itemize}
-\vskip 3ex
-\pause
-\begin{block}{Inference}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Inference HMM}
+\begin{columns}
+\begin{column}{5cm}
+\includegraphics[width=5cm]{HMMsequence.pdf}
+\end{column}
+\begin{column}{6cm}
 \begin{itemize}
 \item Vysvětlování --- jaké stavy jsme prošli?
 \item Filtrování --- v jakém stavu právě jsme?
 \item Vyhlazování --- v jakém stavu jsme byli tuhle?
 \item Pravděpodobnost pozorování
 \end{itemize}
-\end{block}
-\end{frame}
+\end{column}
+\end{columns}
 
-\subsection{}
-\begin{frame}{Algoritmy pro HMM}
-\begin{block}{Forward algoritmus}
 \begin{itemize}
-\item TODO
+\item Matice dopředných a zpětných pravděpodobností
+\item Forward algoritmus: Iterujeme dopředné pravděpodobnosti
+\item Smoothing: Sledujeme dopředné i zpětné pravděpodobnosti
+\item Viterbiho algoritmus: Počítáme nejpravděpodobnější průchod
 \end{itemize}
-\end{block}
-\begin{block}{Viterbiho algoritmus}
-\begin{itemize}
-\item TODO
-\end{itemize}
-\end{block}
 \end{frame}
 
 \subsection{}
@@ -145,6 +146,9 @@ TODO ilustrace
 \item {\bf Lineární dynamický systém} --- HMM se ``spojitými stavy'' a stavy i pozorováními normálně rozdělenými
 \item Aneb: Pozorování jsou čísla dle stavů, ale zašuměná dle normálního rozdělení
 \item Různá čísla indikují (s omezenou pravděpodobností) různé stavy
+\vskip 3ex
+\item Udržujeme si odhad aktuálního stavu a chybovou matici (přesnost odhadu)
+\item Nový stav odhadneme podle aktuálního stavu a chybové matice, tu posléze zupdatujeme
 \end{itemize}
 \end{frame}
 
