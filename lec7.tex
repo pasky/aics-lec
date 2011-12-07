@@ -160,30 +160,57 @@ Příště: Strojové učení (rozhodovací stromy, Bayesovský klasifikátor\do
 \subsection{}
 \begin{frame}{Data}
 \begin{itemize}
-\item Kovariance
-\item Korelace
-\item Zbytečné dimenze
-\item Ilustrace
+\item Kovariance: Jevy $X$ a $Y$ na sobě nějak závisejí ($\mathbb{E}X\mathbb{E}Y - \mathbb{E}(XY)$)
+\item Korelace: Míra závislosti (rozptylová korekce)
+\item Jsou-li data v NN korelovaná, jsou redundantní a nesou špatně rozlišitelné informace
+\item Jak složitá data chci vlastně umět rozpoznávat?
 \end{itemize}
+\begin{columns}
+\begin{column}{5.5cm}
+\includegraphics[width=5cm]{GaussianScatterPCA.png}
+\end{column}
+\begin{column}{5.5cm}
+\includegraphics[width=5.5cm]{Anscombe's_quartet_3.pdf}
+\end{column}
+\end{columns}
 \end{frame}
 
 \subsection{}
-\begin{frame}{V-C dimenze}
+\begin{frame}{Vapnik-Chervonenkisova dimenze}
 \begin{itemize}
-\item V-C
-\item Teoretické meze
+\item VC dimenze udává ``kapacitu'' klasifikátoru
+\item Nejmenší počet bodů, které lze rozložit do konfigurace, kterou nedokáže klasifikátor rozbít
+\item Např. lineární klasifikátor (perceptron) má dimenzi 3
 \end{itemize}
+\begin{center}
+\includegraphics[height=3cm]{VC4.png}
+\end{center}
 \end{frame}
 
 \subsection{}
 \begin{frame}{Principial Component Analysis}
 \begin{itemize}
-\item Dekolerace
-\item PCA
-\item Vstup --- výsledek
-\item Algoritmus
+\item Chceme dekolerovat sadu proměnných (dimenze)
+\item PCA rozebere oblak dat na jeho ``osy''
+\item Dataset $X$ $\to$ dataset $Y$ nižší dimenze
 \item Alternativa: Ojův algoritmus
 \end{itemize}
+
+\begin{columns}
+\begin{column}{6cm}
+\begin{block}{Algoritmus}
+\begin{itemize}
+\item Normalizace podle $\mathbb{E}X$ a $\sigma_E$
+\item Kovarianční (disperzní) matice $C$
+\item Vybereme vlastní vektory $C$ s nejvyšší energií ($D$)
+\item Vstupní vektory projektujeme do vekt. prostoru s bází $D$
+\end{itemize}
+\end{block}
+\end{column}
+\begin{column}{5cm}
+\includegraphics[width=5cm]{GaussianScatterPCA.png}
+\end{column}
+\end{columns}
 \end{frame}
 
 \subsection{}
