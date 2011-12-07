@@ -48,14 +48,13 @@
 \subsection{}
 \begin{frame}{Markovovský řetězec}
 \begin{itemize}
-\item Posloupnost stavů, každý stav závisí (stochasticky) pouze na předchozím
+\item Posloupnost stavů splňujících {\em Markovovu vlastnost}
+\item Každý stav závisí (stochasticky) pouze na předchozím; {\bf nemáme paměť}
 \item $k$-tého řádu: Závislost na $k$ předchozích
 \item (Je to ekvivalentní?)
 \vskip 3ex
 \pause
 \item Velmi zjednodušený model, ale výpočetně triviální a dobrá aproximace
-\vskip 3ex
-\pause
 \item Množina stavů, pravděpodobnosti přechodu mezi stavy
 \end{itemize}
 
@@ -63,24 +62,63 @@ TODO ilustrace
 \end{frame}
 
 \subsection{}
-\begin{frame}{Skrytý Markovovský řetězec (HMM)}
-\begin{itemize}
-\item {\em Skryté} stavy nedokážeme pozorovat, viditelné projevy jsou asociovány pouze přes pravděpodobnosti
-\item Pravděpodobnost přechodu mezi stavy {\em a} pravděpodobnost stavu $A$ při jevu $X$
-\end{itemize}
+\begin{frame}{Muaddib}
+\begin{center}
+{\tt
+<TomSuch> 1+1 \\
+<Muaddib> Kde jsou vsichni mimo kretena 1... \\ Senat souhlasi... Poslanecka snemovna nesouhlasi... Kreteni jsou vsichni.
+}
+\end{center}
 
-TODO ilustrace
+\vskip 3ex
+\pause
+
+TODO: Puvodni vety z logu.
+
+\vskip 3ex
+\pause
+
+\begin{itemize}
+\item Symboly (stavy) pro slova a neslova (okraj věty: Slovo $\epsilon$)
+\item Dva MM 4. řádu --- 3 slova před, 3 slova po
+\item Vstup: Update MM, pevné body, doplnění věty z MM
+\end{itemize}
 \end{frame}
 
 \subsection{}
-\begin{frame}{Muaddib}
-TODO: excerpt
+\begin{frame}{Skrytý Markovovský řetězec (HMM)}
+TODO ilustrace
 
 \begin{itemize}
-\item HMM 6. řádu --- 3 slova před, 3 slova po
-\item (Začátek/konec věty: Slovo $\epsilon$)
+\item {\em Skryté} stavy nedokážeme pozorovat, viditelné projevy jsou asociovány pouze stochasticky
+\item Pravděpodobnost přechodu mezi stavy {\em a} pravděpodobnost jevu $X$ ve stavu $A$
+\item (Pomocí Bayesovského pravidla můžeme podle jevu určit pravděpodobnost různých stavů)
+\item Učení: TODO
+\end{itemize}
+\vskip 3ex
+\pause
+\begin{block}{Inference}
+\begin{itemize}
+\item Vysvětlování --- jaké stavy jsme prošli?
+\item Filtrování --- v jakém stavu právě jsme?
+\item Vyhlazování --- v jakém stavu jsme byli tuhle?
+\item Pravděpodobnost pozorování
+\end{itemize}
+\end{block}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Algoritmy pro HMM}
+\begin{block}{Forward algoritmus}
+\begin{itemize}
 \item TODO
 \end{itemize}
+\end{block}
+\begin{block}{Viterbiho algoritmus}
+\begin{itemize}
+\item TODO
+\end{itemize}
+\end{block}
 \end{frame}
 
 \subsection{}
@@ -94,25 +132,26 @@ TODO: excerpt
 	\end{column}
 \end{columns}
 
-\begin{itemize}
-\item {\bf Interval spolehlivosti:} S pravděpodob. $p$ bude $\mathbb{E}[X] = \mu \pm \epsilon$
-\item LHC detekovalo 130 GeV ``na tři sigma''
-\end{itemize}
+\begin{center}
+{\bf Interval spolehlivosti:} S pravděpodob. $p$ bude $\mathbb{E}[X] = \mu \pm \epsilon$
+
+{\em ``LHC detekovalo 130 GeV signaturu na tři sigma.''}
+\end{center}
 \end{frame}
 
 \subsection{}
-\begin{frame}{Kalmánovy filtry}
+\begin{frame}{Kálmánovy filtry}
 \begin{itemize}
-\item Svět je HMM, pozorování jsou čísla zašuměná dle normálního rozdělení
+\item {\bf Lineární dynamický systém} --- HMM se ``spojitými stavy'' a stavy i pozorováními normálně rozdělenými
+\item Aneb: Pozorování jsou čísla dle stavů, ale zašuměná dle normálního rozdělení
 \item Různá čísla indikují (s omezenou pravděpodobností) různé stavy
-\item S časem zpřesňujeme nejen odhad stavu, ale i šumu pozorování!
 \end{itemize}
 \end{frame}
 
 \subsection{}
 \begin{frame}{Otázky?}
 \begin{center}
-Příště: Strojové učení (prostor verzí, rozhodovací stromy, Bayesovské\dots)
+Příště: Strojové učení (rozhodovací stromy, Bayesovský klasifikátor\dots)
 \end{center}
 \end{frame}
 
