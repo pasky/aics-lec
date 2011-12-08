@@ -1,4 +1,4 @@
-all: lec1.pdf lec2.pdf lec3.pdf lec4.pdf lec5.pdf lec6.pdf lec7.pdf
+all: lec1.pdf lec2.pdf lec3.pdf lec4.pdf lec5.pdf lec6.pdf lec7.pdf lec8.pdf
 
 lec5.pdf: sigmoid.pdf graph.pdf
 
@@ -12,4 +12,4 @@ graph.pdf: graph.neato
 	pdflatex $<
 
 clean:
-	rm -f lec[1234567].{aux,dvi,log,nav,out,pdf,snm,toc} sigmoid.pdf
+	rm -f lec[12345678].{aux,dvi,log,nav,out,pdf,snm,toc} sigmoid.pdf
