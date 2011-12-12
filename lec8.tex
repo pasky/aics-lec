@@ -53,14 +53,30 @@ Příště: Metody pro učení agentů.
 \subsection{}
 \begin{frame}{ANN Revisited}
 \begin{itemize}
-\item Rekapitulace
+\item Umělé neurony (``výpočetní krabičky'') \\ dostávají vstupy (čísla) a na jejich \\ základě generují výstup (číslo)
+\item Obvykle: Vrstvy striktně oddělené, \\ vstupní vrstva se vstupy zvnějšku, \\ výstupní vrstva s výstupem pro uživatele, \\ skryté vrstvy vyhodnocují různé charakteristiky vstupů
+\item Dnes: Více vrstev neuronů, jak je učit?
+\end{itemize}
+\begin{tikzpicture}[remember picture,overlay]
+  \node [xshift=-4.5cm,yshift=-6cm,above right] at (current page.north east)
+    {\includegraphics[width=4cm]{ANN.pdf}};
+\end{tikzpicture}
 \end{itemize}
 \end{frame}
 
 \subsection{}
 \begin{frame}{Backpropagation Revisited}
 \begin{itemize}
-\item Rekapitulace
+\item Myšlenka: Závislosti mezi vstupy a výstupy dokážeme přiměřeně matematicky popsat
+\item Chceme upravit váhy podle {\em chyby}, kterou propagovaly; \\ větší váha nese větší chybu
+\vskip 3ex
+\item Iterujeme učení podle vstupních množin:
+\begin{itemize}
+\item Zjistíme chybu výstupu
+\item Spočítáme {\em gradient} chyby podle vah jednotlivých spojů
+\item Chybu se pokusíme zredukovat posunutím vah proti gradientu
+\item Chybu ``zpětně šíříme'' do předchozí vrstvy a opakujeme
+\end{itemize}
 \end{itemize}
 \end{frame}
 
