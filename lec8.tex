@@ -61,7 +61,6 @@ Příště: Metody pro učení agentů.
   \node [xshift=-4.5cm,yshift=-6cm,above right] at (current page.north east)
     {\includegraphics[width=4cm]{ANN.pdf}};
 \end{tikzpicture}
-\end{itemize}
 \end{frame}
 
 \subsection{}
@@ -81,17 +80,90 @@ Příště: Metody pro učení agentů.
 \end{frame}
 
 \subsection{}
-\begin{frame}{Vylepšení zpětného šíření}
+\begin{frame}{Vylepšení učení ANN}
 \begin{itemize}
-\item Gradienty, metody prvního a druhého řádu
+\item Inicializace vah: rozumně malé, náhodné, vyvážené
+\item Chytřejší sestup podle gradientu
+\item Rozšíření gradientu derivacemi druhého řádu
+\item Relaxační metody: perturbace vah
+\item Modulární sítě, úprava parametrů (prahy, neurony)
 \item Genetické algoritmy
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{BP s momentem}
+\begin{center}
+Setrvačnost (moment): Zamez oscilacím v úzkých údolích \\
+(zejména jsou-li osy různě dlouhé)
+
+$$\Delta_E w_{i,j}(t+1) = -\alpha{\partial E \over \partial w_{i,j}(t)} + \gamma(w_{i,j}(t)-w_{i,j}(t-1))$$
+
+Najít $\alpha$ a $\gamma$ je magie \\
+$\alpha$ musí být kompromis mezi lokálními minimy a oscilacemi
+\end{center}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Dynamický parametr učení}
+\begin{center}
+$$\Delta_E w_{i,j}(t+1) = -\alpha_i{\partial E \over \partial w_{i,j}(t)}$$
+
+V nelineárním případě je třeba $\alpha_i$ volit dynamicky
+
+\begin{block}{Silva-Almeida}
+\begin{itemize}
+\item {\bf Urychluj}, pokud se nezměnilo znaménko; $\alpha_i' = u\alpha_i$, $u > 1$
+\item {\bf Zpomaluj}, pokud se znaménko změnilo; $\alpha_i' = d\alpha_i$, $d < 1$
+\item Exponenciální růst/pokles může být příliš velký
+\end{itemize}
+\end{block}
+
+\begin{block}{Delta-bar-delta}
+\begin{itemize}
+\item Pokud se nezměnilo znaménko; $\alpha_i' = u+\alpha_i$,
+\item Pokud se znaménko změnilo; $\alpha_i' = d\alpha_i$, $d < 1$
+\item Změna znaménka oproti $\delta_i' = (1-\Phi)\Delta_iE' + \Phi\delta_i$
+\end{itemize}
+\end{block}
+\end{center}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Super SAB}
+\begin{itemize}
+\item Kombinace dynamického $\alpha$ a momentu
+\item Zpětné šíření s momentem; pokud se nezměnilo \\ znaménko derivace, $\alpha_i' = \alpha^+\alpha_i$
+\item Pokud se změnilo znaménko derivace, undo, \\ zmenši parametr učení $\alpha_i' = \alpha^-\alpha_i$ a zkus znovu
 \end{itemize}
 \end{frame}
 
 \subsection{}
 \begin{frame}{Interní reprezentace znalostí}
 \begin{itemize}
-\item Prořezávání atd.
+\item Jak posoudit efektivitu interní reprezentace (vah skrytých neuronů)?
+\vskip 3ex
+\pause
+\item Chceme neurony, které jsou aktivní (výstup 1), \\ pasivní (výstup 0) nebo tiché (0.5) \\
+	``Něco mezi'' tolik nepřispívá k jednoznačné klasifikaci
+\item Jak byste udělali vzoreček?
+\vskip 3ex
+\pause
+\item TODO
+\vskip 3ex
+\pause
+\item Ještě lepší je mít neurony, které jsou buď aktivní nebo pasivní (nejsou nikdy zbytečné)
+\pause
+\item Interní reprezentace by měla být jednoznačná \\ (hodně odlišná pro hodně odlišné výstupy)
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Prořezávání ANN}
+\begin{itemize}
+\item Zbavíme se neuronů s uniformní reprezentací
+\item Zbavíme se neuronů s identickou či inverzní reprezentací \\ vůči jiným
+\item Výslednou síť nazveme {\em redukovanou}, můžeme ji vždy vytvořit
 \end{itemize}
 \end{frame}
 
@@ -149,7 +221,7 @@ Příště: Technické důsledky tříd složitosti.
 \end{frame}
 
 \subsection{}
-\begin{frame}{TODO jaxetojmenuje}
+\begin{frame}{Riceova věta}
 \begin{itemize}
 \item Nelze určit, zda dva programy dělají to samé
 \item Důkaz
