@@ -37,8 +37,115 @@
 \subsection{}
 \begin{frame}{Metody pro řízení agentů}
 \begin{itemize}
-\item BDI, SOAR, atd.
+\item Animat: Sensory --- umělá mysl --- efektory
+\item Action selection problem
+\vskip 3ex
+\pause
+\item Reaktivní if-then pravidla
+\item Konečné stavové automaty
+\item Free-flow architektura
+\item Subsumpční architektura
+\item Neuronové sítě (příště)
 \end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}[fragile]{Reaktivní plánování}
+\begin{itemize}
+\item {\bf Reaktivní plánování} vybírá pouze přímo následující akci na základě aktuálního kontextu
+\vskip 3ex
+\pause
+\item If-then pravidla: {\bf If $p$ then $A$}, prioritizovaná
+\item $A$ může být akce nebo sekvence akcí s pamětí (reflexy)
+\item Rychlá evaluace: RETE a lazy vyhodnocování (později)
+\end{itemize}
+\hfill {\tiny (Brooks, 1986; Wooldridge, 2002)}
+\begin{lstlisting}
+# When starts: not at home && be in picking state
+if see_obstacle then change_direction
+if basketful_of_m. and picking then stop_picking
+if see_mush. and picking then pick_up_the_mush.
+if midday and picking then stop_picking
+if home then END
+if picking then move_random
+if not_picking then move_home
+\end{lstlisting}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Simple Hierarchical Reactive Planning}
+\begin{itemize}
+\item Dekomopzice? SHRP!
+\item Hierarchické reaktivní plánování:
+	$A$ může být sada dalších ifů --- podcíle,
+	ifový strom s implicitním {\em and} po cestě
+\item Modelový cyklus: \\ Appetitive $\to$ Taxis $\to$ Consumatory $\to$ Clean
+\item Jak vybírat top-level cíle? Jízdní řád, pudy, dlouhodobé plány
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}[fragile]{Parallel-rooted Ordered Slip-stack Hierarchy}
+\begin{itemize}
+\item POSH: Hierarchická if-then pravidla s pudy (drives), \\ postupy (competencies) a skripty (action patterns)
+\item Drive: Základní reaktivní {\em patterny} okamžitě spouštějící reakce
+\item Competency: Reaktivní {\em plány} postupně spouštějící reakce
+\item Action pattern: Slepá posloupnost akcí
+\end{itemize}
+
+\hfill {\tiny (Bryson, 2002)}
+\begin{lstlisting}
+(RDC LIFE (GOAL (fail))
+ (DRIVES
+  ((grooming (TRIGGER ((want-to-groom))) groom-comp))
+  ((receive-grooming (TRIGGER ((being-groomed))) tolerate-grooming))
+  ((exploring (TRIGGER ()) explore-comp)))
+ (C groom-comp (GOAL (fail)) (ELEMENTS
+   ((groom-gp (TRIGGER ((partner-chosen) (aligned-w-target))) groom-note))
+   ((new-partner-gp (TRIGGER ((being-groomed))) choose-groomer-as-partner))
+   ((align-w-gp (TRIGGER ((partner-chosen) (touching-target))) engage))
+   ((touch-gp (TRIGGER ((partner-chosen))) approach))
+   ((choose-gp (TRIGGER ()) choose-grooming-partner))))
+ (C explore-comp (GOAL (fail)) (ELEMENTS ...)))
+\end{lstlisting}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Belief --- Desire --- Intention}
+\begin{itemize}
+\item Practical reasoning: Deliberative vs. means-ends
+\item Obecná šablona výběru top-level cílů: BDI
+\item Máme nějakou {\em představu}, na základě nich {\em toužíme} po různých věcech a z toho se dopracujeme k {\em úmyslu} něco konkrétního provést
+\item Beliefs mohou být mylné
+\item Desires jsou budoucí zajímavé možnosti agenta
+\item Intentions jsou akce, ke kterým se agent rozhodl
+\item Cyklus: Vygeneruj možnosti, rozhodni se pro jednu, \\ na základě vstupů profiltruj možnosti
+\item Provádí se intentional stack, POSH-like
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{FSM a Fuzzy logika}
+\begin{itemize}
+\item Konečný automat; stav je akce (aktivuj efektor), \\ přechod je vstup (vstup ze senzorů)
+\item Hierarchický FSM --- některé stavy jsou samy FSM; \\ umožňuje dekompozici
+\item Probabilistický FSM --- přechody jsou asociovány i~s~pravděpodobnostmi
+\vskip 3ex
+\pause
+\item Fuzzy množina $X$ je $(X,m)$, $m\colon X \to [0,1]$
+\item Defuzzifikace --- weighted MOM
+\item Fuzzy FSM --- fuzzy stavy i přechody, MIN-MAX metoda a~prahování stavů
+\item Modelování emocí
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Free-flow architektura}
+\includegraphics[width=9cm]{freeflow.png}
+\hfill {\tiny (Tyrrell, 1993)}
+
+Alternativy: Afordance, subsumpční architektura; \\
+viz později reprezentace znalostí.
 \end{frame}
 
 \subsection{}
@@ -69,6 +176,7 @@ Příště: Metody pro učení agentů.
 \item Myšlenka: Závislosti mezi vstupy a výstupy dokážeme přiměřeně matematicky popsat
 \item Chceme upravit váhy podle {\em chyby}, kterou propagovaly; \\ větší váha nese větší chybu
 \vskip 3ex
+\pause
 \item Iterujeme učení podle vstupních množin:
 \begin{itemize}
 \item Zjistíme chybu výstupu
