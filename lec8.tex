@@ -322,17 +322,28 @@ Příště: Technické důsledky tříd složitosti.
 \section{Vyčíslitelnost}
 
 \subsection{}
-\begin{frame}{Věty o rekurzi}
+\begin{frame}{Věta o rekurzi}
 \begin{itemize}
-\item Prvá, druhá, třetí, divná\dots
+\item Mějme ČRF $f$. Pak $\exists a$ (tzv. pevný bod), $\forall x: \Psi(f(a), x) \simeq \Psi(a, x)$
+\item Důkaz: Mějme $a = s_1(z,z)$ ($z$ si vymyslíme).
+	\\ $\Psi(s_1(z,z), x)$ má index $e$ a lze zapsat jako $\Psi(s_1(z,z),x) \simeq \Psi(e, z, x) \simeq \Psi(s_1(e, z), x)$. \\
+	Můžeme dosadit $z=e$ a dostaneme $\Psi(f(a),x) \simeq \Psi(f(s_1(e,e)),x) \simeq \Psi(e, e, x) \simeq \Psi(s_1(e, e), x) \simeq \Psi(a, x)$.
+\vskip 3ex
+\item Varianty: Můžeme vyrobit místo $a$ celou funkci $g$ a~udělat to pro více proměnných.
 \end{itemize}
 \end{frame}
 
 \subsection{}
 \begin{frame}{Riceova věta}
 \begin{itemize}
-\item Nelze určit, zda dva programy dělají to samé
-\item Důkaz
+\item Mějme netriviální třídu ČRF $A$. Pak množina $B = \{x: \Psi(x) \in A\}$ není rekurzivní
+\pause
+\item Nelze určit, zda dva programy dělají to samé!
+\vskip 3ex
+\pause
+\item Důkaz sporem: Vezměme $b \in B$ a $c \notin B$. \\
+	Sestrojme $f(x)$, $f(B) = c$, $f(\bar B) = b$. \\
+	Nalezněme pevný bod $e$. Co když $e \in B$ resp. $e \notin B$?
 \end{itemize}
 \end{frame}
 
