@@ -197,27 +197,54 @@ Příště: Koevoluce a otevřená evoluce (brmlife). \\ Pravděpodobnostní mod
 \subsection{}
 \begin{frame}{Binární vyhledávací strom}
 \begin{itemize}
-\item Konsturkce, invarianty, vlastnosti
-\item Kde je problém?
+\item TODO: obrazek
+\item Binární strom --- hrany pouze ``směrem dolů'', jeden kořen, každý uzel má nula (list) až dva syny
+\item Vyhledávací strom --- vše v levém podstromu $\le n \le $ vše v pravém podstromu
+\item Vyhledávání --- cesta z kořenu k uzlu
+\item Vnitřní uzly --- data nebo navigace?
+\item Jak vyrobit strom nad datasetem?
+\vskip 3ex
+\pause
+\item Vyvážený strom --- hloubky podstromů se liší jenom málo
+\item Ve vyváženém stromě trvá hledání $O(\log n)$
+\item Jak vyrobit vyvážený strom nad datasetem?
+\pause
+\item Jak ho udržovat vyvážený?
+\pause
+\item Chceme operace INSERT, DELETE
+\item Naivně: INSERT do listu, rotace u DELETE
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Stromy rovnoměrně rozložených hodnot}
+\begin{itemize}
+\item Hodnoty jsou rovnoměrně rozložené (třeba hashe)
+\item Je potřeba vůbec vyvažovat?
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Splay stromy}
+\begin{itemize}
+\item Zavedeme operaci {\em splay} --- rotaci uzlu zevnitř stromu do kořene
+\item INSERT --- do listu a splay
+\item DELETE --- splay rodiče a utrhnout
+\item FIND --- splay do kořene
+\item Asymptoticky vyvážený strom!
 \end{itemize}
 \end{frame}
 
 \subsection{}
 \begin{frame}{Červeno-černé stromy}
 \begin{itemize}
-\item Konstrukce, vlastnosti
+\item Některé vnitřní uzly červeně {\em obarvíme}; barvy opatrně střídáme
+\item Přesná konstrukce
 \end{itemize}
 \end{frame}
 
 \subsection{}
 \begin{frame}{AVL stromy}
-\begin{itemize}
-\item Konstrukce, vlastnosti
-\end{itemize}
-\end{frame}
-
-\subsection{}
-\begin{frame}{Splay stromy}
 \begin{itemize}
 \item Konstrukce, vlastnosti
 \end{itemize}
