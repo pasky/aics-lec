@@ -1,0 +1,246 @@
+\documentclass{beamer}
+\usetheme{Warsaw}
+\useinnertheme{circles}
+\useoutertheme[subsection=false]{smoothbars}
+\usepackage[utf8x]{inputenc}
+\usepackage[czech]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{listings}
+\usepackage{tikz}
+\lstset{basicstyle=\tiny\ttfamily}
+\logo{\includegraphics[height=0.5cm]{brmlab.pdf}}
+
+\begin{document}
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Outline}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\title{brmiversity: Umělá inteligence \\ a teoretická informatika}
+\subtitle{Přednáška č. 9}
+\author{Petr Baudiš $\langle${\tt pasky@ucw.cz}$\rangle$}
+\institute{
+	brmlab 2011\\
+	\vskip 1ex
+	\pgfdeclareimage[height=4ex]{ccbysa}{by-sa.pdf}
+	\pgfuseimage{ccbysa}
+}
+\date{}
+\frame{\titlepage}
+
+\section{Umělá inteligence}
+
+\subsection{}
+\begin{frame}{Strojové učení nad daty}
+\begin{itemize}
+\item Učení s učitelem vs. bez učitele
+\item Rozpoznávání vs. samoorganizace
+\item Dnes: Máme trénovací množinu.
+\end{itemize}
+\begin{block}{Učení s učitelem}
+\begin{itemize}
+\item Prohledávání prostoru verzí
+\item Bayesovský klasifikátor
+\item Maximálně věrohodná hypotéza
+\end{itemize}
+\end{block}
+\begin{block}{Učení bez učitele}
+\begin{itemize}
+\item Clustering
+\item Rozhodovací stromy
+\item Particle filtering?
+\end{itemize}
+\end{block}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Naivní Bayesovský klasifikátor}
+\begin{itemize}
+\item Bayesovo pravidlo
+\item Spamfilter
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Clustering}
+\begin{itemize}
+\item $k$-means
+\item Hierarchické shlukování
+\item Evoluční stromy
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Rozhodovací stromy}
+\begin{itemize}
+\item Informační entropie
+\item ID3
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Otázky?}
+\begin{center}
+Příště: Strojové učení zkušeností.
+\end{center}
+\end{frame}
+
+\section{Neuronové sítě}
+
+\subsection{}
+\begin{frame}{Asociativní paměti}
+\begin{itemize}
+\item Umělé neurony (``výpočetní krabičky'') \\ dostávají vstupy (čísla) a na jejich \\ základě generují výstup (číslo)
+\item Dříve: Vrstvy striktně oddělené, \\ vstupní vrstva se vstupy zvnějšku, \\ výstupní vrstva s výstupem pro uživatele, \\ skryté vrstvy vyhodnocují různé charakteristiky vstupů
+\item Dnes: Jinak! 2D síť neuronů se zpětnými spoji.
+	TODO
+\end{itemize}
+\begin{tikzpicture}[remember picture,overlay]
+  \node [xshift=-4.5cm,yshift=-6cm,above right] at (current page.north east)
+    {\includegraphics[width=4cm]{ANN.pdf}};
+\end{tikzpicture}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Model asociativní paměti}
+\begin{itemize}
+\item BAM
+\item Hebbovské učení
+\item Energetická funkce
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Hopfieldova síť}
+\begin{itemize}
+\item Reprezentace, vyhodocování, učení
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Reprezentace úloh}
+\begin{itemize}
+\item TSP jako energetická funkce
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Stochastické učení}
+\begin{itemize}
+\item Simulated annealing
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Otázky?}
+\begin{center}
+Příště: Samoorganizace v rámci ANN.
+\end{center}
+\end{frame}
+
+\section{Evoluční algoritmy}
+
+\subsection{}
+\begin{frame}{Rekapitulace --- genetický algoritmus}
+\begin{itemize}
+\item Populace, geny, operátory
+\item Standardní genetický algoritmus
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Reprezentační schémata}
+\begin{itemize}
+\item Definice schémat
+\item Věta o schématech
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Evoluční programování}
+\begin{itemize}
+\item Programování evoluce
+\item Dynamická změna parametrů GA
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Genetické programování}
+\begin{itemize}
+\item Rosteme LISP
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Otázky?}
+\begin{center}
+Příště: Koevoluce a otevřená evoluce (brmlife). \\ Pravděpodobnostní model GA.
+\end{center}
+\end{frame}
+
+\section{Datové struktury}
+
+\subsection{}
+\begin{frame}{Haldy}
+\begin{itemize}
+\item Rekapitulace
+\item Levicové haldy
+\item Binomiální haldy
+\item Fibonacciho haldy
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Binární vyhledávací strom}
+\begin{itemize}
+\item Konsturkce, invarianty, vlastnosti
+\item Kde je problém?
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Červeno-černé stromy}
+\begin{itemize}
+\item Konstrukce, vlastnosti
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{AVL stromy}
+\begin{itemize}
+\item Konstrukce, vlastnosti
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Splay stromy}
+\begin{itemize}
+\item Konstrukce, vlastnosti
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Otázky?}
+\begin{center}
+Příště: B-stromy.
+\end{center}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Děkuji vám}
+\begin{center}
+{\bf pasky@ucw.cz}
+
+\vskip 6ex
+
+Příště: Strojové učení podle zkušeností --- v umělé inteligenci obecně a~v~rámci adaptivních agentů. \\
+	Neuronové sítě.
+	Datové struktury.
+\end{center}
+\end{frame}
+
+\end{document}
