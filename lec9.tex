@@ -87,30 +87,29 @@ Parametrické vs. reprezentační metody.
 \subsection{}
 \begin{frame}{Rozhodovací stromy}
 \begin{itemize}
-\item Struktura
-\item Informační entropie
-\item ID3
+\item Mějme databázi $\vec D$ jedinců; jedinec je popsán příznakovým vektorem atributů $\vec t$; jedinec patří do třídy $c$
+\item Rozhodovací strom definuje posloupnost dotazů na atributy pro určení třídy
+\item Bankovní klienti, expertní systémy
+\item Konstrukce: Algoritmus ID3 maximalizující informační zisk
+\item {\em Informační entropie} $H = -\sum_a (p_a \log_2 p_a)$ ($a$ je konkr. hodnota konkr. atributu)
+\item Entropie je míra překvapení v množině, chceme co největší redukci překvapení
+\item Výběr atributů nebo malý dataset: Pozor na přeučení
 \end{itemize}
 \end{frame}
 
 \subsection{}
 \begin{frame}{Bayesovské učení}
+$$ P(A|B) = \frac{P(B|A)P(A)}{P(B)} $$
 \begin{itemize}
-\item Nasbírané pravděpodobnosti, věrohodnost
-\item Bayesovo pravidlo
-\item Predikce
+\item Nasbírané pravděpodobnosti, věrohodnost $P(B|A)$
+\item Predikce pomocí Bayesova pravidla
 \item Preference jednoduchých hypotéz
 \item MAP, MDL, ML (maximální věrohodnost)
+\item Naivní Bayesovský klasifikátor: \\
+	Předpokládá podmíněnou nezávislost atributů
+	$P(C|x_1,\dots,x_i) = \alpha P(C) \Pi_i P(x_i|C)$
 \end{itemize}
-\end{frame}
 
-\subsection{}
-\begin{frame}{Naivní Bayesovský klasifikátor}
-\begin{itemize}
-\item Předpoklad --- podmíněná nezávislost
-\item Predikční pravidlo
-\item Spamfilter
-\end{itemize}
 \begin{block}{EM algoritmus}
 \begin{itemize}
 \item Estimation-maximization, střídáme kroky
@@ -122,17 +121,18 @@ Parametrické vs. reprezentační metody.
 \begin{frame}{Support Vector Machines}
 \begin{itemize}
 \item Kernelová metoda používající reprezentanty
-\item Lineární separace nejširším okrajem
-\item Remapování neseparabilních množin kernelem
+\item Lineární separace podobně jako u perceptronu
+\item Maximalizujeme okraj, separátor popisujeme reprezentanty
+\item Remapování neseparabilních množin kernelovou funkcí (mapování přes polynom či jinak)
 \end{itemize}
 \end{frame}
 
 \subsection{}
 \begin{frame}{Clusterování}
 \begin{itemize}
-\item $k$-means
-\item Hierarchické shlukování
-\item Evoluční stromy
+\item Chceme identifikovat shluky dat (bodů v $n$-rozměrném vektorovém prostoru)
+\item Hierarchické shlukování: Postupně spolu mergujeme oblaky bodů se vzrůstající maximální vzdáleností
+\item $k$-means: Předem daný počet $k$ clusterů s danými středy; body volí nejbližší střed, středy iterativně přepočítáváme
 \end{itemize}
 \end{frame}
 
@@ -310,6 +310,7 @@ Příště: Koevoluce a otevřená evoluce (brmlife). \\ Pravděpodobnostní mod
 
 \subsection{}
 \begin{frame}{Binární vyhledávací strom}
+\begin{itemize}
 \item Binární strom --- hrany pouze ``směrem dolů'', jeden kořen, každý uzel má nula (list) až dva syny
 \item Vyhledávací strom --- vše v levém podstromu $\le n \le $ vše v pravém podstromu
 \item Vyhledávání --- cesta z kořenu k uzlu
