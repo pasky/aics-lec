@@ -35,50 +35,104 @@
 \section{Umělá inteligence}
 
 \subsection{}
-\begin{frame}{Strojové učení nad daty}
+\begin{frame}{Strojové učení}
+\begin{center}
+Učící se agent: Datový vstup a výstup, rozhodovací problém, užitková funkce
+\vskip 3ex
+\begin{block}{Máme trénovací množinu}
 \begin{itemize}
 \item Učení s učitelem vs. bez učitele
 \item Rozpoznávání vs. samoorganizace
-\item Dnes: Máme trénovací množinu.
 \end{itemize}
+\end{block}
+\begin{block}{Nemáme trénovací množinu}
+\begin{itemize}
+\item Exploration---exploitation dilemma
+\item Zpětnovazebné učení
+\end{itemize}
+\end{block}
+\end{center}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Strojové učení nad daty}
+\begin{center}
+Dnes: Máme trénovací a testovací data, hledáme {\em hypotézu}. \\
+Chceme řešit buď {\em klasifikační} nebo {\em regresní} úlohy. \\
+Parametrické vs. samplovací metody.
+\vskip 3ex
 \begin{block}{Učení s učitelem}
 \begin{itemize}
 \item Prohledávání prostoru verzí
-\item Bayesovský klasifikátor
-\item Maximálně věrohodná hypotéza
+\vskip 2ex
+\item {\bf Rozhodovací stromy}
+\item {\bf Bayesovské učení}
+\item Částicové filtry
+\vskip 2ex
+\item Neuronové sítě
+\item {\bf Support Vector Machines}
 \end{itemize}
 \end{block}
 \begin{block}{Učení bez učitele}
 \begin{itemize}
-\item Clustering
-\item Rozhodovací stromy
-\item Particle filtering?
+\item Karuhnenova-Loèveho transformace (PCA)
+\item {\bf Clusterování}
+\item Kohonenovy mapy
+\item Lineární regrese
 \end{itemize}
 \end{block}
-\end{frame}
-
-\subsection{}
-\begin{frame}{Naivní Bayesovský klasifikátor}
-\begin{itemize}
-\item Bayesovo pravidlo
-\item Spamfilter
-\end{itemize}
-\end{frame}
-
-\subsection{}
-\begin{frame}{Clustering}
-\begin{itemize}
-\item $k$-means
-\item Hierarchické shlukování
-\item Evoluční stromy
-\end{itemize}
+\end{center}
 \end{frame}
 
 \subsection{}
 \begin{frame}{Rozhodovací stromy}
 \begin{itemize}
+\item Struktura
 \item Informační entropie
 \item ID3
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Bayesovské učení}
+\begin{itemize}
+\item Nasbírané pravděpodobnosti, věrohodnost
+\item Bayesovo pravidlo
+\item Predikce
+\item Preference jednoduchých hypotéz
+\item MAP, MDL, ML (maximální věrohodnost)
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Naivní Bayesovský klasifikátor}
+\begin{itemize}
+\item Předpoklad --- podmíněná nezávislost
+\item Predikční pravidlo
+\item Spamfilter
+\end{itemize}
+\begin{block}{EM algoritmus}
+\begin{itemize}
+\item Estimation-maximization, střídáme kroky
+\end{itemize}
+\end{block}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Support Vector Machines}
+\begin{itemize}
+\item Kernelová metoda používající reprezentanty
+\item Lineární separace nejširším okrajem
+\item Remapování neseparabilních množin kernelem
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Clusterování}
+\begin{itemize}
+\item $k$-means
+\item Hierarchické shlukování
+\item Evoluční stromy
 \end{itemize}
 \end{frame}
 
@@ -147,8 +201,15 @@ Příště: Samoorganizace v rámci ANN.
 \subsection{}
 \begin{frame}{Rekapitulace --- genetický algoritmus}
 \begin{itemize}
-\item Populace, geny, operátory
-\item Standardní genetický algoritmus
+\item Populace řešení (s určitou strukturou), ohodnocovací funkce
+\item Máme populaci předchozí generace, vyrábíme novou generaci (dokud nenajdeme optimum).
+\item Nová generace (dokud není plná) --- aplikuj genetické operátory:
+\begin{itemize}
+\item Vyber dva jedince z minulé populace (selekce)
+\item Vyrob dva nové jedince (křížení)
+\item Mírně jedince uprav (mutace)
+\item Dvojici vlož do nové generace
+\end{itemize}
 \end{itemize}
 \end{frame}
 
