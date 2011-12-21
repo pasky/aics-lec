@@ -60,15 +60,19 @@ Učící se agent: Datový vstup a výstup, rozhodovací problém, užitková fu
 Dnes: Máme trénovací a testovací data, hledáme {\em hypotézu}. \\
 Chceme řešit buď {\em klasifikační} nebo {\em regresní} úlohy. \\
 Parametrické vs. reprezentační metody.
-\vskip 3ex
+\end{center}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Strojové učení nad daty}
 \begin{block}{Učení s učitelem}
 \begin{itemize}
 \item Prohledávání prostoru verzí
-\vskip 2ex
+\vskip 1ex
 \item {\bf Rozhodovací stromy}
 \item {\bf Bayesovské učení}
 \item Částicové filtry
-\vskip 2ex
+\vskip 1ex
 \item Neuronové sítě
 \item {\bf Support Vector Machines}
 \end{itemize}
@@ -81,7 +85,6 @@ Parametrické vs. reprezentační metody.
 \item Lineární regrese
 \end{itemize}
 \end{block}
-\end{center}
 \end{frame}
 
 \subsection{}
@@ -132,7 +135,7 @@ $$ P(A|B) = \frac{P(B|A)P(A)}{P(B)} $$
 \begin{itemize}
 \item Chceme identifikovat shluky dat (bodů v $n$-rozměrném vektorovém prostoru)
 \item Hierarchické shlukování: Postupně spolu mergujeme oblaky bodů se vzrůstající maximální vzdáleností
-\item $k$-means: Předem daný počet $k$ clusterů s danými středy; body volí nejbližší střed, středy iterativně přepočítáváme
+\item $k$-means: Předem daný počet $k$ clusterů s danými středy; \\ body volí nejbližší střed, středy iterativně přepočítáváme
 \end{itemize}
 \end{frame}
 
@@ -149,8 +152,8 @@ Příště: Strojové učení zkušeností.
 \begin{frame}{Asociativní paměti}
 \begin{itemize}
 \item Umělé neurony (``výpočetní krabičky'') \\ dostávají vstupy (čísla) a na jejich \\ základě generují výstup (číslo)
-\item Dnes: Chceme vstup transformovat na některý naučený vzor
-\item Heteroasociativní, autoasociativní a rozpoznávací sítě
+\item Dnes: Chceme vstup transformovat \\ na některý naučený vzor
+\item Heteroasociativní, autoasociativní \\ a rozpoznávací sítě
 \item Zpětná vazba (rekurence) --- síť nemusí být jednosměrná,
 	čekáme na ustálení potenciálů $\Rightarrow$ dynamický systém!
 	Zajímavé jsou pevné body
@@ -276,8 +279,8 @@ Příště: Samoorganizace v rámci ANN.
 \subsection{}
 \begin{frame}{Evoluční a genetické programování}
 \begin{itemize}
-\item Model programu: Lispový funkcionální model nebo konečný automat
-\item Fitness: Přesnost výpočtu (ano/ne, odchylka, \dots)
+\item Model programu: Lispový funkcionální \\ model nebo konečný automat
+\item Fitness: Přesnost výpočtu (ano/ne, \\ odchylka, \dots)
 \item Mutace: Přidání/odebrání stavu nebo volání (prodloužení větve programu)
 \item Crossover je problematický --- headless chicken!
 \item Lineární genetické programování: Imperativní programování, trackování registrů, reprezentace pomocí bytecode
