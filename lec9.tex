@@ -260,23 +260,42 @@ Příště: Samoorganizace v rámci ANN.
 \subsection{}
 \begin{frame}{Reprezentační schémata}
 \begin{itemize}
-\item Definice schémat
-\item Věta o schématech
+\item Popisujme řešení jako binární řetězec
+\item Schéma $S$ je slovo v abecedě 0, 1 a * (don't care)
+\item Schéma $S$ reprezentuje množinu řešení
+\item Řád schématu $o(S)$, definující délka $d(S)$, fitness $F(S)$
+\vskip 3ex
+\pause
+\item {\bf Věta o schématech:} Schémata, která jsou krátká, nadprůměrná a malého řádu se v populaci exponenciálně množí
+\item Důkaz: Vliv operátorů na atributy schémat
+\item Tedy na kódování záleží!
+\item Vzpomeňte si příště: Exploration vs. exploitation problem!
 \end{itemize}
 \end{frame}
 
 \subsection{}
-\begin{frame}{Evoluční programování}
+\begin{frame}{Evoluční a genetické programování}
 \begin{itemize}
-\item Programování evoluce
-\item Dynamická změna parametrů GA
+\item Model programu: Lispový funkcionální model nebo konečný automat
+\item Fitness: Přesnost výpočtu (ano/ne, odchylka, \dots)
+\item Mutace: Přidání/odebrání stavu nebo volání (prodloužení větve programu)
+\item Crossover je problematický --- headless chicken!
+\item Lineární genetické programování: Imperativní programování, trackování registrů, reprezentace pomocí bytecode
+\item Meta-Optimizing Semantic Evolutionary Search (MOSES)
 \end{itemize}
+\begin{tikzpicture}[remember picture,overlay]
+  \node [xshift=-4.5cm,yshift=-4.5cm,above right] at (current page.north east)
+    {\includegraphics[width=4cm]{Genetic_Program_Tree.png}};
+\end{tikzpicture}
 \end{frame}
 
 \subsection{}
-\begin{frame}{Genetické programování}
+\begin{frame}{Evoluční strategie}
 \begin{itemize}
-\item Rosteme LISP
+\item Evolvujeme nikoliv pouze jedince, ale i parametry evoluce
+\item Jedinec je $(G,S)$, $S=(M,L,R)$
+\item $M$ počet jedinců v populaci \\ $L$ počet potomků \\ $R$ počet rodičů (gang bang)
+\item Křížení a mutace: Normální rozdělení, odchylky, rotace a průměr
 \end{itemize}
 \end{frame}
 
