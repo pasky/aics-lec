@@ -59,7 +59,7 @@ Učící se agent: Datový vstup a výstup, rozhodovací problém, užitková fu
 \begin{center}
 Dnes: Máme trénovací a testovací data, hledáme {\em hypotézu}. \\
 Chceme řešit buď {\em klasifikační} nebo {\em regresní} úlohy. \\
-Parametrické vs. samplovací metody.
+Parametrické vs. reprezentační metody.
 \vskip 3ex
 \begin{block}{Učení s učitelem}
 \begin{itemize}
@@ -149,9 +149,12 @@ Příště: Strojové učení zkušeností.
 \begin{frame}{Asociativní paměti}
 \begin{itemize}
 \item Umělé neurony (``výpočetní krabičky'') \\ dostávají vstupy (čísla) a na jejich \\ základě generují výstup (číslo)
-\item Dříve: Vrstvy striktně oddělené, \\ vstupní vrstva se vstupy zvnějšku, \\ výstupní vrstva s výstupem pro uživatele, \\ skryté vrstvy vyhodnocují různé charakteristiky vstupů
-\item Dnes: Jinak! 2D síť neuronů se zpětnými spoji.
-	TODO
+\item Dnes: Chceme vstup transformovat na některý naučený vzor
+\item Heteroasociativní, autoasociativní a rozpoznávací sítě
+\item Zpětná vazba (rekurence) --- síť nemusí být jednosměrná,
+	čekáme na ustálení potenciálů $\Rightarrow$ dynamický systém!
+	Zajímavé jsou pevné body
+\item Skoková přenosová funkce, bipolární kódování
 \end{itemize}
 \begin{tikzpicture}[remember picture,overlay]
   \node [xshift=-4.5cm,yshift=-6cm,above right] at (current page.north east)
@@ -160,32 +163,73 @@ Příště: Strojové učení zkušeností.
 \end{frame}
 
 \subsection{}
-\begin{frame}{Model asociativní paměti}
+\begin{frame}{Hebb a BAM}
 \begin{itemize}
-\item BAM
-\item Hebbovské učení
-\item Energetická funkce
+\item Hebbovské učení: {\em ``What fires together, wires together.''} \\
+	$\Delta w_{ij} = \gamma x_i y_j \qquad W' = W + \vec x^T \vec y$
+\item TODO: obrazek
+\item {\bf Bidirectional Associative Memory (BAM):}
+	Dvouvrstvá (a)synchronní rekurentní síť s obousměrnými synapsemi, neurony každý s každým
+\item Váhová matice $W$, jedna iterace je $\vec x \cdot W = \vec y$
+\item Atraktory jsou vlastní vektory, nechť odpovídají vzorům
+\item Kapacita matice $W$ je omezená (crosstalk); \\
+	pro ortogonální vektory $m \simeq 0.18 n$
+\item Korelační matice; neortogonální vektory: pseudoinverzní matice
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Konvergence BAM}
+\begin{itemize}
+\item Zkonverguje vyhodnocování BAM? \pause Ano! Ale proč?
+\pause
+\item Vstup do sítě by se měl blížit předchozímu vstupu
+\item Energetická funkce $E(\vec x, \vec y) = -{1 \over 2}\vec x W \vec y^T$
+\item Lze ukázat, že v každé iteraci energetická funkce klesne!
+\pause
+\item Počet hodnot energetické funkce je konečný
+\item QED
 \end{itemize}
 \end{frame}
 
 \subsection{}
 \begin{frame}{Hopfieldova síť}
 \begin{itemize}
-\item Reprezentace, vyhodocování, učení
+\item TODO: obrazek
+\item Jednovrstvá rekurentní síť, neurony každý s každým
+\item Rozpoznávání vzorů (2D matice), optimalizační problémy
+\item Učení: $w_{ij} = \sum_{s=1}^m x_i^s y_i^s\quad i \ne j$
+\item Rozpoznávání: Iterace do ustálení
+\item Pro nulovou diagonálu konverguje (důkaz energetickou funkcí)
 \end{itemize}
 \end{frame}
 
 \subsection{}
-\begin{frame}{Reprezentace úloh}
+\begin{frame}{Optimalizační úlohy}
 \begin{itemize}
-\item TSP jako energetická funkce
+\item Hopfieldův model minimalizuje chybovou funkci
+\item $\Rightarrow$ je to řešítko optimalizačního problému!
+\item Vyjádříme-li jiný (lineární) optimalizační problém podle funkce a pak zpětně odvodíme váhy neuronů, máme optimalizovátko
 \end{itemize}
+\begin{block}{Multiflop}
+\begin{itemize}
+\item Na konci je aktivní právě jeden neuron
+\item Chybová funkce $E = \sum_i (x_i-1)^2$
+\item Problém $n$ věží, TSP
+\end{itemize}
+\end{block}
 \end{frame}
 
 \subsection{}
 \begin{frame}{Stochastické učení}
 \begin{itemize}
-\item Simulated annealing
+\item TODO: obrazek
+\item Hopfieldův model na funkci $E$ provádí {\bf hillclimbing}
+\item Vždy se hýbeme po svahu co nejstrměji
+\item Funkce $E$ má lokální minima, z nich se nedostaneme
+\item Řešení: Stochastické uhýbání ze svahu
+\item Simulované žíhání (annealing): $p_{\Delta E} = {1 \over 1 + e^{\Delta E/T}}$
+\item Aplikace na Hopfieldův model: Boltzmannův stroj
 \end{itemize}
 \end{frame}
 
