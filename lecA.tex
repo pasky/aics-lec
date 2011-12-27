@@ -55,17 +55,43 @@ Učící se agent: Datový vstup a výstup, rozhodovací problém, užitková fu
 \end{frame}
 
 \subsection{}
-\begin{frame}{Strojové učení zkušeností}
+\begin{frame}{Zpětnovazebné učení}
 \begin{center}
-Dnes: Data si musíme shánět sami průběžně.
+Dnes: Nemáme klasickou trénovací množinu, ale {\bf feedback}. \\
+Data si často musíme shánět ``sami'' průběžně. \\
+Jinak řečeno: Agentův {\bf stav} se mění a provádí {\bf akce}.
 
-\vskip 3ex
+\vskip 6ex
 
-Musíme přitom již co nejlépe fungovat. \\
-(Nenechat se zabít, dělat něco užitečného.)
+{\bf Reinforcement learning} je ztělesněním jádra UI. \\
+	Agenta umístíme do prostředí, sám se musí naučit \\ svoji ``přechodovou funkci''.
+\end{center}
+\end{frame}
 
-\vskip 3ex
+\begin{frame}{Zpětnovazebné učení}
+\begin{itemize}
+\item Strategie agenta (policy) $\pi\colon S \to A$ \\ $\pi(s)=a$ zvolí ve stavu $s$ akci $a$
+\item Na základě akcí dostáváme {\bf zpětnou vazbu} \\ Někdy hned, ale často až za dlouho!
+\item {\bf Pasivní učení:} Během učení používáme fixní $\pi$
+\item {\bf Aktivní učení:} Strategii $\pi$ průběžně měníme
+\item Bellmannova rovnice: TODO
+\end{itemize}
+\end{frame}
 
+\begin{frame}{Pasivní učení}
+\begin{itemize}
+\item Agent neprozkoumává prostředí, sbírá data s pevnou $\pi$
+\item Přímý model
+\item ADP
+\item TD
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Aktivní učení}
+\begin{center}
+{\bf Aktivní učení:} Adaptivní strategie. \\
+Měli bychom při učení již co nejlépe fungovat. \\
 Učit se chceme co nejefektivněji.
 
 \vskip 3ex
@@ -73,27 +99,33 @@ Učit se chceme co nejefektivněji.
 Problém výběru akcí --- zase! \\
 Exploration: Data o alternativách. \\
 Exploitation: Výběr nejlepší alternativy. \\
-Exploration a exploitation jsou v opozici natrvalo.
+Exploration a exploitation nemohou být v opozici natrvalo.
 \end{center}
 \end{frame}
 
 \subsection{}
-\begin{frame}{Zpětnovazebné učení}
+\begin{frame}{Exploration-exploitation dilemma}
 \begin{itemize}
 \item Problém mnohorukého loupežníka (multi-armed bandit)
+\item Robot v bludišti
+\item Hraní šachů nebo Go
 \item Genetický algoritmus
-\item Hraní Go
 \end{itemize}
 \end{frame}
 
 \subsection{}
-\begin{frame}{Zpětnovazebné učení}
+\begin{frame}{Druhy aktivních agentů}
 \begin{itemize}
-\item Reinforcement learning
-\item Bellmannova rovnice
-\item Q-učení
-\item atd.
-\item Učení neuronových sítí atd. adapt. ag.
+\item {\bf Utility based agent} se učí užitek pro stavy \\ (musí vědět, kam vede která akce --- model prostředí)
+\item {\bf Q-learning based agent} se učí očekávaný užitek pro akce
+\item {\bf Reflex based agent} se učí přímo $\pi(s)$
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Zpětnovazebné učení v neuronových sítích}
+\begin{itemize}
+\item Adaptivní agenti --- umělé bytosti
 \end{itemize}
 \end{frame}
 
