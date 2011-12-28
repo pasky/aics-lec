@@ -337,11 +337,32 @@ Příště Adaptivní agenti: Etologie a populační dynamika.
 
 \subsection{}
 \begin{frame}{B-stromy}
+\begin{center}
+\includegraphics[width=8cm]{B-tree.pdf}
+\end{center}
 \begin{itemize}
-\item Co to je, jak se to chová
-\item Vlastnosti
-\item Vyvažování
+\item Vyhledávací strom s jednou hodnotou v uzlu: \\ nevhodný pro pomalý přímý přístup (I/O, cache)
+\item B-strom: Mnoho definic, nejobecnější je $(a,b)$ strom
+\vskip 3ex
+\item $(a,b)$ strom ($a \le b$): každý vnitřní vrchol kromě kořene má alespoň $a$ a nejvíce $b$ synů a všechny cesty od kořene k listu mají stejnou délku
+\item V praxi navíc: $a \ge 2$, $b \ge 2b-1$; kořen je buď list, \\ nebo má alespoň 2 a nejvíce $b$ synů
 \end{itemize}
+\vskip 1ex
+\end{frame}
+
+\subsection{}
+\begin{frame}{B-stromy}
+\begin{itemize}
+\item Populární: 2-3 strom, v praxi \\ ovšem často spíše 128-256 \\ strom apod. (v závislosti na velikosti bloku)
+\item Díky $b \ge 2b-1$ mohu vždy sloučit dva $a$-prázdné uzly nebo rozštěpit jeden plný
+\item Vyvažování v INSERT a DELETE: Propaguji chybu vzhůru --- snažím se vyměňovat prvky se sourozenci, v extrémním případě rozštěpím kořen
+\vskip 3ex
+\item A-sort: Třídění pomocí přidávání do B-stromu, INSERT začíná v listu (výhodné pro částečně předtříděné posloupnosti)
+\end{itemize}
+\begin{tikzpicture}[remember picture,overlay]
+  \node [xshift=-5.5cm,yshift=-3.2cm,above right] at (current page.north east)
+    {\includegraphics[width=5cm]{B-tree.pdf}};
+\end{tikzpicture}
 \end{frame}
 
 \subsection{}
