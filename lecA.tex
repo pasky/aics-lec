@@ -68,23 +68,75 @@ Jinak řečeno: Agentův {\bf stav} se mění a provádí {\bf akce}.
 \end{center}
 \end{frame}
 
+\subsection{}
 \begin{frame}{Zpětnovazebné učení}
 \begin{itemize}
 \item Strategie agenta (policy) $\pi\colon S \to A$ \\ $\pi(s)=a$ zvolí ve stavu $s$ akci $a$
-\item Na základě akcí dostáváme {\bf zpětnou vazbu} \\ Někdy hned, ale často až za dlouho!
+\item Na základě akcí dostáváme {\bf zpětnou vazbu} \\ Někdy hned, ale často až za dlouho! \\ Jak to modelovat?
 \item {\bf Pasivní učení:} Během učení používáme fixní $\pi$
 \item {\bf Aktivní učení:} Strategii $\pi$ průběžně měníme
-\item Bellmannova rovnice: TODO
 \end{itemize}
 \end{frame}
 
+\subsection{}
+\begin{frame}{Bellmannova rovnice}
+\begin{itemize}
+\item Každý stav má {\bf ocenění} $R$ (reward)
+\item K zajímavému stavu se můžeme dostat různými cestami
+\item {\bf Užitek} je celkové ``hodnocení výkonu'' agenta, \\ distribuované přes posloupnost stavů
+\item $U[s_0,s_1,s_2,\ldots] = R(s_0) + \gamma(R(s_1) + \gamma(R(s_2) + \cdots)) \quad \gamma \in [0,1]$
+\pause
+\vskip 2ex
+\item Akce nemusí vždy dopadnout stejně --- pravděpodobnostní rozdělení; Markovský rozhodovací proces (MDP)!
+\item $\pi(s) = \mathrm{argmax}_{a \in A(s)} \sum_{s'} P(s'|s,a) U(s')$ \\ (vyber akci s nejvyšším {\em očekávaným} užitkem)
+\pause
+\vskip 2ex
+\item Volí-li agent optimální akci, užitek stavu závisí na užitku okolních stavů
+\item {\bf Bellmanova rovnice:} $U(s) = R(s) + \gamma \max_{a \in A(s)} \sum_{S'} P(s'|s,a) U(s')$
+\end{itemize}
+\end{frame}
+
+\subsection{}
 \begin{frame}{Pasivní učení}
 \begin{itemize}
-\item Agent neprozkoumává prostředí, sbírá data s pevnou $\pi$
-\item Přímý model
-\item ADP
-\item TD
+\item Agent neprozkoumává prostředí, vzorkuje s pevnou $\pi$
+\item Chceme {\em ohodnotit} $\pi$, tzn. zjistit očekávaný $U^\pi$
+\item Neznáme $P(s'|s,a)$ ani $R(s)$, potřebujeme zjistit $U$
 \end{itemize}
+\vskip 3ex
+\begin{block}{Přímý model}
+\begin{itemize}
+\item Naivní: Užitek stavu buď průměrné ocenění cesty do cíle
+\item Ignorujeme interakce mezi stavy a ostří $\pi$ (Bellmanova rovnice)
+\item Funguje, ale konverguje pomalu!
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Adaptivní dynamické programování}
+\begin{itemize}
+\item ADP: Ze vzorků získáme $R$, postupně dopočítáváme $P$ a $U$
+\item $P$ na základě empirických četností
+\item $U$ {\bf iterativním vzorkováním} pomocí Bellmanovy rovnice (Monte Carlo metoda; TODO)
+\item Funguje, ale časově náročné kroky a hodně paměti
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Temporální diference}
+\begin{itemize}
+\item TD-learning: Počítáme přímo $U$ podle ``skoku užitku''
+\item $U$ inicializuji podle $R$; ve stavu $s$ dostanu reinforcement $R$, vykonám akci $a$ a ocitnu se ve stavu $s'$
+\item TD(0) pravidlo: $U(s) \leftarrow U(s) + \alpha(R(s) + \gamma U(s') - U(s))$
+\item $\alpha \in (0,1)$ je parametr učení; díváme se o stav {\em dopředu} a~provádíme {\em backup}
+\item Méně paměti, mnoho krátkých kroků, neudržuje konzistenci
+\end{itemize}
+\begin{block}{Jak to funguje?}
+\begin{itemize}
+\item $U[s_0,s_1,s_2,\ldots] = R(s_0) + \gamma(R(s_1) + \gamma(R(s_2) + \cdots))$ \\
+	$U[s_0,s_1,s_2,\ldots] = R(s_0) + \gamma U[s_1,s_2,\ldots]$
+\item Posouváme se k $U(s_0) = \mathbb{E}[R(s_0) + \gamma U(s_1)]$
+\end{itemize}
+\end{block}
 \end{frame}
 
 \subsection{}
@@ -92,33 +144,64 @@ Jinak řečeno: Agentův {\bf stav} se mění a provádí {\bf akce}.
 \begin{center}
 {\bf Aktivní učení:} Adaptivní strategie. \\
 Měli bychom při učení již co nejlépe fungovat. \\
-Učit se chceme co nejefektivněji.
+Učit se chceme co nejefektivněji. \\
+Problém výběru akcí --- zase!
 
+\pause
 \vskip 3ex
 
-Problém výběru akcí --- zase! \\
+{\bf Hladový agent} se i průběžně drží $\pi(s) = \mathrm{argmax}_{a \in A(s)} \sum_{s'} P(s'|s,a) U(s')$ \\
+Je něco lepšího?
+
+\pause
+\vskip 3ex
+
 Exploration: Data o alternativách. \\
 Exploitation: Výběr nejlepší alternativy. \\
 Exploration a exploitation nemohou být v opozici natrvalo.
 \end{center}
 \end{frame}
 
-\subsection{}
 \begin{frame}{Exploration-exploitation dilemma}
 \begin{itemize}
-\item Problém mnohorukého loupežníka (multi-armed bandit)
+\item Problém mnohorukého loupežníka (multi-armed bandit) (TODO obrázek)
 \item Robot v bludišti
 \item Hraní šachů nebo Go
 \item Genetický algoritmus
 \end{itemize}
+\vskip 3ex
+\begin{block}{Strategie řešení}
+\begin{itemize}
+\item {\bf Semi-uniformní:} $\varepsilon$-greedy
+\item {\bf Oceňovací:} $U^+ \leftarrow R(s) + \gamma \max_a f(U^+(a), N(s,a))$ \\
+	$f(u,n)$ klesá v $u$, roste v $n$ --- třeba prahová \\
+	$u=U^+$ zajišťuje preferenci neprozkoumaných oblastí \\
+	Alternativa: upper confidence bounds
+\item Optimální strategie vybere nejlepší akci exponenciálně častěji než jakoukoliv jinou
+\end{itemize}
+\end{block}
 \end{frame}
 
-\subsection{}
-\begin{frame}{Druhy aktivních agentů}
+\begin{frame}{Aktivní TD agent}
+\begin{block}{Druhy aktivních agentů}
 \begin{itemize}
-\item {\bf Utility based agent} se učí užitek pro stavy \\ (musí vědět, kam vede která akce --- model prostředí)
+\item {\bf Utility based agent} se učí užitek pro stavy (nutný model)
 \item {\bf Q-learning based agent} se učí očekávaný užitek pro akce
 \item {\bf Reflex based agent} se učí přímo $\pi(s)$
+\end{itemize}
+\end{block}
+\begin{itemize}
+\item Naivně: Přechodový model ADP agenta (učíme se $P(s'|s,a)$, apriorní znalost), update funkce užitku jako TD(0)
+\item Q-učení: Bezmodelový --- učíme se hodnotu akce $Q(s,a)$ \\
+	Místo $U(s)$ se TD(0) aplikuje na $Q(s,a)$ \\
+	\only<1>{$U(s) \leftarrow U(s) + \alpha(R(s) + \gamma U(s') - U(s))$} \pause
+	$Q(s,a) \leftarrow Q(s,a) + \alpha(R(s) + \gamma \max_{a'} Q(s',a') - Q(s,a))$
+\pause
+\item SARSA: State-Action-Reward-State-Action \\
+	Při update čekáme na další akci \\
+	$Q(s,a) \leftarrow Q(s,a) + \alpha(R(s) + \gamma Q(s',a') - Q(s,a))$
+\item Jaký je rozdíl pro hladového agenta? \pause Žádný!
+\item A při průzkumu? \pause SARSA zesiluje efekt strategie \pause (dvojsečné)
 \end{itemize}
 \end{frame}
 
