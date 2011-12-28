@@ -118,7 +118,7 @@ Jinak řečeno: Agentův {\bf stav} se mění a provádí {\bf akce}.
 \begin{itemize}
 \item ADP: Ze vzorků získáme $R$, postupně dopočítáváme $P$ a $U$
 \item $P$ na základě empirických četností
-\item $U$ {\bf iterativním vzorkováním} pomocí Bellmanovy rovnice (Monte Carlo metoda; TODO)
+\item $U$ {\bf iterativním vzorkováním} podle Bellmanovy rovnice (Monte Carlo metoda)
 \item Funguje, ale časově náročné kroky a hodně paměti
 \end{itemize}
 \end{frame}
@@ -165,7 +165,7 @@ Exploration a exploitation nemohou být v opozici natrvalo.
 
 \begin{frame}{Exploration-exploitation dilemma}
 \begin{itemize}
-\item Problém mnohorukého loupežníka (multi-armed bandit) (TODO obrázek)
+\item Problém mnohorukého loupežníka (multi-armed bandit)
 \item Robot v bludišti
 \item Hraní šachů nebo Go
 \item Genetický algoritmus
@@ -269,13 +269,13 @@ Příště Adaptivní agenti: Etologie a populační dynamika.
 \begin{itemize}
 \item Pěkně ``zarovnaný'' strom, každý otec \\ kromě těch u dna má dva syny \\ (má hloubku $\log n$)
 \item Mezi syny není žádné pořadí
-\item INSERT: Přidáme na ``konec'' haldy \\ (na dně), posouváme nahoru, dokud je porušena podmínka
+\item INSERT: Přidáme na ``konec'' haldy (na dně), \\ posouváme nahoru, dokud je porušena podmínka
 \item DELETEMIN: Prohodíme kořen a poslední prvek, umažeme poslední prvek, prvek z kořene posouváme dolů
 \item Složitosti $O(\log n)$
 \item Heap sort!
 \end{itemize}
 \begin{tikzpicture}[remember picture,overlay]
-  \node [xshift=-4.5cm,yshift=-5cm,above right] at (current page.north east)
+  \node [xshift=-4.5cm,yshift=-4.5cm,above right] at (current page.north east)
     {\includegraphics[width=4cm]{Heap.pdf}};
 \end{tikzpicture}
 \end{frame}
@@ -379,7 +379,7 @@ Příště: Datové struktury v externí paměti.
 
 \vskip 6ex
 
-Příště: Neuronové sítě.
+Příště: Neuronové sítě (Kohonenovy mapy).
 	Adaptivní agenti.
 	Evoluční algoritmy (koevoluce, otevřená evoluce, teoretická analýza). \\
 	Složitost (vlastnosti tříd složitosti).
