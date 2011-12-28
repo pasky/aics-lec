@@ -249,11 +249,89 @@ Příště Adaptivní agenti: Etologie a populační dynamika.
 \section{Datové struktury}
 
 \subsection{}
-\begin{frame}{Haldy}
+\begin{frame}{Halda}
 \begin{itemize}
-\item Rekapitulace.
-\item Levicová halda.
-\item Binomiální a Fibonacciho haldy.
+\item Chceme ukládat data tak, abychom \\ vždy mohli snadno vytáhnout minimum
+\vskip 3ex
+\item Speciálně uspořádaný strom: synové jsou vždy větší než otec
+\item Tedy v kořeni je nejmenší prvek
+\item Chceme podporovat zejména operace INSERT, DELETEMIN
+\item Může se hodit i INCREASE a DECREASE
+\end{itemize}
+\begin{tikzpicture}[remember picture,overlay]
+  \node [xshift=-4.5cm,yshift=-4.5cm,above right] at (current page.north east)
+    {\includegraphics[width=4cm]{Heap.pdf}};
+\end{tikzpicture}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Regulární halda}
+\begin{itemize}
+\item Pěkně ``zarovnaný'' strom, každý otec \\ kromě těch u dna má dva syny \\ (má hloubku $\log n$)
+\item Mezi syny není žádné pořadí
+\item INSERT: Přidáme na ``konec'' haldy \\ (na dně), posouváme nahoru, dokud je porušena podmínka
+\item DELETEMIN: Prohodíme kořen a poslední prvek, umažeme poslední prvek, prvek z kořene posouváme dolů
+\item Složitosti $O(\log n)$
+\item Heap sort!
+\end{itemize}
+\begin{tikzpicture}[remember picture,overlay]
+  \node [xshift=-4.5cm,yshift=-5cm,above right] at (current page.north east)
+    {\includegraphics[width=4cm]{Heap.pdf}};
+\end{tikzpicture}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Levicové (leftist) haldy}
+\begin{itemize}
+\item Místo probublávání bude základní operace MERGE dvou hald
+\item INSERT: MERGE s jednoprvkovou haldou
+\item DELETEMIN: MERGE synů kořene
+\vskip 3ex
+\item Línější strukturální podmínka: {\em levý syn má vždy delší cestu k~nejbližšímu listu}
+\item Překvapení: délka pravé cesty je nejvýše logaritmická!
+\item Záruka efektivity: MERGE půjde po pravé cestě
+\vskip 3ex
+\item $MERGE(A,B)$ nastaví $RIGHT(A)=B$ a opraví haldu (haldová a cestová podmínka)
+\item Pokud již $RIGHT(A)$ předtím existovalo, pustíme pak $MERGE(RIGHT(A), OLDRIGHT(A))$
+\item DECREASE a INCREASE: Utrhneme podstrom, \\ rekurzivně opravíme rodiče a MERGE
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Binomiální stromy}
+\begin{center}
+\includegraphics[width=8cm]{Binomial_Trees.pdf}
+\end{center}
+\begin{itemize}
+\item Binomiální strom: $H_0$ je jeden uzel, $H_{i+1} = \oplus(H_i, H'_i)$ kde $H'_i$ přidáme jako dalšího syna kořene $H_i$
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Binomiální haldy}
+\begin{itemize}
+\item Binomiální halda: Binomiální les \\ s haldovou podmínkou, maximálně \\ jeden strom každé velikosti
+\item $MERGE(A,B)$ funguje jako sčítání dvou binárních čísel! Existuje-li $H_i$ jen v jedné, zkopíruje se; \\ jinak vyrobím přenos $H^T_{i+1} =\oplus(H^A_i, H^B_i)$
+\item MIN je relativně pomalé $O(\log N)$ --- musí projít celý les
+\item Liná binomiální halda: MERGE neslučuje, zato MIN ano; amortizovaně MIN stále $O(\log N)$
+\end{itemize}
+\begin{tikzpicture}[remember picture,overlay]
+  \node [xshift=-5cm,yshift=-4cm,above right] at (current page.north east)
+    {\includegraphics[width=4.5cm]{Binomial_Trees.pdf}};
+\end{tikzpicture}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Fibonacciho haldy}
+\begin{itemize}
+\item Zobecnění líné binomiální haldy --- chceme zrychlit INCREASE a DECREASE
+\item Zrušíme strukturální podmínku na $H_i$ \\ $i$ bude popisovat pouze {\em rank}, totiž počet synů kořenu \\ (uvnitř synů to může vypadat, jakkoliv nám dovolí algoritmus)
+\item Vrchol je {\em obarvený}, byl-li mu někdy utrhnut syn
+\vskip 2ex
+\item MERGE a MIN jako u líné binomální haldy
+\item DECREASE a INCREASE: Utrhneme podstrom, rekurzivně opravíme rodiče a MERGE (jako v leftist haldě!)
+\item Oprava rodičů: Označené také utrhneme
+\item MIN je stále amortizovaně $O(\log N)$ (dokážeme, že maximální počet synů každého uzlu je nejvýše $\log N$, dá se ukázat přes Fibonacciho posloupnost)
 \end{itemize}
 \end{frame}
 
