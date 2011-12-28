@@ -45,7 +45,7 @@ Učící se agent: Datový vstup a výstup, rozhodovací problém, užitková fu
 \item Rozpoznávání vs. samoorganizace
 \end{itemize}
 \end{block}
-\begin{block}{Nemáme trénovací množinu}
+\begin{block}{Nemáme trénovací množinu (i když\dots)}
 \begin{itemize}
 \item Exploration---exploitation dilemma
 \item Zpětnovazebné učení
@@ -57,7 +57,8 @@ Učící se agent: Datový vstup a výstup, rozhodovací problém, užitková fu
 \subsection{}
 \begin{frame}{Zpětnovazebné učení}
 \begin{center}
-Dnes: Nemáme klasickou trénovací množinu, ale {\bf feedback}. \\
+Dnes: Nemáme klasickou trénovací množinu, \\
+ale {\bf feedback} --- učitelem je prostředí. \\
 Data si často musíme shánět ``sami'' průběžně. \\
 Jinak řečeno: Agentův {\bf stav} se mění a provádí {\bf akce}.
 
@@ -207,9 +208,33 @@ Exploration a exploitation nemohou být v opozici natrvalo.
 
 \subsection{}
 \begin{frame}{Zpětnovazebné učení v neuronových sítích}
+\begin{columns}
+\begin{column}{4cm}
+\includegraphics[width=4cm]{nornbrain.png}
+
+{\tiny (Brom, 2006)}
+\end{column}
+\begin{column}{8cm}
 \begin{itemize}
-\item Adaptivní agenti --- umělé bytosti
+\item Mozek umělé bytosti ``Norn''
+\item Perception: egg, toy, Norn, hunger, sexdrive
+\item Concept: egg + hunger, Norn + sexdrive, \\ toy + egg + sexdrive
+\item Decision: eat, mate, run, play
+\only<1>{
+\item Pomocný okruh pro Attention selection
+\item Chceme podporovat užitečné koncepty a~vázat je na dobré akce
+\item Náhodně inicializované váhy a~zpětná vazba!
+\item Reinforcement záleží na změně {\em pudů} \\ (drives: hlad, sex, \dots)
+}
+\only<2>{
+\item Suspectibility $\alpha$ a~průběžný reinforcement $r$
+\item Vykonání akce zvýší $\alpha$ spojům po cestě, \\ to se s časem opět snižuje
+\item Po snížení váhy k nule synapse migruje
+\item Robustnost: Short-term weight, \\ long-term weight
+}
 \end{itemize}
+\end{column}
+\end{columns}
 \end{frame}
 
 \subsection{}
