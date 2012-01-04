@@ -38,33 +38,93 @@
 \begin{frame}{Samoorganizace pomocí ANN}
 \begin{itemize}
 \item Umělé neurony (``výpočetní krabičky'') \\ dostávají vstupy (čísla) a na jejich \\ základě generují výstup (číslo)
-\item Dnes: Chceme asociovat různé vstupy s různými neurony
+\item Dnes: ``Jedna'' vrstva, chceme asociovat \\ různé vstupy s různými neurony
+\item Učení bez učitele --- redukci (s určitými parametry) najdi sám
+\item Učení s učitelem --- redukuj podle předložených tříd
 \end{itemize}
 \begin{tikzpicture}[remember picture,overlay]
-  \node [xshift=-4.5cm,yshift=-4.5cm,above right] at (current page.north east)
+  \node [xshift=-4.5cm,yshift=-5cm,above right] at (current page.north east)
     {\includegraphics[width=4cm]{ANN.pdf}};
 \end{tikzpicture}
 \end{frame}
 
 \subsection{}
-\begin{frame}{Kohonenova mapa}
+\begin{frame}{Kompetiční učení}
 \begin{itemize}
-\item Fonetický psací stroj, ekonomická data
-\item Organizace, princip, učení
+\item Neurony soutěží o vzory; váhový vektor $\vec w$ odpovídá pozici v~prostoru vzorů
+\item {\bf Vítěz bere vše:} Vítěz je právě jeden nejbližší neuron
+\item {\bf Adaptace:} Vítězný neuron posuneme směrem k vzoru $$\vec w' = \vec w + \alpha \cdot (\vec x - \vec w)$$
+\item ({\bf Laterální inhibice:} Okolní neurony odsuneme \\ směrem {\em od} vzoru)
+\vskip 3ex
+\item Připomíná vám to něco? \pause $k$-means shlukování!
+\item Lze dokázat, že konverguje ke $k$-means a při dobře ohraničených shlucích je stabilní
+\item Tvar shluku je omezen lineárním klasifikátorem
+\item Lepší stabilita: dávková aktualizace
 \end{itemize}
 \end{frame}
 
 \subsection{}
-\begin{frame}{Ojův algoritmus}
+\begin{frame}{Kohonenova mapa}
 \begin{itemize}
-\item PCA pomocí ANN
+\item Uspořádání výstupních neuronů je důležité (třeba 2D mřížka)
+\item Tedy: $n$-rozměrný vstupní prostor (kombinace $n$ vstupních neuronů) redukujeme do $k$-rozměrného výstupního prostoru
+\item Spatiální koherence: Vzory blízko ve vstupním prostoru by měly zůstat blízko ve výstupním (a naopak?)
+\vskip 3ex
+\item Fonetický psací stroj, ekonomická data (TODO)
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Kohonenova mapa}
+\begin{itemize}
+\item Váhový vektor $\vec w$ neuronu odpovídá jeho \\ pozici ve vstupním prostoru
+\item Vzdálenost vstupu k neuronu $j$: $d_j = \sum_{i=1}^k (x_i - w_{ij})^2$
+\item Vybavení: Vyber nejbližší neuron ($\mathrm{argmin}_j \,  d_j$)
+\pause
+\vskip 3ex
+\item Neurony jsou rozmístěny v euklidovském prostoru, \\ každý neuron má okolí dané poloměrem $r$
+\item Funkce laterální interakce $\Phi(a,b)$ --- síla propojenosti \\ neuronů $a$ a $b$, obvykle klesá se vzdáleností
+\item Učení: Vyber nejbližší neuron $c$, neurony v okolí $r$ posuň
+	$$ w_{ij}' = w_{ij} + \alpha(t) \cdot \Phi(c, j) \cdot (x_i - w_{ij}) $$
+	$\alpha(t)$ klesá s časem
+\item Lze dokázat konvergenci
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Lateral Vector Quantization}
+Učení s učitelem --- máme definované {\em třídy} $c(\vec x)$
+
+$\vec x$ by měl patřit ke stejné třídě jako nejbližší $\vec w$
+
+\begin{block}{Adaptační pravidlo LVQ1}
+\begin{itemize}
+\item Adaptujeme pouze vítězný (nejbližší) neuron:
+\item $c(\vec x) = c(\vec w_j)\colon w_{ij}' = w_{ij} + \alpha(t) \cdot (x_i - w_{ij})$
+\item $c(\vec x) \ne c(\vec w_j)\colon w_{ij}' = w_{ij} - \alpha(t) \cdot (x_i - w_{ij})$
+\end{itemize}
+\end{block}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Adaptační pravidlo LVQ2.1}
+\begin{itemize}
+\item Adaptujeme dva nejbližší neurony; soustředíme se na {\em posouvání hranic oblastí}
+\item Buď $j,k$ nejbližší neurony; učíme se pouze pokud \\ $j$ má správnou třídu, $k$ špatnou třídu
+\item Zároveň $x$ je z ``okénka'', na rozhraní $i$ a $j$ ve vstupním prostoru (okolí dělící nadroviny $\vec w_i$ a $\vec w_j$)
+\vskip 3ex
+\item $w_{ij}' = w_{ij} + \alpha(t) \cdot (x_i - w_{ij})$
+\item $w_{ik}' = w_{ik} - \alpha(t) \cdot (x_i - w_{ik})$
+\item LVQ3: $w_{ik}' = w_{ik} + \varepsilon \cdot \alpha(t) \cdot (x_i - w_{ik})$, \\ je-li $k$ také správná třída (stabilizace řešení)
 \end{itemize}
 \end{frame}
 
 \subsection{}
 \begin{frame}{Další metody samoorganizace}
 \begin{itemize}
-\item Laterální inhibice, ART, RBF
+\item Sítě se vstřícným šířením (TODO: Grossbergovská vrstva?)
+\item Adaptive Resonance Theory (ART): Laterální inhibice, TODO
+\item PCA pomocí posilovaného učení lineárního klasifikátoru (neuronu) --- Ojův algoritmus
 \end{itemize}
 \end{frame}
 
