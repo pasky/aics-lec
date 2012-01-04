@@ -146,25 +146,43 @@ Příště: Modulární, hierarchické a hybridní modely.
 
 \subsection{}
 \begin{frame}{Etologické modely}
+\begin{columns}
+\begin{column}{6cm}
 \begin{itemize}
-\item Jak se chovají zvířátka
 \item Analytické vs. simulační modely
 \item Emergentní chování
-\item Model vodní nádrže
+\item Akční patterny; apetitivní chování; konzumační chování
+\item Lorenzův psychohydraulický model
+\item V umělých bytostech Tyrrellova free-flow hierarchie (už bylo)
 \end{itemize}
+\end{column}
+\begin{column}{5cm}
+Non-free artwork omitted. See
+\url{http://terpconnect.umd.edu/~wrstrick/secu/ansc455/model.gif}
+%\includegraphics[width=5cm]{model.png}
+\end{column}
+\end{columns}
 \end{frame}
 
 \subsection{}
 \begin{frame}{Populační dynamika}
+
+\begin{block}{Rozmnožování}
 \begin{itemize}
-\item Jak se zvířátka množí a umírají?
-\item Logistická funkce
-\item Model predátor-kořist
-\item L-V dynamický model
+\item Fibonacciho posloupnost $F_{i+2} = F_{i+1} + F_i$ (množení králíků)
+\item Logistická funkce: $dN/dt = rN(1-N/K)$
+\item $r$ je rychlost množení, $K$ je kapacita prostředí; \\ $r$-stratég vs. $K$-stratég
+\item Řešení $1 \over 1 + e^{-t}$ resp. $KP_0e^{rt} \over K+P_0(e^rt-1)$
 \end{itemize}
-\begin{block}{Fázový prostor}
+\end{block}
+
+\begin{block}{Model predátor-kořist}
 \begin{itemize}
-\item Dynamický systém
+\item Dynamický systém Lotka-Volterra
+\item $dx/dt = x(\alpha - \beta y) \qquad dy/dt = -y(\gamma - \delta x)$
+\item $y$ jsou predátoři, $x$ je kořist
+\item Rovnovážné stavy nebo cykly, např. $\{y=\alpha/\beta, x = \gamma/\delta\}$
+\item Obecněji Kolmogorovské modely
 \end{itemize}
 \end{block}
 \end{frame}
