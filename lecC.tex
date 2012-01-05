@@ -1,0 +1,183 @@
+\documentclass{beamer}
+\usetheme{Warsaw}
+\useinnertheme{circles}
+\useoutertheme[subsection=false]{smoothbars}
+\usepackage[utf8x]{inputenc}
+\usepackage[czech]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{listings}
+\usepackage{tikz}
+\lstset{basicstyle=\tiny\ttfamily}
+\logo{\includegraphics[height=0.5cm]{brmlab.pdf}}
+
+\begin{document}
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Outline}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\title{brmiversity: Umělá inteligence \\ a teoretická informatika}
+\subtitle{Přednáška č. 12}
+\author{Petr Baudiš $\langle${\tt pasky@ucw.cz}$\rangle$}
+\institute{
+	brmlab 2011\\
+	\vskip 1ex
+	\pgfdeclareimage[height=4ex]{ccbysa}{by-sa.pdf}
+	\pgfuseimage{ccbysa}
+}
+\date{}
+\frame{\titlepage}
+
+\section{Umělá inteligence a adaptivní agenti}
+
+\subsection{}
+\begin{frame}{Reprezentace znalostí}
+\begin{itemize}
+\item Logická reprezentace vs. rámce vs. \dots
+\item Syntax vs. sémantika
+\item Výroková logika, SAT
+\item Predikátová logika, temporální logika atd.
+\item V adapt. agentech?
+\vskip 3ex
+\item Spíše strojové dokazování vět (další přednáška):
+\item Odvozovací metody (model checking, inference rules --- )
+\item Báze znalostí, redukce na PL (skolemizace a unifikace) a odvozování (liftování, grounding, dopřed./zpět. řetězení a rezoluce)
+\item RETE, TODO další
+\item V adapt. agentech?
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Otázky?}
+\begin{center}
+Příště: Strojové dokazování vět (\dots ve znalostních bázích).
+\end{center}
+\end{frame}
+
+\section{Neuronové sítě}
+
+\subsection{}
+\begin{frame}{Modulární, hierarchické a hybridní modely NN}
+\begin{itemize}
+\item RBF-sítě
+\item Kaskádová korelace
+\item Časové posloupnosti
+\vskip 3ex
+\item Adaptivní směsi NN
+\item Sériová kompozice
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Otázky?}
+\begin{center}
+Příště: Přehled aplikací NN.
+\end{center}
+\end{frame}
+
+\section{Evoluční algoritmy}
+
+\subsection{}
+\begin{frame}{Aplikace}
+\begin{itemize}
+\item Řešení kombinatorických problémů
+\item Neuroevoluce
+\item Výběr akcí
+\item Expertní systémy
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Otázky?}
+\begin{center}
+To je o evolučních algoritmech vše!
+\end{center}
+\end{frame}
+
+\section{Vyčíslitelnost}
+
+\subsection{}
+\begin{frame}{Algoritmicky nerozhodnutelné problémy}
+\begin{itemize}
+\item Již známe: Halting problem, Riceova věta
+\item Další\dots
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Otázky?}
+\begin{center}
+Příště: Gödelovy věty.
+\end{center}
+\end{frame}
+
+\section{Složitost}
+
+\subsection{}
+\begin{frame}{Třídy složitosti}
+\begin{itemize}
+\item Rekapitulace --- P, NP, PSPACE, EXPTIME
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Míry složitosti}
+\begin{itemize}
+\item Polynomiální hierarchie
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Savičova věta}
+\begin{itemize}
+\item TODO
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Konstruovatelné funkce}
+\begin{itemize}
+\item TODO
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Věty o zrychlení a mezerách}
+\begin{itemize}
+\item TODO
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Hierarchie tříd složitosti}
+\begin{itemize}
+\item TODO
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Otázky?}
+\begin{center}
+Příště: Pseudopolynomiální a aproximační algoritmy.
+\end{center}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Děkuji vám}
+\begin{center}
+{\bf pasky@ucw.cz}
+
+\vskip 6ex
+
+Příště: Umělá inteligence a adaptivní agenti. \\
+	Neuronové sítě.
+	Složitost. \\
+	Datové struktury (v externí paměti).
+\end{center}
+\end{frame}
+
+\end{document}
