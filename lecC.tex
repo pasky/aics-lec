@@ -98,43 +98,21 @@ To je o evolučních algoritmech vše!
 \end{center}
 \end{frame}
 
-\section{Vyčíslitelnost}
-
-\subsection{}
-\begin{frame}{Algoritmicky nerozhodnutelné problémy}
-\begin{itemize}
-\item Již známe: Halting problem, Riceova věta
-\item Další\dots
-\end{itemize}
-\end{frame}
-
-\subsection{}
-\begin{frame}{Otázky?}
-\begin{center}
-Příště: Gödelovy věty.
-\end{center}
-\end{frame}
-
 \section{Složitost}
 
 \subsection{}
-\begin{frame}{Třídy složitosti}
+\begin{frame}{Rekapitulace}
 \begin{itemize}
-\item Rekapitulace --- P, NP, PSPACE, EXPTIME
-\end{itemize}
-\end{frame}
-
-\subsection{}
-\begin{frame}{Míry složitosti}
-\begin{itemize}
-\item Polynomiální hierarchie
-\end{itemize}
-\end{frame}
-
-\subsection{}
-\begin{frame}{Savičova věta}
-\begin{itemize}
-\item TODO
+\item {\bf Turingův stroj:} Pětice $(Q, \Gamma, b, \Sigma, q_0, F, \delta)$
+\item Nekonečná páska {\em (data)} rozdělená na buňky, v každé jedno písmeno z ``abecedy''
+\item Hlava stroje {\em (pozice na pásce)} se hýbe v jednom kroku o buňku doleva nebo doprava
+\item Stav stroje {\em (pozice v programu)} z množiny stavů (třeba {\em konečné} číslo)
+\item Přechodová funkce {\em (program)} podle stavu a písmena pod hlavou přepne stroj do nového stavu, zapíše nové písmeno a posune hlavu
+\vskip 3ex
+\item {\bf Třídy složitosti:} Skupina algoritmů se stejnou řádovou složitostí v závislosti na délce vstupu (P, NP, LSPACE, PSPACE, EXPTIME, \dots)
+\item P: Všechny algoritmy, které běží v {\em polynomiálním čase} na deterministickém (``obyčejném'') Turingově stroji
+\item NP: Algoritmy, které běží v polynomiálním čase na nedeterministickém Turingově stroji (NTS)
+\item PSPACE: Všechny algoritmy, které sežerou {\em polynomiálně mnoho pásky}
 \end{itemize}
 \end{frame}
 
@@ -153,6 +131,13 @@ Příště: Gödelovy věty.
 \end{frame}
 
 \subsection{}
+\begin{frame}{Savičova věta}
+\begin{itemize}
+\item TODO
+\end{itemize}
+\end{frame}
+
+\subsection{}
 \begin{frame}{Hierarchie tříd složitosti}
 \begin{itemize}
 \item TODO
@@ -160,9 +145,48 @@ Příště: Gödelovy věty.
 \end{frame}
 
 \subsection{}
+\begin{frame}{Orákulové systémy}
+\begin{itemize}
+\item {\bf Orákulum:} Black box, který ``umí něco řešit'' a radí vám (můžete jej použít při výpočtu)
+\item Jaké orákulum používá NP? TODO
+\item V praxi neexistují! TODO (proč se s nima mazat) (Můžeme emulovat bruteforcingem)
+\item Notace: NP(C) je třída jazyků, které rozpozná NTS s orákulem řešícím $C$
+\vskip 3ex
+\item NP(P) = \only<1>{?}\only<2->{NP}
+\item P(P) = \only<1>{?}\only<3->{P} (zřetězíme výpočet)
+\item NP(NP) = \only<1>{?}\only<4->{už nevíme}
+\pause
+\pause
+\pause
+\pause
+\item Vždy platí $P(C) \subseteq NP(C) \subseteq PSPACE(C)$ (TODO: proč?)
+\item Polynomiální hierarchie: $\Sigma_0 = P$, $\Sigma_{i+1} = NP(\Sigma_i)$, $PH = \Cup_{i=0}^\infty \Sigma_i$
+\item Platí $PH \subseteq PSPACE$ (indukcí podle $i$)
+	TODO: důkaz, další vlastnosti
+\end{itemize}
+\end{frame}
+
+\subsection{}
 \begin{frame}{Otázky?}
 \begin{center}
 Příště: Pseudopolynomiální a aproximační algoritmy.
+\end{center}
+\end{frame}
+
+\section{Vyčíslitelnost}
+
+\subsection{}
+\begin{frame}{Algoritmicky nerozhodnutelné problémy}
+\begin{itemize}
+\item Již známe: Halting problem, Riceova věta
+\item Další\dots
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Otázky?}
+\begin{center}
+Příště: Gödelovy věty.
 \end{center}
 \end{frame}
 
