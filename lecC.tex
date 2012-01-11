@@ -101,68 +101,126 @@ To je o evolučních algoritmech vše!
 \section{Složitost}
 
 \subsection{}
-\begin{frame}{Rekapitulace}
+\begin{frame}{Rekapitulace --- Turingův stroj}
 \begin{itemize}
 \item {\bf Turingův stroj:} Pětice $(Q, \Gamma, b, \Sigma, q_0, F, \delta)$
-\item Nekonečná páska {\em (data)} rozdělená na buňky, v každé jedno písmeno z ``abecedy''
-\item Hlava stroje {\em (pozice na pásce)} se hýbe v jednom kroku o buňku doleva nebo doprava
-\item Stav stroje {\em (pozice v programu)} z množiny stavů (třeba {\em konečné} číslo)
-\item Přechodová funkce {\em (program)} podle stavu a písmena pod hlavou přepne stroj do nového stavu, zapíše nové písmeno a posune hlavu
-\vskip 3ex
+\item Nekonečná páska {\em (data)} rozdělená na buňky, v každé jedno písmeno z ``abecedy'';
+	můžeme mít i více pásek!
+\item Hlava stroje {\em (pozice na pásce)} se hýbe v jednom kroku o~buňku doleva nebo doprava
+\item Stav stroje {\em (pozice v programu)} z množiny stavů
+\item Přechodová funkce {\em (program)} podle stavu a písmena pod hlavou přepne stroj do nového stavu, zapíše nové písmeno a~posune hlavu
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Rekapitulace --- Třídy složitosti}
+\begin{itemize}
 \item {\bf Třídy složitosti:} Skupina algoritmů se stejnou řádovou složitostí v závislosti na délce vstupu (P, NP, LSPACE, PSPACE, EXPTIME, \dots)
-\item P: Všechny algoritmy, které běží v {\em polynomiálním čase} na deterministickém (``obyčejném'') Turingově stroji
-\item NP: Algoritmy, které běží v polynomiálním čase na nedeterministickém Turingově stroji (NTS)
-\item PSPACE: Všechny algoritmy, které sežerou {\em polynomiálně mnoho pásky}
+\item P: Všechny algoritmy, které běží v {\em polynomiálním čase} na~``obyčejném'' Turingově stroji (DTS)
+\item NP: Algoritmy, které běží v polynomiálním čase na~nedeterministickém Turingově stroji (NTS)
+\item PSPACE: Všechny algoritmy, které sežerou \\ {\em polynomiálně mnoho pásky}
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{PSPACE-úplnost}
+\begin{itemize}
+\item True Quantified Boolean Formula (TQBF) --- SAT s~posloupností kvantifikátorů
+\item Hra na hlavní města
+\item Poziční hry (hex, schody v Go, \dots)
+\item ``Stromové'' hry: Mohou trvat dlouho, EXPTIME!
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Vyčíslitelnost a složitost}
+\begin{itemize}
+\item Dnes: Trochu spojíme vyčíslitelnost a složitost
+\item Dnes: Budeme zkoumat, jak se třídy složitosti \\ vzájemně proplétají
+\vskip 3ex
+\item Zjednodušení: Zadání i výsledek budeme kódovat $n$-ticí jedniček; zajímá nás nějaká $f\colon \mathbb{N} \to \mathbb{N}$
+\item $f$ je {\bf rekurzivní}, pokud existuje DTS $M$ přepisující $1^n \to 1^{f(n)}$
+\item $f$ je {\bf vyčíslitelná} v čase $O(f)$, pokud $M$ udělá \\ nejvýše $cf(n)$ kroků % c>=1, f rekurzivni
+\item $f$ je {\bf vyčíslitelná} v prostoru $O(f)$, pokud $M$ použije \\ nejvýše $cf(n)$ buněk % c>=1, f rekurzivni
 \end{itemize}
 \end{frame}
 
 \subsection{}
 \begin{frame}{Konstruovatelné funkce}
 \begin{itemize}
-\item TODO
+\item Jaké druhy funkcí můžou definovat složitost algoritmu?
+\item $g$ je {\bf časově konstruovatelná}, pokud $M$ zastaví \\ právě po $g(n)$ krocích % g(n) > n
+\item $g$ je {\bf prostorově konstruovatelná}, pokud $M$ použije \\ právě $g(n)$ buněk % g(n) > n
+\item Lze dokázat: Pro superlineární funkce je už vyčíslitelnost a~konstruovatelnost to samé!
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Hierarchie tříd složitosti}
+\begin{center}
+$DTIME(T(n)), DSPACE(S(n)), NTIME(T(n)), NSPACE(T(n))$
+
+Třída jazyků (predikátů, problémů) řešitelných v určité mezi na~DTS resp. NTS
+\end{center}
+\begin{itemize}
+\item $\forall n: F_1(n) \le F_2(n) \Rightarrow CLASS(F_1(n)) \subseteq CLASS(F_2(n))$
+\item $DTIME(T(n)) \subseteq NTIME(T(n))$
+\item $DTIME(T(n)) \subseteq DSPACE(T(n))$, $NTIME(T(n)) \subseteq DSPACE(T(n))$
+\item $DSPACE(S(n)) \subseteq DTIME(c^{S(n)}) \qquad S(n) \ge \log_2(n)$
+\item $NTIME(T(n)) \subseteq DTIME(c^{T(n)})$
+\vskip 3ex
+\item Časová a prostorová hierarchie jsou otevřené shora: Pro každou rekurzivní funkci $T$ existuje $L \notin DTIME(T(n))$.
 \end{itemize}
 \end{frame}
 
 \subsection{}
 \begin{frame}{Věty o zrychlení a mezerách}
 \begin{itemize}
-\item TODO
+\item Věta o lineárním zrychlení DTS: Tím, že velmi rozšíříme množinu stavů, dokážeme lineárně zrychlovat práci stroje
+\pause
+\item Borodinova věta o mezerách: Pro každou rekurzivní funkci $g(n) \ge n$ existuje rekurzivní $T(n)$ (mez) taková, že $DTIME(T(n)) = DTIME(g(T(n)))$ \\ Tedy i pro velmi rychle rostoucí $g(n)$ existuje třída složitosti $T$, která ji pozře!
+\pause
+\item Blumova věta o zrychlení: Pro každou rekurzivní funkci $g$ (zrychlovací funkce) existuje rekurzivní predikát $f$ (úloha) takový, že pro každý DTS $M_i$ existuje DTS $M_j$ řešící $f$ tak, \\ že $g(T_j(n)) \le T_i(n)$ pro {\em skoro každý} vstup. \\ Řešení některých úloh tedy lze stále zrychlovat!
+\vskip 2ex
+\pause
+\item Poučení: V teorii složitosti záleží jen na řádových změnách ($O$-notace má smysl)
 \end{itemize}
 \end{frame}
 
 \subsection{}
 \begin{frame}{Savičova věta}
 \begin{itemize}
-\item TODO
+\item $S(n)$ prostorově konstruovatelná funkce, $S(n) \ge \log_2(n)$
+\item {\bf Savičova věta:} $NSPACE(S(n)) \subseteq DSPACE(S^2(n))$
+\item Prostorové omezení je mnohem volnější než časové! $PSPACE=NPSPACE$
 \end{itemize}
-\end{frame}
-
-\subsection{}
-\begin{frame}{Hierarchie tříd složitosti}
+\begin{block}{Idea důkazu}
 \begin{itemize}
-\item TODO
+\item $TEST(I_1,I_2,i)$ --- ze stavu $I_1$ do $I_2$ za $2^i$ kroků?
+\item $TEST(I_1,I_2,i)$ odpoví hned, může-li, jinak volá $TEST(I_1,I_x,i-1) \land TEST(I_x, I_2, i-1) \quad \forall x$
+\item Spustím $TEST(I_0, I_p, kS(n))$ (stavů $2^{kS(n)}$)
+\item Každý $TEST$ potřebuje $3S(n)$ paměti pro ukládání mezistavu, hloubka rekurze je $kS(n)$, tedy celkem $3kS^2(n)$
 \end{itemize}
+\end{block}
 \end{frame}
 
 \subsection{}
 \begin{frame}{Orákulové systémy}
 \begin{itemize}
 \item {\bf Orákulum:} Black box, který ``umí něco řešit'' a radí vám (můžete jej použít při výpočtu)
-\item Jaké orákulum používá NP? TODO
-\item V praxi neexistují! TODO (proč se s nima mazat) (Můžeme emulovat bruteforcingem)
-\item Notace: NP(C) je třída jazyků, které rozpozná NTS s orákulem řešícím $C$
+\item V praxi neexistují! Užitečné při analýze algoritmů \\ (např. kryptografické algoritmy)
+\item Notace: NP(C) je třída jazyků, které rozpozná NTS s~orákulem řešícím $C$
 \vskip 3ex
 \item NP(P) = \only<1>{?}\only<2->{NP}
-\item P(P) = \only<1>{?}\only<3->{P} (zřetězíme výpočet)
-\item NP(NP) = \only<1>{?}\only<4->{už nevíme}
+\item P(P) = \only<-2>{?}\only<3->{P (zřetězíme výpočet)}
+\item NP(NP) = \only<-3>{?}\only<4->{už nevíme}
 \pause
 \pause
 \pause
 \pause
-\item Vždy platí $P(C) \subseteq NP(C) \subseteq PSPACE(C)$ (TODO: proč?)
-\item Polynomiální hierarchie: $\Sigma_0 = P$, $\Sigma_{i+1} = NP(\Sigma_i)$, $PH = \Cup_{i=0}^\infty \Sigma_i$
+\item Vždy platí $P(C) \subseteq NP(C) \subseteq PSPACE(C)$
+\item Polynomiální hierarchie: $\Sigma_0 = P$, $\Sigma_{i+1} = NP(\Sigma_i)$, $PH = \bigcup_{i=0}^\infty \Sigma_i$
 \item Platí $PH \subseteq PSPACE$ (indukcí podle $i$)
-	TODO: důkaz, další vlastnosti
 \end{itemize}
 \end{frame}
 
