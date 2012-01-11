@@ -82,13 +82,83 @@ Příště: Přehled aplikací NN.
 \section{Evoluční algoritmy}
 
 \subsection{}
-\begin{frame}{Aplikace}
+\begin{frame}{Problém batohu}
 \begin{itemize}
-\item Řešení kombinatorických problémů
-\item Neuroevoluce
-\item Výběr akcí
-\item Expertní systémy
+\item Problém batohu --- kapacita $C_{max}$ a $N$ věcí hodnoty $v(i)$ a~ceny (velikosti) $c(i)$
+\item Maximalizujeme $\sum_i v(i)$, aby $\sum_i c(i) \le C_{max}$
+\item Zakódování? \pause Kód je binární řetězec, pozice odpovídá věci
+\item Genetické operátory přímočaře
+\item Fitness? \pause Máme dva členy (zakódování dovoluje neplatná řešení); vážený součet, nebo změnit zakódování
+\pause
+\item Zakódování' --- 1: Vlož věc do batohu, {\em pokud} se to tam vejde
 \end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{TSP}
+\begin{itemize}
+\item Chceme objet $n$ měst s minimálními náklady
+\item Fitness? \pause Náklady za cestu
+\item Reprezentace? \pause Vrcholy? Hrany? \pause
+\item Cesta 1--2--4--3--8--5--9--6--7
+\item Reprezentace sousedností: (248397156) \\
+	Cesta nemusí být přípustná; křížení nefunguje, schémata ano!
+\item Ordinální reprezentace: zásobník (123456789); \\ kód (112141311) \\
+	Křížení funguje --- má smysl?
+\item Reprezentace cestou: (124385967) \\
+	Křížení je třeba udělat custom; PMX, CX, OX, ER
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Neuroevoluce}
+Klasická neuronová síť --- učení vah nebo celé struktury
+
+\begin{block}{Učení vah}
+\begin{itemize}
+\item Mám fitness, ale ne chybu v každém kroku; dobrá paralelizace
+\item Ovšem často (řádově) pomalejší než gradientní metody
+\end{itemize}
+\end{block}
+
+\begin{block}{Učení struktury}
+\begin{itemize}
+\item Fitness: Postavím síť, několikrát naučím
+\item Přímé kódování: Matice sousednosti
+\item Gramatické kódování: Program na růst sítě (přidej neuron, rozděl neuron, přepoj synapsi, \dots)
+\end{itemize}
+\end{block}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Neuroevolution of Augmenting Topologies (NEAT)}
+\begin{itemize}
+\item Každá hrana má informace o vrcholech, váze a {\em rodné číslo}
+\item Křížení: Mergují se váhy pouze hran se stejným číslem
+\item Fitness je relativní vzhledem k {\em druhu} (podobnost vektorů rodných čísel) --- ochrana nových topologií
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Strojové učení}
+Systém {\em rozhodovacích pravidel}
+
+\begin{block}{Michiganský model}
+\begin{itemize}
+\item Jedinec je pravidlo $\{flags\} \to action$ s váhou (úspěšností)
+\item Expertní systém je celá populace
+\item Evoluce zvolna na části populace
+\item Problém reaktivnosti --- vzájemná návaznost pravidel; \\ bucket brigade algorithm
+\end{itemize}
+\end{block}
+
+\begin{block}{Pittsburský model}
+\begin{itemize}
+\item Jedinec je celá sada pravidel
+\item Komplikovanější fitness i genetické operátory
+\item Konceptuálně jednodušší, spolehlivější?
+\end{itemize}
+\end{block}
 \end{frame}
 
 \subsection{}
