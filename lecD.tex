@@ -1,0 +1,176 @@
+\documentclass{beamer}
+\usetheme{Warsaw}
+\useinnertheme{circles}
+\useoutertheme[subsection=false]{smoothbars}
+\usepackage[utf8x]{inputenc}
+\usepackage[czech]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{listings}
+\usepackage{tikz}
+\lstset{basicstyle=\tiny\ttfamily}
+\logo{\includegraphics[height=0.5cm]{brmlab.pdf}}
+
+\begin{document}
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Outline}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\title{brmiversity: Umělá inteligence \\ a teoretická informatika}
+\subtitle{Přednáška č. 13}
+\author{Petr Baudiš $\langle${\tt pasky@ucw.cz}$\rangle$}
+\institute{
+	brmlab 2011\\
+	\vskip 1ex
+	\pgfdeclareimage[height=4ex]{ccbysa}{by-sa.pdf}
+	\pgfuseimage{ccbysa}
+}
+\date{}
+\frame{\titlepage}
+
+\section{Umělá inteligence a adaptivní agenti}
+
+\subsection{}
+\begin{frame}{Reprezentace znalostí}
+\begin{itemize}
+\item Logická reprezentace vs. rámce vs. \dots
+\item Syntax vs. sémantika
+\item Výroková logika, SAT
+\item Predikátová logika, temporální logika atd.
+\item V adapt. agentech?
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Strojové dokazování vět}
+\begin{itemize}
+\item Prvotní motivace: Automatické dokazování vět ve formálních systémech
+\item Vlastně spíše: Odvozování logických důsledků v bázi znalostí
+\vskip 3ex
+\item Odvozovací metody (model checking, inference rules --- )
+\item Báze znalostí, redukce na PL (skolemizace a unifikace) a odvozování (liftování, grounding, dopřed./zpět. řetězení a rezoluce)
+\item RETE, TODO další
+\item V adapt. agentech?
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Otázky?}
+\begin{center}
+Příště: Splňování omezujících podmínek a automatické plánování.
+\end{center}
+\end{frame}
+
+\section{Neuronové sítě}
+
+\subsection{}
+\begin{frame}{Modulární, hierarchické a hybridní modely NN}
+\begin{itemize}
+\item RBF-sítě
+\item Kaskádová korelace
+\item Časové posloupnosti
+\vskip 3ex
+\item Adaptivní směsi NN
+\item Sériová kompozice
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Otázky?}
+\begin{center}
+Příště: (Stručný!) přehled aplikací NN.
+\end{center}
+\end{frame}
+
+\section{Složitost}
+
+\subsection{}
+\begin{frame}{Rekapitulace --- Třídy složitosti}
+\begin{itemize}
+\item {\bf Třídy složitosti:} Skupina algoritmů se stejnou řádovou složitostí v závislosti na délce vstupu (P, NP, LSPACE, PSPACE, EXPTIME, \dots)
+\item P: Všechny algoritmy, které běží v {\em polynomiálním čase} na~``obyčejném'' Turingově stroji (DTS)
+\item NP: Algoritmy, které běží v polynomiálním čase na~nedeterministickém Turingově stroji (NTS)
+\item PSPACE: Všechny algoritmy, které sežerou \\ {\em polynomiálně mnoho pásky}
+\vskip 3ex
+\item NP-úplný problém\pause: Je v NP a lze na něj všechny NP problémy převést v polynomiálním čase
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Pseudopolynomiální algoritmy}
+\begin{itemize}
+\item Kódování vstupu --- unární vs. jiné
+\item Pseudopolynomiální algoritmus
+\item Příklad (součet podmnožiny, další?)
+\item Silná NP úplnost
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Aproximační algoritmy}
+\begin{itemize}
+\item Míry aproximace
+\item Aproximační schéma
+\item ÚPAS
+\item Příklad (TSP, další?)
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Otázky?}
+\begin{center}
+To je o výpočetní složitosti vše!
+
+\vskip 3ex
+
+{\bf Nemluvili jsme o řadě krásných věcí \dots}
+
+\vskip 1ex
+
+TS s přímým přístupem, RAM stroje, booleovské obvody.
+
+\vskip 1ex
+
+L a NL, interaktivní dokazovací systémy, \\ třídy pravděpodobnostních algoritmů, \\
+praktický nedeterminismus (kvantové počítače).
+\end{center}
+\end{frame}
+
+\section{Datové struktury}
+
+\subsection{}
+\begin{frame}{Datové struktury ve vnější paměti}
+\begin{itemize}
+\item Vnější paměť: Pomalá, {\em blokový} přenos (po stránkách)
+\vskip 3ex
+\item B-sort
+\item Externí hashování (tři druhy)
+\item Další databázové techniky (mřížky atd.)
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Otázky?}
+\begin{center}
+Příště: Třídění ve vnitřní a vnější paměti.
+\end{center}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Děkuji vám}
+\begin{center}
+{\bf pasky@ucw.cz}
+
+\vskip 6ex
+
+Příště: Umělá inteligence.
+	Neuronové sítě.
+	Datové struktury.
+	Vyčíslitelnost (Gödelovy věty).
+\end{center}
+\end{frame}
+
+\end{document}
