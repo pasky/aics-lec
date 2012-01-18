@@ -37,30 +37,200 @@
 \subsection{}
 \begin{frame}{Reprezentace znalostí}
 \begin{itemize}
-\item Logická reprezentace vs. rámce vs. \dots
-\item Syntax vs. sémantika
+\item Doteď spíš emergentní, automaticky naučené znalosti
+\item Dnes explicitní logická reprezentace
 \item Výroková logika, SAT
 \item Predikátová logika, temporální logika atd.
-\item V adapt. agentech?
+\vskip 3ex
+\item Prvotní motivace: Dokazování vět ve formálních systémech
+\item Teď: Odvozování logických důsledků v bázi znalostí --- {\em uvažování}
+\vskip 3ex
+\item Popis (jednoduchého) světa a logikou řízený agent
+\item Deduktivní databáze a produkční systémy, \\ logické programování
+\item Formální verifikace (software, hardware, \dots)
+\item Strojové dokazování vět (matematická tvrzení, \\ automatický vědec)
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Strojové dokazování vět}
+\subsection{}
+\begin{frame}{Znalostní báze}
 \begin{itemize}
-\item Prvotní motivace: Automatické dokazování vět ve formálních systémech
-\item Vlastně spíše: Odvozování logických důsledků v bázi znalostí
+\item Znalosti o světě i možné akce můžeme vyjádřit formálně \\ (třeba {\em logické predikáty} --- logické výrazy s proměnnými)
+\item Zajímá nás, jak implementovat {\bf bázi znalostí} \\ (množinu všeho, co víme)
+\item Operace $TELL$ přidá do báze nový poznatek
+\item Operace $ASK$ bázi položí {\em dotaz} \\ Rozdíl vůči databázi: Testujeme splnitelnost logického výrazu, báze musí sama {\em odvodit důkaz}
+\item Typicky nevíme vše --- neúplná informace, vzhledem ke~znalostem máme několik {\em možných modelů} světa; \\ pak musíme použít další heuristiky
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Výroková a predikátová logika}
+\begin{itemize}
+\item Proměnné: Booleovsky ohodnocené (true, false) popisují ``mapu světa''
+\item Formule: Řetězení podformulí operátory $\land, \lor, \lnot$ popisuje ``zákony světa''
+\item $a \Rightarrow b$ je $\lnot b \lor a$, $a \Leftrightarrow b$ je $(a \land b) \lor (\lnot a \land \lnot b)$
 \vskip 3ex
-\item Odvozovací metody (model checking, inference rules --- )
-\item Báze znalostí, redukce na PL (skolemizace a unifikace) a odvozování (liftování, grounding, dopřed./zpět. řetězení a rezoluce)
-\item RETE, TODO další
-\item V adapt. agentech?
+\item {\bf Syntax:} Definuje, co vše je formule
+\item {\bf Sémantika:} Říká, jestli je v daném světě (modelu) \\ formule pravdivá
+\vskip 3ex
+\item Predikátová logika (zatím odložíme stanou): funkce (výroba ``podproměnných'') a predikáty (vztahy mezi proměnnými)
+\item Existenční $\exists$ a univerzální $\forall$ kvalifikátor 
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Odvozovací metody}
+\begin{itemize}
+\item $x_0 = 0 \quad x_1 = 1 \quad x_2 = 0 \quad x_3 = 1 \quad x_4 = 1$
+\item $x_0 \lor \lnot x_1 \lor x_2 \lor \lnot x_3 \lor x_4 \Rightarrow x_5$
+\item Zajímá nás, jestli platí $x_3 \lor x_5$ \hskip 2em Odvozování: Modus ponens
+\item {\bf Ověřování modelu:} Spočítáme $x_5$ a dosadíme
+\item {\bf Odvozovací pravidla:} Odhalíme tautologii ($x_3 \lor \lnot x_3$)
+\item Korektnost: Nikdy neschválíme neplatný důsledek
+\item Úplnost: Vždy schválíme platný důsledek
+\vskip 3ex
+\item Věta je {\bf splnitelná} $\Leftrightarrow$ je pravdivá v nějakém modelu ($x_0 \lor x_1$)
+\item Věta je {\bf nesplnitelná} $\Leftrightarrow$ nepravdivá v každém modelu ($x_1 \land x_5$)
+\item Máme $ASK(KB, \alpha)$ (je $\alpha$ logický důsledek báze $KB$?); můžeme převést na testování splnitelnosti
+\item {\bf Enumerace:} Generuj a testuj --- zkus všechny kombinace výrokových proměnných, existuje nějaká splňená v $KB$ i $\alpha$?
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Příklad: Wumpus World}
+\begin{itemize}
+\item Nákres a pravidla
+\item Příklad znalostí a dotazu
+\item (Slajdy R. Bartáka.)
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Predikátová logika}
+\begin{itemize}
+\item Predikátovou logiku lze redukovat na výrokovou
+\item {\bf Grounding:} Za proměnné dosadíme všechny možné termy \\ a z nich pak vyrobíme výrokové proměnné
+\item {\bf Skolemizace:} Výsledky existenčních kvantifikátorů nám \\ bude vyrábět Skolemova konstanta, resp. funkce
+\vskip 1ex
+\item Grounding generuje spoustu irelevantních výrazů, \\ odvozujme přímo v PL!
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Odvozování v predikátové logice}
+\begin{itemize}
+\item {\bf Lifting:} Kvantifikátory substituujeme až v modus ponens
+\item Jak najdeme substituci kvantifikátorů?
+\end{itemize}
+\begin{center}
+Nechť $Knows(Karel, Jarda)$
+$UNIFY(Knows(Karel, x), Knows(y, z)) = \{ x/Jarda, y/Karel, z/Jarda \}$
+$UNIFY(Knows(Karel, x), Knows(y, z)) = \{ y/Karel, x/z \}$
+\end{center}
+\begin{itemize}
+\item {\bf Unifikace:} Substiticí je více možných, chceme najít {\em nejobecnější unifikátor}
+\item {\bf Standardizace stranou:} Proměnné z univerzálních kvalifikátorů nazveme unikátně
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Konjuktivní normální forma}
+\begin{center}
+CNF: konjunkce klauzulí, klauzule je disjunkce proměnných
+$$(x_0 \lor \lnot x_1) \land (\lnot x_2 \lor x_3 \lor \lnot x_4)$$
+
+Všechny výrazy lze převést na CNF (i v predikátové logice):
+$$ \forall x: (\forall y: Animal(y) \Rightarrow Loves(x, y)) \Rightarrow (\exists y: Loves(y, x))$$
+$$ \forall x: (\lnot \forall y: (\lnot Animal(y) \lor Loves(x,y))) \lor (\exists y: Loves(y, x)) $$
+$$ \forall x: (\exists y: (Animal(y) \land \lnot Loves(x, y))) \lor (\exists y: Loves(y, x)) $$
+$$ \forall x: (\exists y: (Animal(y) \land \lnot Loves(x, y))) \lor (\exists z: Loves(z, x)) $$
+$$ ((Animal(F(x)) \land \lnot Loves(x, F(x)))) \lor (Loves(G(x), x)) $$
+$$ (Animal(F(x)) \lor Loves(G(x), x)) \land (\lnot Loves(x, F(x)) \lor Loves(G(x),x)) $$
+
+Testování splnitelnosti CNF je stále NP-úplné (SAT)
+
+Nejtěžší formule mají $klauzulí/proměnných=4.3$
+\end{center}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Ověřování modelů}
+\begin{center}
+$ASK(KB, \alpha)$; už jsme zkoušeli enumerovat
+\end{center}
+
+\begin{block}{DPLL (Davis, Putnam, Logemann, Loveland)}
+\begin{itemize}
+\item Rekurzivní backtracking s heuristikami
+\item Brzká terminace, známe-li hodnotu některých klauzulí
+\item H. ryzí proměnné: dosadíme, mají-li $\forall$ výskyty stejné znaménko
+\item H. jednotkové klauzule: dosadíme, vystupuje-li proměnná samostatně
+\end{itemize}
+\end{block}
+
+\begin{block}{WalkSAT}
+\begin{itemize}
+\item Hill-climbing random walk (rychlý, není úplný)
+\item Iterativně vybíráme neplatné klauzule, s pravděpodobností $p$ přepeneme náhodnou proměnnou, jinak proměnnou, která opraví co nejvíce klauzulí
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Obecná rezoluce}
+\begin{itemize}
+\item $ASK(KB, \alpha)$ pomocí odvozovacích pravidel \\ (ne dosazováním hodnot)
+\item Obecná rezoluce: Důkaz sporem!
+\item Začneme s $KB \land \lnot \alpha$, převedeme na CNF
+\item Aplikujeme rezoluční pravidlo: $ (l_1 \lor l_2), (\lnot l_2 \lor l_3) | (l_1 \lor l_3) $
+\item Tedy hledáme a sjednocujeme klauzule s komplementárním (vzájemně negovaným) výskytem proměnné
+\item Pokud se dvě klauzule zcela vymlátí, dokázali jsme spor \\ (a platí $\alpha$)
+\item Pokud už nelze vytvářet nové klauzule, spor není (a platí $\lnot \alpha$)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Hornovské klauzule}
+\begin{itemize}
+\item {\bf Hornovská klauzule:} Klauzule speciálního tvaru, kde je maximálně jeden pozitivní literál
+\item $C \land (\lnot B \lor A) \land (\lnot C \lor \lnot D \lor B)$
+\item Jak $KB$ v takové formě může vzniknout? \pause \\ Implikace s jedním důsledkem!
+\item $C \land (B \Rightarrow A) \land (C \land D \Rightarrow B)$
+\item Logické programování (Prolog)
+\vskip 3ex
+\item Jednoduché (rychlé a srozumitelné) odvozování
+\item Rozhodovací problém má složitost pouze $O(N)$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Řetězení}
+\begin{block}{Dopředné řetězení}
+\begin{itemize}
+\item Idea: Z faktů generujeme postupně důsledky, dokud nedokážeme, co jsme chtěli
+\item Pro každou klauzuli máme čítač nesplněných předpokladů
+\item Postupně bereme důsledky splněných klauzulí (čítač na nule) a~dekrementujeme čítače dalších klauzulí
+\item {\bf Rete algoritmus:} Síť závislostí, inkrementální dokazování
+\end{itemize}
+\end{block}
+
+\begin{block}{Zpětné řetězení}
+\begin{itemize}
+\item Idea: Hledáme, jaké předpoklady musíme splnit pro dokázání důsledků, dokud nejsou všechny splněné
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Reprezentace znalostí}
+\begin{itemize}
+\item Kde začít?
+\item Příklad: Elektrické obvody
+\item Slajdy R. Bartáka
+\item Kategorie a taxonomie
 \end{itemize}
 \end{frame}
 
 \subsection{}
 \begin{frame}{Otázky?}
 \begin{center}
-Příště: Splňování omezujících podmínek a automatické plánování.
+Příště: Automatické plánování (dokazování v situačním kalkulu) a~splňování omezujících podmínek.
 \end{center}
 \end{frame}
 
