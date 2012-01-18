@@ -234,26 +234,26 @@ Příště: Automatické plánování (dokazování v situačním kalkulu) a~spl
 \end{center}
 \end{frame}
 
-\section{Neuronové sítě}
-
-\subsection{}
-\begin{frame}{Modulární, hierarchické a hybridní modely NN}
-\begin{itemize}
-\item RBF-sítě
-\item Kaskádová korelace
-\item Časové posloupnosti
-\vskip 3ex
-\item Adaptivní směsi NN
-\item Sériová kompozice
-\end{itemize}
-\end{frame}
-
-\subsection{}
-\begin{frame}{Otázky?}
-\begin{center}
-Příště: (Stručný!) přehled aplikací NN.
-\end{center}
-\end{frame}
+% \section{Neuronové sítě}
+% 
+% \subsection{}
+% \begin{frame}{Modulární, hierarchické a hybridní modely NN}
+% \begin{itemize}
+% \item RBF-sítě
+% \item Kaskádová korelace
+% \item Časové posloupnosti
+% \vskip 3ex
+% \item Adaptivní směsi NN
+% \item Sériová kompozice
+% \end{itemize}
+% \end{frame}
+% 
+% \subsection{}
+% \begin{frame}{Otázky?}
+% \begin{center}
+% Příště: (Stručný!) přehled aplikací NN.
+% \end{center}
+% \end{frame}
 
 \section{Složitost}
 
@@ -272,20 +272,31 @@ Příště: (Stručný!) přehled aplikací NN.
 \subsection{}
 \begin{frame}{Pseudopolynomiální algoritmy}
 \begin{itemize}
-\item Kódování vstupu --- unární vs. jiné
-\item Pseudopolynomiální algoritmus
-\item Příklad (součet podmnožiny, další?)
-\item Silná NP úplnost
+\item Kódování vstupu může být unární nebo binární (či jiné)
+\item Někdy to není jedno; časová složitost vzhledem k délce vstupu vs. k velikosti čísla na vstupu
+\item Buď $n$ číslo na vstupu; $l = \log_2 n$ délka zakódování ($n \simeq 2^l$)
+\item {\bf Pseudopolynomiální algoritmus} má dobu běhu omezen polynomem v $n$, ne v $l$
+\vskip 3ex
+\item Každý polynomiální algoritmus je i pseudopolynomiální
+\item Naopak to neplatí! (Např. součet podmnožiny.)
+\vskip 3ex
+\item {\bf Číselný problém} je takový, kde není nutně $n \le p(l)$
+\item Není-li NP-úplný problém číselný, nelze jej řešit pseudopolynomiálním algoritmem
+\item Je-li NP-úplný problém číselný, může být ještě {\bf silně NP-úplný} a také jej tak nelze řešit (např. TSP)
 \end{itemize}
 \end{frame}
 
 \subsection{}
 \begin{frame}{Aproximační algoritmy}
 \begin{itemize}
-\item Míry aproximace
-\item Aproximační schéma
-\item ÚPAS
-\item Příklad (TSP, další?)
+\item Povolme suboptimální řešení NP-těžkých optimalizačních problémů
+\item Budeme chtít polynomiální čas a odhad kvality vzhledem k optimu
+\item Odhad kvality: Poměrová chyba $A/O$ nebo relativní chyba $|A-O|/O$
+\item Např. vrcholové pokrytí lze aproximovat s poměrovou chybou max. 2
+\vskip 3ex
+\item {\bf Aproximační schéma:} $AS_X(Y,e)$ řeší $X(Y)$ s max. relativní chybou $e$
+\item {\bf Úplně polynomiální aproximační schéma:} AS časem omezené v polynomu $l(Y)$ i $e$
+\item Pro silně NP-úplné úlohy ÚPAS neexistuje (pokud $P \ne NP$)
 \end{itemize}
 \end{frame}
 
@@ -315,11 +326,29 @@ praktický nedeterminismus (kvantové počítače).
 \begin{frame}{Datové struktury ve vnější paměti}
 \begin{itemize}
 \item Vnější paměť: Pomalá, {\em blokový} přenos (po stránkách)
+\item Můžeme chtít měřit složitost v počtu I/O operací
 \vskip 3ex
 \item B-sort
-\item Externí hashování (tři druhy)
-\item Další databázové techniky (mřížky atd.)
+\item Externí hashování (Fagin, Cormack, Larson-Kalja)
 \end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Externí hashování}
+\begin{block}{Faginovo hashování}
+\begin{itemize}
+\item Parametr tabulky: Prvních $k$ bitů hashe
+\item $2^k$ řádků v tabulce, každý obsahuje ukazatel na stránku s množinou prvků
+\item Pokud se nějaká stránka naplní, rozštěpí se a zvýší se $k$
+\end{itemize}
+\end{block}
+\begin{block}{Perfektní hashování}
+\begin{itemize}
+\item Cormack: Mám hashovací funkce $h(x), g(i, x)$
+\item Adresář je hashovaný přes $h$ a obsahuje $i$ pro $g$, hlavní soubor adresovaný přes $g$
+\item Larson-Kalja: Jen $h$, tabulka stránek se separátorem (horní mez $h$)
+\end{itemize}
+\end{block}
 \end{frame}
 
 \subsection{}
@@ -337,7 +366,7 @@ Příště: Třídění ve vnitřní a vnější paměti.
 \vskip 6ex
 
 Příště: Umělá inteligence.
-	Neuronové sítě.
+	Neuronové sítě (zbytky).
 	Datové struktury.
 	Vyčíslitelnost (Gödelovy věty).
 \end{center}
