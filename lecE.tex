@@ -1,0 +1,162 @@
+\documentclass{beamer}
+\usetheme{Warsaw}
+\useinnertheme{circles}
+\useoutertheme[subsection=false]{smoothbars}
+\usepackage[utf8x]{inputenc}
+\usepackage[czech]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{listings}
+\usepackage{tikz}
+\lstset{basicstyle=\tiny\ttfamily}
+\logo{\includegraphics[height=0.5cm]{brmlab.pdf}}
+
+\begin{document}
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Outline}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\title{brmiversity: Umělá inteligence \\ a teoretická informatika}
+\subtitle{Přednáška č. 14}
+\author{Petr Baudiš $\langle${\tt pasky@ucw.cz}$\rangle$}
+\institute{
+	brmlab 2011\\
+	\vskip 1ex
+	\pgfdeclareimage[height=4ex]{ccbysa}{by-sa.pdf}
+	\pgfuseimage{ccbysa}
+}
+\date{}
+\frame{\titlepage}
+
+\section{Umělá inteligence}
+
+\subsection{}
+\begin{frame}{Automatické plánování}
+\begin{itemize}
+\item Situační kalkulus
+\item Rozvrhy
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Constraint Satisfaction Problem}
+\begin{itemize}
+\item Splňování omezujících podmínek (CSP)
+\item Domény
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Otázky?}
+\begin{center}
+To je o umělé inteligenci vše!
+
+\vskip 3ex
+
+Samozřejmě mnoho restů \dots
+
+Monte Carlo Markov Chains, Komputační lingvistika, Kálmanovy filtry pořádně, roboti v praxi, DSP\dots
+\end{center}
+\end{frame}
+
+\section{Neuronové sítě}
+
+\subsection{}
+\begin{frame}{Modulární, hierarchické a hybridní modely NN}
+\begin{itemize}
+\item RBF-sítě
+\item Kaskádová korelace
+\item Časové posloupnosti
+\vskip 3ex
+\item Adaptivní směsi NN
+\item Sériová kompozice
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Aplikace NN}
+\begin{itemize}
+\item Klasifikátory
+\item Prediktory
+\item Výběr akce
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Otázky?}
+\begin{center}
+To je vše!
+
+\vskip 3ex
+
+V současnosti nejpopulárnější variace jsou Support Vector Machines.
+\end{center}
+\end{frame}
+
+\section{Datové struktury}
+
+\subsection{}
+\begin{frame}{Třídění}
+\begin{itemize}
+\item Bubblesort
+\item Quicksort
+\item Merge sort
+\item Bucket sort
+\item Funnel sort
+\item B-sort?
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Otázky?}
+\begin{center}
+To je vše.
+
+Vícerozměrné struktury, dynamizace, TODO
+\end{center}
+\end{frame}
+
+\section{Vyčíslitelnost}
+
+\subsection{}
+\begin{frame}{Gödelovy věty}
+\begin{itemize}
+\item Formulace
+\item Důkaz
+\vskip 3ex
+\item A ve vyčíslitelnosti?
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Otázky?}
+\begin{center}
+To je o výpočetní složitosti vše!
+
+\vskip 3ex
+
+Pominuli jsme mnoho dalších návazností: relativní vyčíslitelnost a aritmetickou hierarchii,
+souvislost aritmetiky a vyčíslitelnosti a logiky, algoritmická náhodnost a Martingály, \dots
+\end{center}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Děkuji vám}
+\begin{center}
+{\bf pasky@ucw.cz}
+
+\vskip 6ex
+
+Příště: už nic
+
+brmiverzita (snad) nekončí!
+
+Přihlašte se do {\bf announce@brmlab.cz} (pár mailů měsíčně).
+\end{center}
+\end{frame}
+
+\end{document}
