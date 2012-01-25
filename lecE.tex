@@ -106,6 +106,7 @@ V současnosti nejpopulárnější variace jsou Support Vector Machines.
 \item Quicksort
 \item Merge sort
 \item Bucket sort
+\item Patience sort
 \item Funnel sort
 \item B-sort?
 \end{itemize}
@@ -123,12 +124,111 @@ Vícerozměrné struktury, dynamizace, TODO
 \section{Vyčíslitelnost}
 
 \subsection{}
-\begin{frame}{Gödelovy věty}
+\begin{frame}{Rekapitulace --- rekurzivní funkce}
 \begin{itemize}
-\item Formulace
-\item Důkaz
+\item Přirozená čísla (s nulou): nula a kladná celá čísla
+\item Numerály: ke každému přirozenému číslu se induktivně dopočítám z nuly
+\item Canotorova párovací funkce: každou dvojici přirozených čísel umím zkomprimovat do jednoho čísla
 \vskip 3ex
-\item A ve vyčíslitelnosti?
+\item Rekurzivní funkce: skládané z funkcí (data) a operátorů (control flow)
+\item Primitivně rekurzivní funkce: nemůže se zacyklit
+\item Obecně rekurzivní funkce: mohla by se zacyklit, \\ ale určitě to neudělá
+\item Rekurzivně spočetná funkce: může se zacyklit
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Rekapitulace --- logika a množiny}
+\begin{itemize}
+\item Logický systém: syntax a sémantika, první a druhý řád
+\item Formule: pravdivé, nepravdivé; konzistentnost a úplnost
+\item Pravdivost či nepravdivost: Existuje korektní ohodnocení?
+\item Dokazatelnost: Mužeme odvodit tvrzení z axiomů (teorie)?
+\vskip 3ex
+\item Gödelova čísla: každé rek. funkci můžu přiřadit přirozené číslo
+\item Rekurzivní predikát: oborem hodnot logické formule \\ je obor hodnot rekurzivní funkce
+\item Rekurzivní množina: podmnožina přirozených čísel rozhodovaná rekurzivní funkcí
+\item Rekurzivně spočetná (enumerable) množina: místo rozhodovací funkci máme generátor všech prvků
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Peanova aritmetika}
+\begin{itemize}
+\item Axiomatizovatelná teorie: Množina dokazatelných formulí \\ je rekurzivně spočetná
+\item Teorie {\bf základní aritmetické síly:} přirozená čísla, \\ sčítání a násobení, konečně mnoho axiomů
+\item Každá ČRF je reprezentovatelná v teorii ZAS
+\end{itemize}
+\begin{block}{Peanova aritmetika}
+\begin{itemize}
+\item 0 je přirozené číslo
+\item Relace = je reflexivní, symetrická, tranzitivní a uzavřená
+\item Pro každé přirozené čislo je $S(n)$ přirozené číslo $\ne 0$
+\item Pokud $S(m) = S(n)$ tak $m=n$ ($\forall m,n$)
+\item Je-li predikát $\varphi(n)$ (i) pravdivý pro nulu (ii) pro každé $n$ pokud $\varphi(n)$ tak $\varphi(S(n))$, platí $\varphi$ pro všechna přirozená čísla
+\item Sčítání $a+S(b)=S(a+b)$, násobení $a\cdot S(b) = a + (a\cdot b)$ a~uspořádání $\le$
+\end{itemize}
+\end{block}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Gödelovy věty o neúplnosti}
+\begin{itemize}
+\item Mějme bezespornou teorii ZAS $T$
+\item Předvěta: Množina formulí $T$ dokazatelných v $T$ \\ není rekurzivní
+\vskip 3ex
+\item {\bf První věta:} Je-li $T$ axiomatizovatelná, existuje \\ pravdivá formule nerozhodnutelná v $T$
+\item Neboli netriviální teorie nemohou být zároveň \\ konzistentní a úplné
+\vskip 3ex
+\item {\bf Druhá věta:} Říká-li o sobě $T$, že je konzistentní, \\ je nekonzistentní.
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Důkaz první Gödelovy věty}
+\begin{itemize}
+\item {\bf První věta:} Je-li $T$ axiomatizovatelná, existuje \\ pravdivá formule nerozhodnutelná v $T$
+\item Množiny $A,B$ jsou {\bf rekurzivně neoddělitelné}, neexistuje-li rekurzivní $M$, aby $A \subseteq M \land B \cap M = \emptyset$
+\pause
+\item $W_x = \{ y : \Psi(x, y) \downarrow \}$
+\item Množiny $A,B$ jsou {\bf efektivně neoddělitelné}, existuje-li $f$:
+$$(A \subseteq W_x \land B \subseteq W_y \land W_x \cap W_y = \emptyset) \Rightarrow f(x,y) \downarrow \land (f(x,y) \notin W_x \cup W_y)$$
+\vskip 3ex
+\item NEPROPADEJTE PANICE
+\vskip 3ex
+\pause
+\item Chceme dokázat, že množina dokazatelných a vyvratitelných formulí je {\bf efektivně neoddělitelná dvojice}
+\item Tedy můžeme efektivně najít popis všech předložených dokazatelných a vyvratitelných formulí a efektivně \\ vygenerovat novou, která není ani jedno
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Důkaz první Gödelovy věty}
+\begin{itemize}
+\item {\bf Předvěta:} Množina dokazatelných formulí není rekurzivní
+\item {\bf První věta:} Je-li $T$ axiomatizovatelná, existuje \\ pravdivá formule nerozhodnutelná v $T$
+\vskip 3ex
+\item Vezměme libovolné dvě efektivně neoddělitelné RSM $A,B$ a~popišme je logickým predikátem $G$ resp. $\lnot G$
+\item Nové množiny $A',B'$ dokazatelných výroků $G$ a $\lnot G$
+\item Lemma 1: $A' \cup B' = \emptyset$ (bezespornost)
+\item Předvěta: $A',B'$ nejsou rekurzivní, jinak by separovaly $A,B$
+\item Lemma 2: Z předpokladu efektivní neoddělitelnost $A,B$ lze z~libovolné množiny dokazatelných a nedokazatelných výroků vygenerovat prvek ležící mimo ně
+\vskip 3ex
+\item Stačí to? \pause Nestačí, pokrýváme pouze ``sublimitní'' případy
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Důkaz první Gödelovy věty}
+\begin{itemize}
+\item {\bf První věta:} Je-li $T$ axiomatizovatelná, existuje \\ pravdivá formule nerozhodnutelná v $T$
+\item {\bf Lemma 2:} Z libovolné množiny dokazatelných výroků lze vygenerovat prvek ležící mimo ně
+\vskip 2ex
+\item Nezbývá než upustit z preciznosti
+\item Podle lemma 2 je množina pravdivých výroků $T$ {\em produktivní} a~pomocí věty o rekurzi jde (dost složitě) dokázat, že~produktivní množiny nejsou rekurzivně spočetné
+\item Množina není ani rekurzivně spočetná, co to znamená? Že~nemáme funkci, která generuje postupně všechny prvky množiny!
+\item Tedy odvozovací pravidla neprojdou celý prostor \\ pravdivých formulí $T$
+\vskip 2ex
+\item $\pm$ QED
 \end{itemize}
 \end{frame}
 
@@ -139,8 +239,8 @@ To je o výpočetní složitosti vše!
 
 \vskip 3ex
 
-Pominuli jsme mnoho dalších návazností: relativní vyčíslitelnost a aritmetickou hierarchii,
-souvislost aritmetiky a vyčíslitelnosti a logiky, algoritmická náhodnost a Martingály, \dots
+Pominuli jsme mnoho dalších návazností: relativní vyčíslitelnost a~aritmetickou hierarchii,
+souvislost aritmetiky a vyčíslitelnosti a~logiky, algoritmická náhodnost a Martingály, \dots
 \end{center}
 \end{frame}
 
@@ -151,7 +251,7 @@ souvislost aritmetiky a vyčíslitelnosti a logiky, algoritmická náhodnost a M
 
 \vskip 6ex
 
-Příště: už nic
+Příště: Appendix (nejspíš bez slajdů)
 
 brmiverzita (snad) nekončí!
 
