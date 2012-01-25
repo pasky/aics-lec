@@ -37,16 +37,107 @@
 \subsection{}
 \begin{frame}{Automatické plánování}
 \begin{itemize}
-\item Situační kalkulus
-\item Rozvrhy
+\item Projekční problém: jak bude vypadat situace po dané posloupnosti akcí?
+\item Plánovací problém: jaká posloupnost akcí vede k dané situaci?
+\item Potřebujeme reprezentovat {\em akce, stavy, situace}
+\vskip 3ex
+\item Možnost 1: Budeme se dále pohybovat v logice a používat její dokazovací metody
+\item Možnost 2: Navrhneme si vlastní algoritmy
 \end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Situační kalkulus}
+\begin{itemize}
+\item Jak v logice reprezentovat stavy měnící se v čase?
+\item {\em Akce} jsou logické termy $Go(x,y)$, $Grab(g)$, $Release(g)$
+\item {\em Situace} jsou logické termy $S_0$, $Result(a, s)$
+\item Plovoucí (fluent) predikáty a funkce --- mění se s časem: $Holding(g,s)$
+\item Pevné (rigid) predikáty a funkce
+\item Pozor na skryté předpoklady! (Uzavřený svět, jednoznačnost jmen.)
+\vskip 3ex
+\item {\bf Plán:} Posloupnost akcí
+\item $Result([a|seq],s) = Result(seq, Result(a,s))$
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Reprezentace akce}
+\begin{itemize}
+\item Akci můžeme provést jen někdy a má nějaké efekty
+\item {\bf Axiom použitelnosti:} $Preconds \Rightarrow Poss(a, s)$
+\item {\bf Axiom efektu:} $Poss(a,s) \Rightarrow Changes$
+\vskip 3ex
+\item Problém rámce --- co se ve světě {\em nemění?}
+\item Možnost 1: {\bf Axiom rámce:} $At(o,x,y) \land o \ne Agent \land \lnot Holding(o, Agent, s) \Rightarrow At(o,Result(Go(y,z),s))$
+\item Možnost 2: {\bf Axiom následujícího stavu:} Když $Poss(a,s)$, fluent platí v $Result(a,s)$, právě když je efektem $a$, nebo platí v $s$ a $a$ jej nemění
+\item Možnost 3: Predikáty $PosEffect(a, F_i)$ a $NegEffect(a, F_i)$
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Plánování po vlastním}
+\begin{itemize}
+\item Dokazování v logice je stále zbytečně obecné a tedy složité
+\item Inspirované, ale speciální řešení problému
+\vskip 3ex
+\item {\bf Stav:} Množina logických atomů, každý pravda či nepravda
+\item Kompletně instanciované (bez proměnných); opět fluent a rigid
+\vskip 3ex
+\item {\bf Akce:} Plánovací operátor překlápející hodnoty atomů
+\item Operátor $o$ je trojice $(name(o), precond(o), effects(o))$
+\item Kompletně instanciované, $name$ bere parametry a ty dosazuje do $precond$ a $effects$
+\vskip 3ex
+\item Plánovací doména $\Sigma = (S, A, \gamma)$
+\item Plánovací problém $P = (\Sigma, s_0, g)$
+\item Plán $\pi = [a_1,a_2,\ldots]$; řeší $P \Leftrightarrow \gamma(s_0,\pi)$ splňuje $g$
+\item Plán můžeme dopředně či zpětně ověřit
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Plánovací algoritmy}
+\begin{block}{Plánování v prostoru stavů}
+\begin{itemize}
+\item Dopředné plánování: backtracking z počátečního stavu
+\item Zpětné plánování: backtracking z koncového stavu
+\item Při zpětném plánování můžeme použít liftovanou verzi přechodu
+\end{block}
+\end{itemize}
+\begin{block}{Plánování v prostoru plánů}
+\begin{itemize}
+\item Začneme s prázdným plánem a plnou sadou cílů $g$
+\item Postupně přidáváme akce plnící ještě otevřené cíle
+\item Opravujeme {\em kazy} částečného plánu a zachováváme jeho konzistenci řešením {\em hrozeb}
+\end{itemize}
+\end{block}
 \end{frame}
 
 \subsection{}
 \begin{frame}{Constraint Satisfaction Problem}
 \begin{itemize}
 \item Splňování omezujících podmínek (CSP)
-\item Domény
+\item Máme problém s určitou {\em vnitřní strukturou}, která nám může pomoci najít řešení
+\item Třeba Sudoku, barvení map nebo prostor plánů
+\item Obecně: Množina proměnných a jejich domén a sada podmínek (extenzionálně nebo intenzionálně)
+\item {\bf Stav:} Přiřazení hodnot proměnným
+\item Konzistentní stav neporušuje podmínky, úplný stav má ohodnocené všechny proměnné
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Řešení CSP}
+\begin{itemize}
+\item Backtracking --- zkoušíme různá ohodnocení; ale chytře!
+\vskip 3ex
+\item Obecné doporučení výběru proměnné: fail first
+\item {\bf dom heuristika} --- přednostně proměnné s nejmenší doménou
+\item {\bf deg heuristika} --- přednostně proměnné s nejvíce podmínkami
+\vskip 3ex
+\item Obecné doporučení výběru hodnoty: succeed first
+\item Forward checking --- pohled o jeden krok vpřed
+\item Propagace podmínek --- hranová konzistence, algoritmus AC-3
+\item Globální podmínky
 \end{itemize}
 \end{frame}
 
