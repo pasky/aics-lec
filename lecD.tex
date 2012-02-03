@@ -39,8 +39,8 @@
 \begin{itemize}
 \item Doteď spíš emergentní, automaticky naučené znalosti
 \item Dnes explicitní logická reprezentace
-\item Výroková logika, SAT
-\item Predikátová logika, temporální logika atd.
+\item Predikátová logika, SAT
+\item Výroková logika, temporální logika atd.
 \vskip 3ex
 \item Prvotní motivace: Dokazování vět ve formálních systémech
 \item Teď: Odvozování logických důsledků v bázi znalostí --- {\em uvažování}
@@ -64,17 +64,18 @@
 \end{frame}
 
 \subsection{}
-\begin{frame}{Výroková a predikátová logika}
+\begin{frame}{Predikátová a výroková logika}
 \begin{itemize}
 \item Proměnné: Booleovsky ohodnocené (true, false) popisují ``mapu světa''
+\item Predikáty: Vztahy mezi proměnnými
 \item Formule: Řetězení podformulí operátory $\land, \lor, \lnot$ popisuje ``zákony světa''
 \item $a \Rightarrow b$ je $\lnot b \lor a$, $a \Leftrightarrow b$ je $(a \land b) \lor (\lnot a \land \lnot b)$
 \vskip 3ex
 \item {\bf Syntax:} Definuje, co vše je formule
 \item {\bf Sémantika:} Říká, jestli je v daném světě (modelu) \\ formule pravdivá
 \vskip 3ex
-\item Predikátová logika (zatím odložíme stanou): funkce (výroba ``podproměnných'') a predikáty (vztahy mezi proměnnými)
-\item Existenční $\exists$ a univerzální $\forall$ kvalifikátor 
+\item Výroková logika (zatím odložíme stanou): funkce (výroba ``podproměnných'')
+\item Existenční $\exists$ a univerzální $\forall$ kvalifikátor
 \end{itemize}
 \end{frame}
 
@@ -106,9 +107,9 @@
 \end{frame}
 
 \subsection{}
-\begin{frame}{Predikátová logika}
+\begin{frame}{Výroková logika}
 \begin{itemize}
-\item Predikátovou logiku lze redukovat na výrokovou
+\item Výrokovou logiku lze redukovat na predikátovou
 \item {\bf Grounding:} Za proměnné dosadíme všechny možné termy \\ a z nich pak vyrobíme výrokové proměnné
 \item {\bf Skolemizace:} Výsledky existenčních kvantifikátorů nám \\ bude vyrábět Skolemova konstanta, resp. funkce
 \vskip 1ex
@@ -117,7 +118,7 @@
 \end{frame}
 
 \subsection{}
-\begin{frame}{Odvozování v predikátové logice}
+\begin{frame}{Odvozování ve výrokové logice}
 \begin{itemize}
 \item {\bf Lifting:} Kvantifikátory substituujeme až v modus ponens
 \item Jak najdeme substituci kvantifikátorů?
@@ -139,7 +140,7 @@ $UNIFY(Knows(Karel, x), Knows(y, z)) = \{ y/Karel, x/z \}$
 CNF: konjunkce klauzulí, klauzule je disjunkce proměnných
 $$(x_0 \lor \lnot x_1) \land (\lnot x_2 \lor x_3 \lor \lnot x_4)$$
 
-Všechny výrazy lze převést na CNF (i v predikátové logice):
+Všechny výrazy lze převést na CNF (i ve výrokové logice):
 $$ \forall x: (\forall y: Animal(y) \Rightarrow Loves(x, y)) \Rightarrow (\exists y: Loves(y, x))$$
 $$ \forall x: (\lnot \forall y: (\lnot Animal(y) \lor Loves(x,y))) \lor (\exists y: Loves(y, x)) $$
 $$ \forall x: (\exists y: (Animal(y) \land \lnot Loves(x, y))) \lor (\exists y: Loves(y, x)) $$
