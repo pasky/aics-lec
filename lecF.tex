@@ -1,0 +1,144 @@
+\documentclass{beamer}
+\usetheme{Warsaw}
+\useinnertheme{circles}
+\useoutertheme[subsection=false]{smoothbars}
+\usepackage[utf8x]{inputenc}
+\usepackage[czech]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{listings}
+\usepackage{tikz}
+\lstset{basicstyle=\tiny\ttfamily}
+\logo{\includegraphics[height=0.5cm]{brmlab.pdf}}
+
+\begin{document}
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Outline}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\title{brmiversity: Umělá inteligence \\ a teoretická informatika}
+\subtitle{Přednáška č. 15}
+\author{Petr Baudiš $\langle${\tt pasky@ucw.cz}$\rangle$}
+\institute{
+	brmlab 2011\\
+	\vskip 1ex
+	\pgfdeclareimage[height=4ex]{ccbysa}{by-sa.pdf}
+	\pgfuseimage{ccbysa}
+}
+\date{}
+\frame{\titlepage}
+
+\section{Dnešní paběrkování}
+\subsection{}
+\begin{frame}{Témata}
+\begin{itemize}
+\item Neuronové sítě
+\item Gödelovy věty
+\item Umělá inteligence: Pravděpodobnostní sítě, MCMC a Kálmánovy filtry
+\end{itemize}
+\end{frame}
+
+\section{Neuronové sítě}
+
+\subsection{}
+\begin{frame}{RBF síť}
+\begin{itemize}
+\item RBF: Radial Basis Function $R_i(\vec x) = \rho(||\vec x-\vec c_i||)$
+\item $||\vec x-\vec c_i||$ je vzdálenost mezi $\vec x$ a $\vec c_i$
+\item $\rho$ je bázová funkce, typicky Gaussovka $\rho(x) = \exp (-\beta x^2)$
+\vskip 1ex
+\item Vstupní vrstva předává data, výstupní vrstva je lineární asociátor (klasický neuron)
+\item Jedna skrytá vrstva, kde přechodové funkce jsou RBF
+\item Tedy výstup sítě je $\sum_{i=1}^N a_i \rho(||x - c_i||)$
+\item Obvykle je výstup RBF normalizovaný, aby součet vstupů asociátoru byl 1 \\ (Pak se na to dá dívat jako na laterální spoje a speciální Kohonenovskou vrstvu.)
+\item Učení gradient descentem (třeba backprop)
+\vskip 1ex
+\item Silná metoda pro aproximaci funkcí
+\item Rekurzivní predikce časové posloupnosti \\ v rámci dynamického systému
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Kaskádová korelace}
+\begin{itemize}
+\item Problémy klasických ANN: Jak by síť měla vypadat? \\ Local Optimum Problem \\ Step Size Problem \\ Moving Target Problem
+\item Idea: Přidávat neurony během učení, ``tak, jak budou potřeba'' \\ Tedy s váhami nastavenými pro minimalizaci chyby
+\item Kaskáda: Každý neuron je napojený na všechny předchozí
+\item Každý neuron reprezentuje {\em odstranění určité systematické chyby}
+\end{itemize}
+
+% http://www.scribd.com/doc/36974082/25/Overcoming-Drawbacks-of-Cascade-Correlation
+Obrázky: Large Scale Reinforcement Learning using $Q-SARSA(\lambda)$ and Cascading Neural Networks
+\end{frame}
+
+\begin{frame}{Učení kaskádové korelace}
+\begin{itemize}
+\item Síť učíme backpropem a zároveň si chystáme několik nových neuronů
+\item Nemenší-li se chyba, vybereme jeden z nových neuronů a přidáme ho do sítě
+\item Vstupní váhy neuronu jsou zmrazeny, výstup se učí backpropem
+\vskip 3ex
+\item Cíl učení: Maximalizace kovariance mezi výstupy neuronu a chybou sítě
+\end{itemize}
+$$S = |\sum_p (c_p-\mathbb{E}c)(e_p-\mathbb{E}e)|$$
+$$\frac{\partial S}{\partial w_k} = \sum_p \rho (e_p - \mathbb{E}e) f'_p I_{p,k}$$
+\end{frame}
+
+\subsection{}
+\begin{frame}{Adaptive Resonance Theory}
+\begin{itemize}
+\item ART sítě: Odskočíme si k učení bez učitele
+\item Chceme roztřídit vstup do kategorií, které si sami vytvoříme
+\item Stability-plasticity dilemma
+\item Trénujeme zvlášť bottom-up klasifikaci senzory vs. top-down očekávání pozorovatele
+\vskip 3ex
+\item Comparison field: Vstup
+\item Recognition field: Reprezentanti
+\item Reset modul: Vigilance sítě
+\item Trénování: Vyberu nejbližší neuron s dostatečně silným matchem (vigilanční test) a ten posunu směrem ke vstupu
+\item Pokud žádný nenajdu, mám novou kategorii a naalokuji nový neuron
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Counter-propagation NN}
+\begin{itemize}
+\item Vzpomínáte na Kohonenovy mapy?
+\item Lze je použít jako součást složitějšího klasifikátoru
+\item Přidáme na výstup speciální výstupní vrstvu neuronů zpracovávající Kohonenovu mapu
+\vskip 3ex
+\item Síť se vstřícným šířením
+\item Kohonenovu mapu učíme klasicky
+\item Výstupní neurony učíme posunem vah synapsí aktivovaných neuronů z Kohonenovy mapy k očekávaným výstupům
+\end{itemize}
+\end{frame}
+
+\subsection{}
+\begin{frame}{Otázky?}
+\begin{center}
+To je vše!
+
+\vskip 3ex
+
+V současnosti nejpopulárnější variace jsou Support Vector Machines.
+\end{center}
+\end{frame}
+
+\section{Umělá inteligence}
+
+\subsection{}
+\begin{frame}{Bayesovské sítě}
+\begin{itemize}
+\item Mnoho náhodných proměnných, převážně podmíněně nezávislých
+\item Klasicky: Sdružená pravděpodobnost a marginály --- moc!
+\item Závislosti proměnných lze modelovat jako graf
+\item Podmíněná nezávislost odpovídá separaci
+\item Markovovský obal
+\item Eliminace, vzorkování
+\end{itemize}
+\end{frame}
+
+\end{document}
